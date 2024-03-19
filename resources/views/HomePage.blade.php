@@ -15,7 +15,7 @@
     <header
         class='fixed left-0 right-0 top-0   font-sans min-h-[60px]  z-50 bg-gradient-to-r from-[#FFFBF6] via-[#EFEEEC] shadow-lg shadow-gray-500  to-[#E4E4E4]'>
         <div class='flex flex-wrap items-center justify-between px-10 py-3 gap-4 relative'>
-            <a href="javascript:void(0)">
+            <a href="javascript:void(0)" >
                 <h1
                     class="bg-gradient-to-r from-[#69A8F3] via-[#5102F8] font-bold text-2xl to-indigo-400 inline-block text-transparent bg-clip-text">
                     CampusAvenir</h1>
@@ -27,10 +27,10 @@
                 <button type="button"
                     class=" py-2.5 min-w-[110px]  bg-gradient-to-r from-[#69A8F3] rounded text-white text-sm tracking-wider font-medium border-none outline-none bg-[#5102F8] active:from-[#69A8F3]">
                     s'inscrire</button>
-
+                <div onclick="toggleModal('collapseMenu')" class="border-l-2 lg:hidden cursor-pointer pl-5 ml-4 border-gray-600"><i class='bx bx-menu text-3xl' style='color:#323131'  ></i></div>
             </div>
             <ul id="collapseMenu"
-                class='lg:!flex max-lg:hidden max-lg:w-full lg:space-x-10 max-lg:space-y-4 max-lg:my-4'>
+                class='lg:flex hidden max-lg:w-full lg:space-x-10 max-lg:space-y-4 max-lg:my-4'>
                 <li class='max-lg:border-b max-lg:py-2'><a href='javascript:void(0)'
                         class='hover:text-blue-600 text-[15px] font-bold text-blue-600 block'>Home</a></li>
                 <li class='group max-lg:border-b max-lg:py-2 relative'>
@@ -44,7 +44,7 @@
                         </svg>
                     </a>
                     <ul
-                        class='absolute hidden group-hover:block shadow-lg bg-white px-6 pb-4 pt-6 space-y-3 lg:top-5 max-lg:top-8 -left-6 min-w-[250px] z-50'>
+                        class='absolute hidden group-hover:block shadow-lg bg-white/80 px-6 pb-4 pt-6 space-y-3 lg:top-5 max-lg:top-8 -left-6 min-w-[250px] z-50'>
                         <li class='border-b py-2 '><a href='javascript:void(0)'
                                 class='hover:text-[#007bff] text-gray-600 text-[15px] font-bold block'>About</a></li>
                         <li class='border-b py-2 '><a href='javascript:void(0)'
@@ -68,7 +68,7 @@
                         </svg>
                     </a>
                     <ul
-                        class='absolute hidden group-hover:block shadow-lg bg-white px-6 pb-4 pt-6 space-y-3 lg:top-5 max-lg:top-8 -left-6 min-w-[250px]'>
+                        class='absolute hidden group-hover:block shadow-lg bg-white/80 px-6 pb-4 pt-6 space-y-3 lg:top-5 max-lg:top-8 -left-6 min-w-[250px]'>
                         <li class='border-b py-2 '><a href='javascript:void(0)'
                                 class='hover:text-[#007bff] text-gray-600 text-[15px] font-bold block'>Foods</a></li>
                         <li class='border-b py-2 '>
@@ -93,19 +93,19 @@
         </div>
     </header>
     <main>
-        <section class="bg-url bg-no-repeat bg-cover h-screen items-center justify-center mt-16 flex"
+        <section class="bg-url bg-no-repeat bg-cover px-6 h-screen items-center justify-center mt-16 flex"
             style="background-image: url('{{ asset('storage/images/herosection.png') }}');">
             <div class="text-center text-white">
-                <h1 class="font-bold text-5xl">Trouvez Votre <span
-                        class="bg-blue-500/60 px-3 pb-2 rounded">Avenir</span> Dès
+                <h1 class="font-bold text-xl md:text-5xl">Trouvez Votre <span
+                        class="bg-blue-500/60 px-3 pb-1 lg:pb-2 rounded">Avenir</span> Dès
                     Aujourd'hui !</h1>
-                <p class="font-semibold text-3xl mt-6">Découvrez Le Guide Ultime Des Universités à Travers Le Maroc </p>
+                <p class="font-semibold text-lg md:text-3xl mt-6">Découvrez Le Guide Ultime Des Universités à Travers Le Maroc </p>
             </div>
         </section>
-        <section>
-            <div class="font-[sans-serif] bg-gray-100">
+        <section  >
+            <div class="font-[sans-serif] bg-gray-100 ">
                 <div class="px-8 py-12 text-center  text-gray-700  shadow-xl">
-                    <div class="max-w-5xl mx-auto">
+                    <div class="max-w-5xl  mx-auto">
                         <p class="text-lg inline-block leading-loose align-text-top mb-4">Explorez vos options et prenez
                             des décisions éclairées avec notre guide
                             complet des universités à travers le monde. Découvrez les institutions les mieux classées,
@@ -122,10 +122,10 @@
                 </div>
             </div>
         </section>
-        <section class=" h-[55vh] bg-no-repeat  bg-cover items-center justify-center  flex"
+        <section class=" min-h-[55vh] bg-no-repeat px-6 bg-cover items-center justify-center  flex"
             style="background-image: url('{{ asset('storage/images/Rectangle.png') }}');">
-            <div class="max-w-6xl mx-auto">
-                <div class="grid lg:grid-cols-3 md:grid-cols-2 max-md:max-w-lg mx-auto gap-12">
+            <div class="max-w-6xl md:mx-auto mx-10">
+                <div class="grid lg:grid-cols-3 md:grid-cols-2 max-md:max-w-lg mx-auto py-8 gap-12">
                     <div class="py-6 px-4 bg-white group hover:bg-blue-500 rounded text-center hover:text-white">
                         <h3 class="text-xl font-extrabold mb-4">Security</h3>
                         <p class="text-sm">Qui elit labore in nisi dolore tempor anim laboris ipsum ad ad consequat id.
@@ -241,7 +241,7 @@
         </section>
 
 
-        <section class="mt-6">
+        <section class="mt-6 px-6">
             <div class="bg-white font-[sans-serif] my-4">
                 <div class="max-w-7xl mx-auto">
                     <div class="text-center">
@@ -299,7 +299,7 @@
             </div>
         </section>
 
-        <section class="mt-14">
+        <section class="mt-14 px-6">
             <div class="bg-white font-[sans-serif] my-4">
                 <div class="max-w-7xl mx-auto">
                     <div class="text-center">
@@ -363,7 +363,7 @@
 
         <section>
             <div
-                class="grid md:grid-cols-2 my-20 items-center md:gap-16 gap-6 font-[sans-serif] text-[#333] max-w-6xl max-md:max-w-lg mx-auto">
+                class="grid md:grid-cols-2 px-6 my-20 items-center md:gap-16 gap-6 font-[sans-serif] text-[#333] max-w-6xl max-md:max-w-lg mx-auto">
                 <div class="md:h-[320px]">
                     <img src='{{ asset('storage/images/lastsection.png') }}' class="w-full h-full object-cover shadow-xl"
                         alt="Dining Experience" />
@@ -547,6 +547,11 @@
 
       
     <script>
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.toggle('hidden');
+        }
+    
         document.addEventListener("DOMContentLoaded", function() {
             const images = document.querySelectorAll('.carousel img');
             const eventDateTime = document.getElementById('event-date-time');

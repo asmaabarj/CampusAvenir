@@ -16,3 +16,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('HomePage');
 });
+
+Route::get('/Faqs', function () {
+    return view('Faqs');
+});
+
+Route::get('/login', function () {
+    return view('Authetification.login');
+});
+
+Route::get('/register', function () {
+    return view('Authetification.register');
+});
