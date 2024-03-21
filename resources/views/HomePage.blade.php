@@ -357,10 +357,6 @@
             </div>
         </section>
 
-
-
-
-
         <section>
             <div
                 class="grid md:grid-cols-2 px-6 my-20 items-center md:gap-16 gap-6 font-[sans-serif] text-[#333] max-w-6xl max-md:max-w-lg mx-auto">
@@ -390,7 +386,7 @@
         </section>
     </main>
 
-    <footer class="bg-[#f0fff0] py-12 px-12 font-[sans-serif]">
+    <footer class="bg-sky-100 py-12 px-12 font-[sans-serif]">
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10">
           <div class="xl:col-span-2">
             <a href='javascript:void(0)'><img src="https://readymadeui.com/readymadeui.svg" alt="logo" class='w-48' /></a>
@@ -540,12 +536,11 @@
               <a href='javascript:void(0)' class='text-blue-500 text-sm hover:underline'>Security</a>
             </li>
           </ul>
-          <p class='text-sm text-gray-500 ml-auto max-lg:mt-4'>Copyright © 2023<a href='https://readymadeui.com/'
+          <p class='text-sm text-gray-500 ml-auto max-lg:mt-4'>Copyright © {{now()->year}}<a href='https://readymadeui.com/'
               target='_blank' class="hover:underline mx-1">ReadymadeUI</a>All Rights Reserved.</p>
         </div>
       </footer> 
-
-      
+  
     <script>
         function toggleModal(modalId) {
             const modal = document.getElementById(modalId);

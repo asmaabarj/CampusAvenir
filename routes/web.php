@@ -28,3 +28,51 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('Authetification.register');
 });
+// ----------------------------------------------admin----------------------------------------------------
+Route::get('/dashboard', function () {
+    return view('Admin.Dashboard');
+});
+
+Route::get('/addDomaine', function () {
+    return view('Admin.addDomaine');
+});
+
+Route::get('/manageDomaine', function () {
+    return view('Admin.manageDomaine');
+});
+
+Route::get('/addUniversity', function () {
+    return view('Admin.addUniversity');
+});
+
+Route::get('/manageUniversity', function () {
+    return view('Admin.manageUniversity');
+});
+
+Route::get('/addPub', function () {
+    return view('Admin.addPub');
+});
+
+Route::get('/managePub', function () {
+    return view('Admin.managePub');
+});
+
+Route::get('/faqsManage', function () {
+    return view('Admin.faqsManage');
+});
+
+Route::get('/managePosts', function () {
+    return view('Admin.managePosts');
+});
+
+Route::get('/contactMe', function () {
+    return view('Admin.contactMe');
+});
+
+Route::get('/manageConcours', function () {
+    return view('Admin.manageConcours');
+});
+
+Route::get('/profileAdmin', function () {
+    return view('Admin.profileAdmin');
+});
