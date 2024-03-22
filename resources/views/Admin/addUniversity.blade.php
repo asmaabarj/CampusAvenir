@@ -12,64 +12,91 @@
 
 <body class="bg-[#F7F8FA]">
     @extends('layouts.sidebarAdmin')
-    
+
     @section('addForm')
         <div class="py-4 px-10">
-            <form action="" method=""  class="grid grid-cols-1 lg:grid-cols-2  gap-8">
+            <form action="" method="" class="grid grid-cols-1 lg:grid-cols-2  gap-x-8 gap-y-4">
                 <div class="mb-2">
-                    <label for="titre" class="block text-gray-700 text-sm font-bold mb-2">Title:</label>
-                    <input type="text" id="titre" name="titre" value=""
-                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-purple-500" required>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Nom:</label>
+                    <input type="text" name="name" value=""
+                        class="w-full px-4 py-4 border rounded-md focus:outline-none focus:border-blue-600" required>
                 </div>
                 <div class="mb-2">
-                    <label for="date" class="block text-gray-700 text-sm font-bold mb-2">Date:</label>
-                    <input type="datetime-local" id="date" name="date" value=""
-                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-purple-500" required>
-                </div>
-                <div class="mb-2">
-                    <label for="location" class="block text-gray-700 text-sm font-bold mb-2">Location:</label>
-                    <input type="text" id="location" name="location" value=""
-                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-purple-500" required>
-                </div>
-                <div class="mb-2">
-                    <label for="numberOfPlaces" class="block text-gray-700 text-sm font-bold mb-2">Number of
-                        Places:</label>
-                    <input type="number" id="numberOfPlaces" name="numberOfPlaces" value=""
-                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-purple-500" required>
-                </div>
-                <div class="mb-2">
-                    <label for="category" class="block text-gray-700 text-sm font-bold mb-2">Category:</label>
-                    <select id="category" name="category"
-                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-purple-500" required>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Domaine:</label>
+                    <select name="domaine"
+                        class="w-full px-4 py-4 border rounded-md focus:outline-none focus:border-blue-600" required>
+                        <option value="">Select domaine</option>
                         <option value="">Select Category</option>
+                        <option value="">Select Category</option>
+                    </select>
+                </div>
+                <div class="mb-2">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Formation:</label>
+                    <textarea type="text" name="formation" value=""
+                        class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-600" required>
+                        </textarea>
+                </div>
+                <div class="mb-2">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Étudiants:</label>
+                    <input type="number" name="studentsnumber" value=""
+                        class="w-full px-4 py-4 border rounded-md focus:outline-none focus:border-blue-600" required>
+                </div>
+                <div class="mb-2">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Condition d'accès:</label>
+                    <textarea type="text" name="condition" value=""
+                        class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-600" required>
+                        </textarea>
+                </div>
+                <div class="mb-2">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">avec concours:</label>
+                    <select name="vecconc"
+                        class="w-full px-4 py-4 border rounded-md focus:outline-none focus:border-blue-600" required>
+                        <option value="">Select type</option>
+                        <option value="">avec</option>
+                        <option value="">sans</option>
+
+                    </select>
+                </div>
+                <div class="mb-2">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Filières:</label>
+                    <textarea type="text" name="filiere" value="" multiple
+                        class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-600" required>
+                        </textarea>
+                </div>
+                <div class="mb-2">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Type:</label>
+                    <select name="type"
+                        class="w-full px-4 py-4 border rounded-md focus:outline-none focus:border-blue-600" required>
+                        <option value="">Select type</option>
                         <option value="">Select Category</option>
                         <option value="">Select Category</option>
 
                     </select>
                 </div>
                 <div class="mb-2">
-                    <label for="picture" class="block text-gray-700 text-sm font-bold mb-2">Picture:</label>
-                    <input type="file" id="picture" name="picture"
-                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-purple-500" required>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Photo:</label>
+                    <input type="file" name="picture"
+                        class="w-full px-4 py-4 border rounded-md focus:outline-none focus:border-blue-600" required>
                 </div>
                 <div class="mb-2">
-                    <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description:</label>
-                    <textarea id="description" name="description"
-                        class="w-full px-4 py-1 border rounded-md focus:outline-none focus:border-purple-500" required></textarea>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Description:</label>
+                    <textarea name="description" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-600"
+                        required></textarea>
                 </div>
                 <div class="mb-2">
-                    <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description:</label>
-                    <textarea id="description" name="description"
-                        class="w-full px-4 py-1 border rounded-md focus:outline-none focus:border-purple-500" required></textarea>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">le lien officiel:</label>
+                    <input type="url" name="link"
+                        class="w-full px-4 py-4 border rounded-md focus:outline-none focus:border-blue-600"
+                        required></input>
                 </div>
-                <div class="mb-2">
-
-                    <button type="submit"
-                        class="px-4 py-2 bg-gradient-to-r from-blue-300 to-blue-800 text-white rounded-md focus:outline-none ">
-                        Add Event
-                    </button>
-                </div>
+                
             </form>
+            <div class="mt-8 mb-2">
+                <button type="submit"
+                    class="px-4 py-2 bg-gradient-to-r from-blue-300 to-blue-800 text-white rounded-md focus:outline-none ">
+                    Confirmer
+                </button>
+            </div>  
         </div>
     @endsection
 

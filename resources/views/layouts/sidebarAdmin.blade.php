@@ -126,7 +126,7 @@
         </ul>
     </div>
     <div class="mt-6">
-        <h6 class="text-blue-600 text-sm font-bold px-4">Les universités</h6>
+        <h6 class="text-blue-600 text-sm font-bold px-4">Les établissements</h6>
         <ul class="mt-3">
             <li>
                 <a href="/addUniversity"
