@@ -19,12 +19,12 @@
                 <div class="mb-2">
                     <label for="titre" class="block text-gray-700 text-sm font-bold mb-2">La question:</label>
                     <input type="text" id="titre" name="titre" value=""
-                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-purple-500" required>
+                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600" required>
                 </div>
                 <div class="mb-2">
                     <label for="description" class="block text-gray-700 text-sm font-bold mb-2">La reponse:</label>
                     <textarea id="description" name="description"
-                        class="w-full px-4 py-1 border rounded-md focus:outline-none focus:border-purple-500" required></textarea>
+                        class="w-full px-4 py-1 border rounded-md focus:outline-none focus:border-blue-600" required></textarea>
                 </div>
                 <div class="mb-2">
                     <button type="submit"
@@ -36,7 +36,7 @@
         </div>
     @endsection
     @section('manageForm')
-    <li class="text-xl font-semibold mb-4 text-blue-600">Gestion des questions fréquemment posées</li>
+        <li class="text-xl font-semibold mb-4 text-blue-600">Gestion des questions fréquemment posées</li>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <div class="flex items-center justify-between bg-white ">
                 <table class="w-full text-sm text-left  text-gray-500 ">
@@ -56,10 +56,12 @@
                     <tbody>
                         <tr class="bg-white border-b hover:bg-gray-50 ">
                             <td class="px-4 text-left py-4">
-                                GestionGestionGestion GestionGestion GestionGestionGestion Gestion GestionGestionGestionGestion GestionGestionGestion
+                                GestionGestionGestion GestionGestion GestionGestionGestion Gestion
+                                GestionGestionGestionGestion GestionGestionGestion
                             </td>
                             <td class="px-4 text-left py-4">
-                                2024-09-11 GestionGestionGestion Gestion GestionGestionGestion Gestion GestionGestionGestion Gestion GestionGestionGestion Gestion GestionGestionGestion Gestion 
+                                2024-09-11 GestionGestionGestion Gestion GestionGestionGestion Gestion GestionGestionGestion
+                                Gestion GestionGestionGestion Gestion GestionGestionGestion Gestion
                             </td>
                             <td class="pr-10 text-right  py-4">
                                 <div class="relative  group ">
@@ -78,10 +80,12 @@
                         </tr>
                         <tr class="bg-white border-b hover:bg-gray-50 ">
                             <td class="px-4 text-left py-4">
-                                GestionGestionGestion GestionGestion GestionGestionGestion Gestion GestionGestionGestionGestion GestionGestionGestion
+                                GestionGestionGestion GestionGestion GestionGestionGestion Gestion
+                                GestionGestionGestionGestion GestionGestionGestion
                             </td>
                             <td class="px-4 text-left py-4">
-                                2024-09-11 GestionGestionGestion Gestion GestionGestionGestion Gestion GestionGestionGestion Gestion GestionGestionGestion Gestion GestionGestionGestion Gestion 
+                                2024-09-11 GestionGestionGestion Gestion GestionGestionGestion Gestion GestionGestionGestion
+                                Gestion GestionGestionGestion Gestion GestionGestionGestion Gestion
                             </td>
                             <td class="pr-10 text-right  py-4">
                                 <div class="relative  group ">
@@ -100,10 +104,12 @@
                         </tr>
                         <tr class="bg-white border-b hover:bg-gray-50 ">
                             <td class="px-4 text-left py-4">
-                                GestionGestionGestion GestionGestion GestionGestionGestion Gestion GestionGestionGestionGestion GestionGestionGestion
+                                GestionGestionGestion GestionGestion GestionGestionGestion Gestion
+                                GestionGestionGestionGestion GestionGestionGestion
                             </td>
                             <td class="px-4 text-left py-4">
-                                2024-09-11 GestionGestionGestion Gestion GestionGestionGestion Gestion GestionGestionGestion Gestion GestionGestionGestion Gestion GestionGestionGestion Gestion 
+                                2024-09-11 GestionGestionGestion Gestion GestionGestionGestion Gestion GestionGestionGestion
+                                Gestion GestionGestionGestion Gestion GestionGestionGestion Gestion
                             </td>
                             <td class="pr-10 text-right  py-4">
                                 <div class="relative  group ">

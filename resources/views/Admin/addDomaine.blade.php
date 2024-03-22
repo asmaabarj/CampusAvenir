@@ -19,12 +19,12 @@
                 <div class="mb-2">
                     <label  class="block text-gray-700 text-sm font-bold mb-2">Titre:</label>
                     <input type="text" name="titre" value=""
-                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-purple-500" required>
+                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600" required>
                 </div>
                 <div class="mb-2">
                     <label  class="block text-gray-700 text-sm font-bold mb-2">Photo:</label>
                     <input type="file" name="photo"
-                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-purple-500" required>
+                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600" required>
                 </div>
                 <div class="mb-2">
                     <button type="submit"

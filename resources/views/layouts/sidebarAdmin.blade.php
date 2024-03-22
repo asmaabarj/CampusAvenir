@@ -8,15 +8,11 @@
         <div class='flex items-center max-sm:ml-auto lg:order-1'>
             <ul class="flex ">
                 <li
-                    class="relative mr-4 px-1 after:absolute group  after:bg-black after:w-full lg:after:h-[2px] after:block after:top-8 after:left-0 after:transition-all after:duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
-                        class="cursor-pointer hover:fill-black " viewBox="0 0 512 512">
-                        <path
-                            d="M437.02 74.981C388.667 26.629 324.38 0 256 0S123.333 26.629 74.98 74.981C26.629 123.333 0 187.62 0 256s26.629 132.667 74.98 181.019C123.333 485.371 187.62 512 256 512s132.667-26.629 181.02-74.981C485.371 388.667 512 324.38 512 256s-26.629-132.667-74.98-181.019zM256 482c-66.869 0-127.037-29.202-168.452-75.511C113.223 338.422 178.948 290 256 290c-49.706 0-90-40.294-90-90s40.294-90 90-90 90 40.294 90 90-40.294 90-90 90c77.052 0 142.777 48.422 168.452 116.489C383.037 452.798 322.869 482 256 482z"
-                            data-original="#000000" />
-                    </svg>
+                    class="relative mr-4 px-1 after:absolute group  after:bg-black after:w-full lg:after:h-[2px] after:block after:top-10 after:left-0 after:transition-all after:duration-300">
+                    <img src="https://readymadeui.com/team-1.webp" class="w-9 h-9  rounded-full" />
+
                     <div
-                        class="bg-white z-50 group-hover:block hover:block hidden shadow-md py-6 px-6 sm:min-w-[180px]  absolute right-0  top-6">
+                        class="bg-white z-50 group-hover:block hover:block hidden shadow-md py-6 px-6 sm:min-w-[180px]  absolute right-0  top-9">
                         <a href='/profileAdmin' class="text-sm flex text-gray-500 hover:text-black"><svg
                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-[18px] h-[18px] mr-4"
                                 viewBox="0 0 512 512">
@@ -79,7 +75,7 @@
 
 
 <nav id="sideBar"
-    class="mt-[62px] bg-[#F7F8FA] hidden xl:block h-screen shadow-lg z-40 fixed top-0 lg:left-0 right-0 w-[260px] py-6 px-4 font-[sans-serif] ">
+    class="mt-[62px] bg-[#F7F8FA] hidden xl:block h-screen shadow-lg z-40 fixed top-0 lg:left-0 right-0 w-[260px] py-6 px-4 font-[sans-serif] overflow-y-auto">
 
     <ul>
         <li>
@@ -209,7 +205,7 @@
                     <a href='/contactMe' class='text-gray-700 block text-[15px]'>Contact</a>
                 </li>
                 <li
-                    class='max-lg:border-b max-lg:py-2 pl-4 relative lg:hover:after:absolute lg:after:bg-black lg:after:w-0 lg:hover:after:w-full lg:hover:after:h-[2px] lg:after:block lg:after:top-6 lg:after:transition-all lg:after:duration-300 hover:text-blue-600 hover:shadow-sm   hover:bg-blue-50 rounded transition-all'>
+                    class='max-lg:border-b mb-14 max-lg:py-2 pl-4 relative lg:hover:after:absolute lg:after:bg-black lg:after:w-0 lg:hover:after:w-full lg:hover:after:h-[2px] lg:after:block lg:after:top-6 lg:after:transition-all lg:after:duration-300 hover:text-blue-600 hover:shadow-sm   hover:bg-blue-50 rounded transition-all'>
                     <a href='/manageConcours' class='text-gray-700 block text-[15px]'>Concours</a>
                 </li>
             </ul>
