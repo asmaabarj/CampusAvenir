@@ -11,8 +11,30 @@
 </head>
 
 <body class="bg-[#F7F8FA]">
-    @include('layouts.sidebarAdmin')
+    @extends('layouts.sidebarAdmin')
 
+    @section('addForm')
+        <div class="py-4 px-10">
+            <form action="" method=""  class="grid grid-cols-1  gap-8">
+                <div class="mb-2">
+                    <label  class="block text-gray-700 text-sm font-bold mb-2">Titre:</label>
+                    <input type="text" name="titre" value=""
+                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-purple-500" required>
+                </div>
+                <div class="mb-2">
+                    <label  class="block text-gray-700 text-sm font-bold mb-2">Photo:</label>
+                    <input type="file" name="photo"
+                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-purple-500" required>
+                </div>
+                <div class="mb-2">
+                    <button type="submit"
+                        class="px-4 py-2 bg-gradient-to-r from-blue-300 to-blue-800 text-white rounded-md focus:outline-none ">
+                        Confirmer
+                    </button>
+                </div>
+            </form>
+        </div>
+    @endsection
 </body>
 
 </html>

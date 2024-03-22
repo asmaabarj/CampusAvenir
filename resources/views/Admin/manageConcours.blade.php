@@ -11,7 +11,48 @@
 </head>
 
 <body class="bg-[#F7F8FA]">
-    @include('layouts.sidebarAdmin')
+    @extends('layouts.sidebarAdmin')
+    
+    @section('addForm')
+        <div class="py-4 px-10">
+            <form action="" method="" enctype="multipart/form-data" class="grid grid-cols-1 lg:grid-cols-2  gap-8">
+                <div class="mb-2">
+                    <label for="titre" class="block text-gray-700 text-sm font-bold mb-2">Title:</label>
+                    <input type="text" id="titre" name="titre" value=""
+                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-purple-500" required>
+                </div>
+                <div class="mb-2">
+                    <label for="date" class="block text-gray-700 text-sm font-bold mb-2">Date:</label>
+                    <input type="datetime" id="date" name="date" value=""
+                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-purple-500" required>
+                </div>
+                <div class="mb-2">
+                    <label for="category" class="block text-gray-700 text-sm font-bold mb-2">Category:</label>
+                    <select id="category" name="category"
+                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-purple-500" required>
+                        <option value="">Select Category</option>
+                        <option value="">Select Category</option>
+                        <option value="">Select Category</option>
+
+                    </select>
+                </div>
+                <div class="mb-2">
+                    <label for="picture" class="block text-gray-700 text-sm font-bold mb-2">pdf:</label>
+                    <input type="file" id="picture" name="picture"
+                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-purple-500" required>
+                </div>
+                
+                
+                <div class="mb-2">
+
+                    <button type="submit"
+                        class="px-4 py-2 bg-gradient-to-r from-blue-300 to-blue-800 text-white rounded-md focus:outline-none ">
+                        Add Event
+                    </button>
+                </div>
+            </form>
+        </div>
+    @endsection
 
 </body>
 

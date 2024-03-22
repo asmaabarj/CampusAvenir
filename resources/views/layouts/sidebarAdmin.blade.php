@@ -1,4 +1,4 @@
-<header class='shadow-sm py-3 px-4 z-50 sm:px-10 bg-white w-full font-[sans-serif] min-h-[60px]'>
+<header class='shadow-sm py-3 px-4 z-50 fixed top-0 right-0 left-0  sm:px-10 bg-white w-full font-[sans-serif] min-h-[60px]'>
     <div class='flex flex-wrap items-center justify-between lg:gap-y-4 gap-y-6 gap-x-4'>
         <a href="">
             <h1
@@ -35,7 +35,7 @@
                         </a>
                     </div>
                 </li>
-                <button onclick="toggleModal('sideBar')" class='  lg:hidden   ml-7 border-l-2 border-black pl-2 h-6'>
+                <button onclick="toggleModal('sideBar')" class='  xl:hidden   ml-7 border-l-2 border-black pl-2 h-6'>
                     <svg class="w-7 h-7" fill="#000" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
                             d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
@@ -79,7 +79,7 @@
 
 
 <nav id="sideBar"
-    class="mt-[62px] bg-[#F7F8FA] hidden lg:block h-screen shadow-lg fixed top-0 lg:left-0 right-0 w-[260px] py-6 px-4 font-[sans-serif] ">
+    class="mt-[62px] bg-[#F7F8FA] hidden xl:block h-screen shadow-lg z-40 fixed top-0 lg:left-0 right-0 w-[260px] py-6 px-4 font-[sans-serif] ">
 
     <ul>
         <li>
@@ -217,6 +217,12 @@
     </div>
 
 </nav>
+<section class="xl:w-[78%] mt-24 mb-8 lg:ml-auto  shadow-sm mx-6 bg-white rounded-md ">
+    @yield('addForm')
+</section>
+<section class="xl:w-[78%] mt-14 mb-8 lg:ml-auto   mx-6  rounded-md">
+    @yield('manageForm')
+</section>
 <script>
     function toggleModal(modalId) {
         const modal = document.getElementById(modalId);
