@@ -2,7 +2,7 @@
     <div class='flex flex-wrap items-center justify-between lg:gap-y-4 gap-y-6 gap-x-4'>
         <a href="">
             <h1
-                class="bg-gradient-to-r from-[#69A8F3] via-[#5102F8] font-bold text-2xl to-indigo-400 inline-block text-transparent bg-clip-text">
+                class="bg-gradient-to-r from-[#69A8F3] via-[#5102F8] to-indigo-400 font-bold text-2xl  inline-block text-transparent bg-clip-text">
                 CampusAvenir</h1>
         </a>
         <div class='flex items-center max-sm:ml-auto lg:order-1'>

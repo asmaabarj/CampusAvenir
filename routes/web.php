@@ -76,3 +76,11 @@ Route::get('/manageConcours', function () {
 Route::get('/profileAdmin', function () {
     return view('Admin.profileAdmin');
 });
+
+Route::get('/domaines', function () {
+    return view('domaines');
+});
+
+Route::get('/universities', function () {
+    return view('universities');
+});
