@@ -43,7 +43,7 @@ class='fixed left-0 right-0 top-0 shadow-xl font-sans min-h-[75px] z-50 bg-gradi
                 <li class='border-b py-2 '><a href='javascript:void(0)'
                         class='hover:text-[#007bff] text-gray-600 text-[15px] font-bold block'>Connexion</a>
                 </li>
-                <li class='border-b py-2 '><a href='javascript:void(0)'
+                <li class='border-b py-2 '><a href='/domaines'
                         class='hover:text-[#007bff] text-gray-600 text-[15px] font-bold block'>Tous</a>
                 </li>
             </ul>
@@ -72,7 +72,7 @@ class='fixed left-0 right-0 top-0 shadow-xl font-sans min-h-[75px] z-50 bg-gradi
                 class='hover:text-[#007bff] text-gray-600 text-[15px] font-bold block'>Concours</a></li>
         <li class='max-lg:border-b max-lg:py-2'><a href='/Faqs'
                 class='hover:text-[#007bff] text-gray-600 text-[15px] font-bold block'>Faqs</a></li>
-        <li class='max-lg:border-b max-lg:py-2'><a href='javascript:void(0)'
+        <li class='max-lg:border-b max-lg:py-2'><a href='#contact'
                 class='hover:text-[#007bff] text-gray-600 text-[15px] font-bold block'>Contact</a></li>
     </ul>
 </div>

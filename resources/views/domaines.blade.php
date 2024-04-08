@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -13,9 +13,14 @@
 <body>
     @include('components.navbar')
     <main>
-        <section class="mt-36 px-6">
+        <section class="mt-32 px-6">
             <div class="bg-white font-[sans-serif] my-4">
                 <div class="max-w-7xl mx-auto">
+                    <div class="text-left">
+                        <h2
+                            class="text-3xl tracking-wider font-bold text-[#333] inline-block  relative after:absolute after:h-[8px] mb-2 after:left-0 after:right-0 after:-bottom-4 after:mx-auto after:bg-[#006AE5]/75 after:rounded-full">
+                            Domaines</h2>
+                    </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16 max-md:max-w-lg mx-auto">
                         <div class="bg-white cursor-pointer  overflow-hidden  relative top-0 ">
                             <img src="https://readymadeui.com/Imagination.webp" alt="Blog Post 1"
@@ -191,3 +196,6 @@
             </div>
         </section>
     </main>
+    @include('components.Footer')
+</body>
+</html>

@@ -1,4 +1,4 @@
-<footer class="bg-blue-100 py-12 px-12 font-[sans-serif]">
+<footer id="contact" class="bg-blue-100 py-12 px-12 font-[sans-serif]">
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
         <div class="xl:col-span-2">
             <h1
@@ -18,10 +18,10 @@
                                 data-original="#000000" />
                         </svg>
                     </div>
-                    <a href="javascript:void(0)" class="text-blue-500 text-sm ml-3">
+                    <div class="text-blue-500 text-sm ml-3">
                         <small class="block">Tel</small>
                         <strong>069-791-7522</strong>
-                    </a>
+                    </div>
                 </li>
                 <li class="flex items-center">
                     <div class="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0">
@@ -32,10 +32,10 @@
                                 data-original="#000000" />
                         </svg>
                     </div>
-                    <a href="javascript:void(0)" class="text-blue-500 text-sm ml-3">
+                    <div class="text-blue-500 text-sm ml-3">
                         <small class="block">Mail</small>
                         <strong>CampusAvenir@gmail.com</strong>
-                    </a>
+                    </div>
                 </li>
                 <li class="flex items-center">
                     <div class="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0">
@@ -49,10 +49,10 @@
                                 data-original="#000000" />
                         </svg>
                     </div>
-                    <a href="" class="text-blue-500 text-sm ml-3">
+                    <div class="text-blue-500 text-sm ml-3">
                         <small class="block">Address</small>
                         <strong>123 youCode center ville, Safi</strong>
-                    </a>
+                    </div>
                 </li>
                 <li class="flex items-center">
                     <div class="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0">

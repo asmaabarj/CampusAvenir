@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -544,3 +544,6 @@
             </div>
         </section>
     </main>
+    @include('components.Footer')
+</body>
+</html>

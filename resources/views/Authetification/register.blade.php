@@ -10,7 +10,9 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 </head>
-
+<body>
+    
+<main>
 <div class="flex justify-center my-20 h-screen items-center">
 
     <div class="flex lg:w-[65%]  w-96 mx-auto flex-col space-y-5 rounded-lg border py-10 px-5 bg-[#F9F9F9] shadow-xl">
@@ -116,3 +118,6 @@
         </div>
     </div>
 </div>
+</main>
+@include('components.FooterAuth')
+</body>
