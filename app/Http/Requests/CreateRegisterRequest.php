@@ -31,7 +31,9 @@ class CreateRegisterRequest extends FormRequest
             'niveau' => 'required|string|max:50',
             'ecole' => 'required|string|max:100',
             'password' => 'required|string|min:6|same:cpassword',
-            'cpassword' => 'required|string|min:6|same:password',        ];
+            'cpassword' => 'required|string|min:6|same:password', 
+        
+        ];
     }
 
 public function messages()
@@ -69,7 +71,7 @@ public function messages()
         'cpassword.required' => 'Veuillez confirmer votre mot de passe.',
         'cpassword.string' => 'Le mot de passe doit être une chaîne de caractères.',
         'cpassword.min' => 'Le mot de passe doit contenir au moins 6 caractères.',
-        
+
     ];
 }
 }
