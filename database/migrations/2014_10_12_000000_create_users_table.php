@@ -17,15 +17,15 @@ return new class extends Migration
             $table->string('prenom');
             $table->string('email')->unique();
             $table->string('tele');
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->string('adresse');
             $table->string('date_naissance');
-            $table->string('niveau');
-            $table->string('ecole');
+            $table->string('niveau')->nullable();
+            $table->string('ecole')->nullable();
             $table->enum('role', ['admin', 'user'])->default('user');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
+            $table->rememberToken() ;
             $table->timestamps();
         });
     }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,10 @@ Route::get('/login', function () {
 
 Route::get('/register', function () {
     return view('Authetification.register');
+    
 });
+Route::post('/register', [UserController::class, 'register'])->name('register');
+
 // ----------------------------------------------admin----------------------------------------------------
 Route::get('/dashboard', function () {
     return view('Admin.Dashboard');
