@@ -31,6 +31,8 @@ Route::get('/register', function () {
     
 });
 Route::post('/register', [UserController::class, 'register'])->name('register');
+Route::post('/login', [UserController::class, 'login'])->name('login');
+Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 // ----------------------------------------------admin----------------------------------------------------
 Route::get('/dashboard', function () {
