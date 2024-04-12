@@ -33,8 +33,10 @@
                                 <i class='bx bx-dots-horizontal-rounded text-3xl'></i>
                                 <div
                                     class="bg-white z-50 group-hover:block hover:block hidden text-center shadow-lg py-4 px-4 sm:min-w-[100px]  absolute -right-6">
-                                    <button class="text-sm  text-gray-500 hover:text-black">
-                                        modifier</button>
+                                    <form action="/editPublicity/{{ $annonce->id }}" method="get">
+                                        <button class="text-sm text-gray-500 hover:text-black">Modifier</button>
+                                    </form>
+                                    
                                     <hr class="border-b-0 my-4" />
                                     <button onclick="toggleModal('deleteModal{{ $annonce->id }}')"
                                         class="text-sm  text-gray-500 hover:text-black">
@@ -79,7 +81,7 @@
                                 class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
                                 Non, annuler
                             </button>
-                            <form action="/annonce/{{ $annonce->id }}" method="post">
+                            <form action="/publicity/{{ $annonce->id }}" method="post">
                                 @csrf
                                 @method('DELETE')
                             <button type="submit"

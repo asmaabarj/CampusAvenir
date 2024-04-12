@@ -3,28 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Annonce;
-use Illuminate\Http\Request;
 use App\Http\Requests\CreateAnnonceRequest;
 
 class AnnonceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
-{
-    $annonces = Annonce::all(); 
-    return view('Admin.managePub', ['annonces' => $annonces]);
-}
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
     {
-        //
+        $annonces = Annonce::all();
+        return view('Admin.publicity', ['annonces' => $annonces]);
     }
-
     public function store(CreateAnnonceRequest $request)
     {
         $validatedData = $request->validated();
@@ -46,38 +34,28 @@ class AnnonceController extends Controller
         return redirect()->back()->with('success', 'L\'annonce a été ajoutée avec succès.');
     }
 
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit($id)
     {
-        //
+        $annonce = Annonce::findOrFail($id);
+        return view('Admin.editPublicity', ['editAnnonce' => $annonce]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(CreateAnnonceRequest $request, $id)
     {
-        //
+        $annonce = Annonce::findOrFail($id);
+        $annonce->update($request->validated());
+        if ($request->hasFile('picture')) {
+            $path = $request->file('picture')->store('uploads', 'public');
+            $annonce->update(['photo' => $path]);
+        }
+        return redirect('/publicity')->with('success', 'Annonce mise à jour avec succès.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
-{
-    $annonce = annonce::findOrFail($id);
-    $annonce->delete();
-    return redirect()->back()->with('success', 'annonce supprimé avec succès.');
-}
+    {
+        $annonce = annonce::findOrFail($id);
+        $annonce->delete();
+        return redirect()->back()->with('success', 'annonce supprimé avec succès.');
+    }
 }

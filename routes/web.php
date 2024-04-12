@@ -64,6 +64,11 @@ Route::middleware(['check.role:admin'])->group(function () {
     Route::resource('faqs', FaqController::class)->except(['show', 'create','edit']);
     Route::get('/faqs/{id}', [FaqController::class, 'edit']);
 
+    Route::get('/addPublicity', function () {
+        return view('Admin.addPublicity');
+    });
+    Route::get('/editPublicity/{id}', [AnnonceController::class, 'edit']);
+    Route::resource('publicity', AnnonceController::class)->except(['show', 'create','edit']);
 
 
 Route::get('/addUniversity', function () {
@@ -72,11 +77,6 @@ Route::get('/addUniversity', function () {
 Route::get('/manageUniversity', function () {
     return view('Admin.manageUniversity');
 });
-Route::get('/addPub', function () {
-    return view('Admin.addPub');
-});
-Route::post('/addPub', [AnnonceController::class, 'store']);
-Route::get('/managePub', [AnnonceController::class, 'index']);
 
 Route::get('/managePosts', function () {
     return view('Admin.managePosts');
@@ -88,7 +88,6 @@ Route::get('/contactMe', function () {
 Route::get('/manageConcours', function () {
     return view('Admin.manageConcours');
 });
-Route::delete('/annonce/{id}', [AnnonceController::class, 'destroy']);
 
 Route::get('/profileAdmin', function () {
     return view('Admin.profileAdmin');

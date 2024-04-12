@@ -15,49 +15,52 @@
     @extends('layouts.sidebarAdmin')
     @section('addForm')
         <div class="py-4 px-10">
-            <form action="/addPub" method="POST" enctype="multipart/form-data"
+            <form action="/publicity/{{ $editAnnonce->id }}" method="POST" enctype="multipart/form-data"
                 class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-5">
                 @csrf
+                @method('PUT')
+
                 <div class="mb-2">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Titre:</label>
-                    <input type="text" name="titre" value=""
+                    <input type="text" name="titre" value="{{ $editAnnonce->titre }}"
                         class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600">
                 </div>
                 <div class="mb-2">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Date:</label>
-                    <input type="date" name="date" value=""
+                    <input type="date" name="date" value="{{ $editAnnonce->date }}"
                         class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600">
                 </div>
                 <div class="mb-2">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Temps:</label>
-                    <input type="time" name="temps" value=""
+                    <input type="time" name="temps" value="{{ $editAnnonce->temps }}"
                         class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600">
                 </div>
                 <div class="mb-2">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Lieu:</label>
-                    <input type="text" name="lieu" value=""
+                    <input type="text" name="lieu" value="{{ $editAnnonce->lieu }}"
                         class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600">
                 </div>
 
                 <div class="mb-2">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Photo:</label>
-                    <input type="file" name="picture"
+                    <input type="file" name="picture" value="{{ $editAnnonce->picture }}"
                         class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600">
                 </div>
                 <div class="mb-2">
                     <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description:</label>
                     <textarea id="description" name="description"
-                        class="w-full px-4 py-8 border rounded-md focus:outline-none focus:border-blue-600"></textarea>
+                        class="w-full px-4 py-8 border rounded-md focus:outline-none focus:border-blue-600">{{ $editAnnonce->description }}</textarea>
                 </div>
                 <div class="mb-2">
 
                     <button type="submit"
                         class="px-4 py-2 bg-gradient-to-r from-blue-300 to-blue-800 text-white rounded-md focus:outline-none ">
-                        Confirmer
+                        Enregistrer
                     </button>
                 </div>
             </form>
         </div>
     @endsection
 </body>
+
 </html>
