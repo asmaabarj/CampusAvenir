@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AnnonceController;
+use App\Http\Middleware\RedirectIfAuthenticated;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,18 +25,28 @@ Route::get('/Faqs', function () {
     return view('Faqs');
 });
 
-Route::get('/login', function () {
-    return view('Authetification.login');
-});
-
-Route::get('/register', function () {
-    return view('Authetification.register');
-    
-});
 Route::post('/register', [UserController::class, 'register'])->name('register');
 Route::post('/login', [UserController::class, 'login'])->name('login');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
+Route::middleware(RedirectIfAuthenticated::class)->group(function () {
+Route::get('/login', function () {
+    return view('Authentification.login');
+});
+Route::get('/register', function () {
+    return view('Authentification.register');
+});
+
+});
+Route::get('/forgetPassword', function () {
+    return view('Authentification.ForgetPassword.forgetPassword');
+});
+Route::get('/newPassword', function () {
+    return view('Authentification.ForgetPassword.newPassword');
+});
+Route::get('/resetPassword', function () {
+    return view('Authentification.ForgetPassword.resetPassword');
+});
 // ----------------------------------------------admin----------------------------------------------------
 Route::get('/dashboard', function () {
     return view('Admin.Dashboard');
@@ -58,6 +71,7 @@ Route::get('/manageUniversity', function () {
 Route::get('/addPub', function () {
     return view('Admin.addPub');
 });
+Route::post('/addPub', [AnnonceController::class, 'store'])->name('addPub');
 
 Route::get('/managePub', function () {
     return view('Admin.managePub');
@@ -66,6 +80,8 @@ Route::get('/managePub', function () {
 Route::get('/faqsManage', function () {
     return view('Admin.faqsManage');
 });
+Route::post('/faqs',[FaqController::class, 'store']);
+
 
 Route::get('/managePosts', function () {
     return view('Admin.managePosts');

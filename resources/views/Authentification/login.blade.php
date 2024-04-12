@@ -53,7 +53,7 @@
                     <label for="remember_me" class="ml-2 text-gray-500">Se souvenir</label>
                 </div>
                 <div>
-                    <a href="#" class="text-blue-600 hover:underline">Mot de passe oublié?</a>
+                    <a href="/forgetPassword" class="text-blue-600 hover:underline">Mot de passe oublié?</a>
                 </div>
             </div>
         </div>

@@ -11,53 +11,53 @@
 </head>
 
 <body class="bg-[#F7F8FA]">
+    @include('components.Alert')
     @extends('layouts.sidebarAdmin')
-    
     @section('addForm')
         <div class="py-4 px-10">
-            <form action="" method="" enctype="multipart/form-data" class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-5">
+            <form action="/addPub" method="POST" enctype="multipart/form-data"
+                class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-5">
+                @csrf
                 <div class="mb-2">
-                    <label  class="block text-gray-700 text-sm font-bold mb-2">Titre:</label>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Titre:</label>
                     <input type="text" name="titre" value=""
-                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600" required>
+                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600">
                 </div>
                 <div class="mb-2">
-                    <label  class="block text-gray-700 text-sm font-bold mb-2">Date:</label>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Date:</label>
                     <input type="date" name="date" value=""
-                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600" required>
+                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600">
                 </div>
                 <div class="mb-2">
-                    <label  class="block text-gray-700 text-sm font-bold mb-2">Temps:</label>
-                    <input type="time"  name="time" value=""
-                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600" required>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Temps:</label>
+                    <input type="time" name="temps" value=""
+                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600">
                 </div>
                 <div class="mb-2">
-                    <label  class="block text-gray-700 text-sm font-bold mb-2">Lieu:</label>
-                    <input type="text"  name="lieu" value=""
-                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600" required>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Lieu:</label>
+                    <input type="text" name="lieu" value=""
+                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600">
                 </div>
-                
+
                 <div class="mb-2">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Photo:</label>
-                    <input type="file"  name="picture"
-                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600" >
+                    <input type="file" name="picture"
+                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600">
                 </div>
                 <div class="mb-2">
                     <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description:</label>
                     <textarea id="description" name="description"
-                        class="w-full px-4 py-8 border rounded-md focus:outline-none focus:border-blue-600" required></textarea>
+                        class="w-full px-4 py-8 border rounded-md focus:outline-none focus:border-blue-600"></textarea>
                 </div>
                 <div class="mb-2">
 
                     <button type="submit"
                         class="px-4 py-2 bg-gradient-to-r from-blue-300 to-blue-800 text-white rounded-md focus:outline-none ">
-                         Confirmer
+                        Confirmer
                     </button>
                 </div>
             </form>
         </div>
     @endsection
-
 </body>
-
 </html>

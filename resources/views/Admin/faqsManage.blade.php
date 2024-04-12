@@ -14,17 +14,19 @@
     @extends('layouts.sidebarAdmin')
     <li class="text-xl font-semibold -mb-20 mt-28 text-blue-600 xl:ml-[20vw] ml-6">Ajouter un FAQ</li>
     @section('addForm')
+    @include('components.Alert')
         <div class="py-4 px-10">
-            <form action="" method="" class="grid grid-cols-1 gap-8">
+            <form action="/faqs" method="POST" class="grid grid-cols-1 gap-8">
+                @csrf
                 <div class="mb-2">
-                    <label for="titre" class="block text-gray-700 text-sm font-bold mb-2">La question:</label>
-                    <input type="text" id="titre" name="titre" value=""
-                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600" required>
+                    <label class="block text-gray-700 text-sm font-bold mb-2">La question:</label>
+                    <input type="text" name="question" value=""
+                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600">
                 </div>
                 <div class="mb-2">
-                    <label for="description" class="block text-gray-700 text-sm font-bold mb-2">La reponse:</label>
-                    <textarea id="description" name="description"
-                        class="w-full px-4 py-1 border rounded-md focus:outline-none focus:border-blue-600" required></textarea>
+                    <label  class="block text-gray-700 text-sm font-bold mb-2">La reponse:</label>
+                    <textarea name="reponse"
+                        class="w-full px-4 py-1 border rounded-md focus:outline-none focus:border-blue-600"></textarea>
                 </div>
                 <div class="mb-2">
                     <button type="submit"
