@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AnnonceController;
+use App\Http\Controllers\DomaineController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 
 /*
@@ -81,6 +82,7 @@ Route::get('/faqsManage', function () {
     return view('Admin.faqsManage');
 });
 Route::post('/faqs',[FaqController::class, 'store']);
+Route::post('/domaine',[DomaineController::class, 'store']);
 
 
 Route::get('/managePosts', function () {

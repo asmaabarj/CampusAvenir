@@ -14,17 +14,19 @@
     @extends('layouts.sidebarAdmin')
 
     @section('addForm')
+    @include('components.Alert')
         <div class="py-4 px-10">
-            <form action="" method=""  class="grid grid-cols-1  gap-8">
+            <form action="/domaine" method="POST"  class="grid grid-cols-1  gap-8">
+                @csrf
                 <div class="mb-2">
                     <label  class="block text-gray-700 text-sm font-bold mb-2">Titre:</label>
-                    <input type="text" name="titre" value=""
-                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600" required>
+                    <input type="text" name="titre" 
+                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600">
                 </div>
                 <div class="mb-2">
                     <label  class="block text-gray-700 text-sm font-bold mb-2">Photo:</label>
                     <input type="file" name="photo"
-                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600" required>
+                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600">
                 </div>
                 <div class="mb-2">
                     <button type="submit"
