@@ -8,74 +8,51 @@ use App\Http\Requests\CreateDomaineRequest;
 
 class DomaineController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-{
-    $domaines = Domaine::all(); 
-    return view('Admin.manageDomaine', ['domaines' => $domaines]);
-}
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function index()
     {
-        //
+        $domaines = Domaine::all();
+        return view('Admin.domaine', ['domaines' => $domaines]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(CreateDomaineRequest $request)
     {
-        $validatedData=$request->validated();
+        $validatedData = $request->validated();
         if ($request->hasFile('photo')) {
             $path = $request->file('photo')->store('uploads', 'public');
             $validatedData['picture'] = $path;
         }
         $domaine = new Domaine([
-            'titre'=>$validatedData['titre'],
-            'photo'=>$validatedData['picture'],
-    ]);
-        $domaine->save(); 
+            'titre' => $validatedData['titre'],
+            'photo' => $validatedData['picture'],
+        ]);
+        $domaine->save();
         return redirect()->back()->with('success', 'Le domaine a été ajouté avec succès.');
     }
-    
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function edit($id)
     {
-        //
+        $domaine = Domaine::findOrFail($id);
+        return view('Admin.editDomaine', ['editDomaine' => $domaine]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(CreateDomaineRequest $request, $id)
     {
-        //
+        $validatedData = $request->validated();
+        $domaine = Domaine::findOrFail($id);
+        $domaine->titre = $validatedData['titre'];
+        if ($request->hasFile('photo')) {
+            $path = $request->file('photo')->store('uploads', 'public');
+            $domaine->photo = $path;
+        }
+        $domaine->save();
+        return redirect('/domaine')->with('success', 'Domaine mis à jour avec succès.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
-{
-    $domaine = Domaine::findOrFail($id);
-    $domaine->delete();
-    return redirect()->back()->with('success', 'Domaine supprimé avec succès.');
-}
-
+    {
+        $domaine = Domaine::findOrFail($id);
+        $domaine->delete();
+        return redirect()->back()->with('success', 'Domaine supprimé avec succès.');
+    }
 }

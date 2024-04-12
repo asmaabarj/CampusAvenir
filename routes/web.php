@@ -51,14 +51,17 @@ Route::get('/resetPassword', function () {
 // ----------------------------------------------admin----------------------------------------------------
 Route::middleware(['check.role:admin'])->group(function () {
 
+    Route::get('/addDomaine', function () {
+        return view('Admin.addDomaine');
+    });
+    Route::get('/domaine/{id}', [DomaineController::class, 'edit']);
+    Route::resource('/domaine', DomaineController::class)->except(['show', 'create','edit']);
+
+
 Route::get('/dashboard', function () {
     return view('Admin.Dashboard');
 });
-Route::get('/manageDomaine', [DomaineController::class, 'index']);
-Route::post('/domaine',[DomaineController::class, 'store']);
-Route::get('/addDomaine', function () {
-    return view('Admin.addDomaine');
-});
+
 Route::get('/addUniversity', function () {
     return view('Admin.addUniversity');
 });
@@ -83,13 +86,13 @@ Route::get('/contactMe', function () {
 Route::get('/manageConcours', function () {
     return view('Admin.manageConcours');
 });
-Route::delete('/domaine/{id}', [DomaineController::class, 'destroy']);
 Route::delete('/faq/{id}', [FaqController::class, 'destroy']);
 Route::delete('/annonce/{id}', [AnnonceController::class, 'destroy']);
 
 Route::get('/profileAdmin', function () {
     return view('Admin.profileAdmin');
 });
+
 
 });
 // -------------------------------------------------------------------

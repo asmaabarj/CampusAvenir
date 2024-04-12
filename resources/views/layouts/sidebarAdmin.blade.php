@@ -109,7 +109,7 @@
                 </a>
             </li>
             <li>
-                <a href="/manageDomaine"
+                <a href="/domaine"
                     class="text-black hover:text-blue-600 hover:shadow-sm text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-[18px] h-[18px] mr-4"
                         viewBox="0 0 512.003 512.003">

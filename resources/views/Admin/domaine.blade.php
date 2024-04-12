@@ -50,8 +50,9 @@
                                         <i class='bx bx-dots-vertical-rounded'></i>
                                         <div
                                             class="bg-white z-50 group-hover:block hover:block hidden text-center shadow-lg py-4 px-4 sm:min-w-[100px]  absolute -right-6">
-                                            <button class="text-sm  text-gray-500 hover:text-black">
+                                            <form action="/domaine/{{ $domaine->id }}"><button  class="text-sm  text-gray-500 hover:text-black">
                                                 Editer</button>
+                                            </form>
                                             <hr class="border-b-0 my-4" />
                                             <button onclick="toggleModal('deleteModal{{ $domaine->id }}')"
                                                 class="text-sm  text-gray-500 hover:text-black">
@@ -109,13 +110,6 @@
                 </table>
             </div>
         </div>
-
-        <script>
-            function toggleModal(modalId) {
-                const modal = document.getElementById(modalId);
-                modal.classList.toggle('hidden');
-            }
-        </script>
 </body>
 
 </html>
