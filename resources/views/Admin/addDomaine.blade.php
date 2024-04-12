@@ -16,7 +16,7 @@
     @section('addForm')
     @include('components.Alert')
         <div class="py-4 px-10">
-            <form action="/domaine" method="POST"  class="grid grid-cols-1  gap-8">
+            <form action="/domaine" method="POST" enctype="multipart/form-data" class="grid grid-cols-1  gap-8">
                 @csrf
                 <div class="mb-2">
                     <label  class="block text-gray-700 text-sm font-bold mb-2">Titre:</label>

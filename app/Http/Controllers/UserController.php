@@ -28,7 +28,8 @@ class UserController extends Controller
                 'cpassword' => $validatedData['cpassword'],
 
             ]);
-            
+            auth()->login($user);
+
             if ($user->role == 'admin') {
                 return redirect('/dashboard');
         }else{

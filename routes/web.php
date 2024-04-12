@@ -49,18 +49,16 @@ Route::get('/resetPassword', function () {
     return view('Authentification.ForgetPassword.resetPassword');
 });
 // ----------------------------------------------admin----------------------------------------------------
+Route::middleware(['check.role:admin'])->group(function () {
+
 Route::get('/dashboard', function () {
     return view('Admin.Dashboard');
 });
-
+Route::get('/manageDomaine', [DomaineController::class, 'index']);
+Route::post('/domaine',[DomaineController::class, 'store']);
 Route::get('/addDomaine', function () {
     return view('Admin.addDomaine');
 });
-
-Route::get('/manageDomaine', function () {
-    return view('Admin.manageDomaine');
-});
-
 Route::get('/addUniversity', function () {
     return view('Admin.addUniversity');
 });
@@ -82,8 +80,6 @@ Route::get('/faqsManage', function () {
     return view('Admin.faqsManage');
 });
 Route::post('/faqs',[FaqController::class, 'store']);
-Route::post('/domaine',[DomaineController::class, 'store']);
-
 
 Route::get('/managePosts', function () {
     return view('Admin.managePosts');
@@ -100,6 +96,9 @@ Route::get('/manageConcours', function () {
 Route::get('/profileAdmin', function () {
     return view('Admin.profileAdmin');
 });
+
+});
+// -------------------------------------------------------------------
 
 Route::get('/domaines', function () {
     return view('domaines');

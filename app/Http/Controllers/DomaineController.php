@@ -12,9 +12,10 @@ class DomaineController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
-    }
+{
+    $domaines = Domaine::all(); 
+    return view('Admin.manageDomaine', ['domaines' => $domaines]);
+}
 
     /**
      * Show the form for creating a new resource.
@@ -30,9 +31,13 @@ class DomaineController extends Controller
     public function store(CreateDomaineRequest $request)
     {
         $validatedData=$request->validated();
+        if ($request->hasFile('photo')) {
+            $path = $request->file('photo')->store('uploads', 'public');
+            $validatedData['picture'] = $path;
+        }
         $domaine = new Domaine([
             'titre'=>$validatedData['titre'],
-            'photo'=>$validatedData['photo'],
+            'photo'=>$validatedData['picture'],
     ]);
         $domaine->save(); 
         return redirect()->back()->with('success', 'Le domaine a été ajouté avec succès.');

@@ -12,7 +12,7 @@
 
 <body class="bg-[#F7F8FA]">
     @include('layouts.sidebarAdmin')
-    <div class="xl:w-[69%] xl:ml-auto xl:mr-24 mx-2 shadow-md auverflow-auto">
+    <div class="xl:w-[69%] xl:ml-auto xl:mr-24 mx-2 shadow-md mb-10 auverflow-auto">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <div class="flex items-center justify-between bg-white ">
                 <table class="w-full text-sm text-left  text-gray-500 ">
@@ -33,15 +33,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($domaines as $domaine)
                         <tr class="bg-white border-b hover:bg-gray-50 ">
                             <th class="items-center px-6 py-4 text-gray-900 whitespace-nowrap ">
-                                <img class="w-11 h-11 rounded" src='https://readymadeui.com/profile_4.webp'>
+                                <img class="w-11 h-11 rounded" src="{{ asset('storage/' . $domaine->photo) }}">
                             </th>
                             <td class="px-6 text-center py-4">
-                                Gestion
+                                {{ $domaine->titre }}
                             </td>
                             <td class="px-6 text-center py-4">
-                                2024-09-11
+                                {{ $domaine->created_at }}
                             </td>
                             <td class="pr-10 text-right  py-4">
                                 <div class="relative  group ">
@@ -59,59 +60,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr class="bg-white border-b hover:bg-gray-50 ">
-                            <th class="items-center px-6 py-4 text-gray-900 whitespace-nowrap ">
-                                <img class="w-11 h-11 rounded" src='https://readymadeui.com/profile_2.webp'>
-                            </th>
-                            <td class="px-6 text-center py-4">
-                                Informatique
-                            </td>
-                            <td class="px-6 text-center py-4 whitespace-nowrap">
-                                2024-12-12
-                            </td>
-                            <td class="pr-10 text-right  py-4">
-                                <div class="relative  group ">
-                                    <i class='bx bx-dots-vertical-rounded'></i>
-                                    <div
-                                        class="bg-white z-50 group-hover:block hover:block hidden text-center shadow-lg py-4 px-4 sm:min-w-[100px]  absolute -right-6">
-                                        <button class="text-sm  text-gray-500 hover:text-black">
-                                            Editer</button>
-                                        <hr class="border-b-0 my-4" />
-                                        <button onclick="toggleModal('deleteModal')"
-                                            class="text-sm  text-gray-500 hover:text-black">
-                                            Supprimer
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="bg-white border-b hover:bg-gray-50 ">
-                            <th class="items-center px-6 py-4 text-gray-900 whitespace-nowrap ">
-                                <img class="w-11 h-11 rounded" src='https://readymadeui.com/profile_6.webp'>
-                            </th>
-                            <td class="px-6 text-center py-4">
-                                Commerce
-                            </td>
-                            <td class="px-6 text-center py-4">
-                                2024-08-90
-                            </td>
-                            <td class="pr-10 text-right  py-4">
-                                <div class="relative  group ">
-                                    <i class='bx bx-dots-vertical-rounded'></i>
-                                    <div
-                                        class="bg-white z-50 group-hover:block hover:block hidden text-center shadow-lg py-4 px-4 sm:min-w-[100px]  absolute -right-6">
-                                        <button class="text-sm  text-gray-500 hover:text-black">
-                                            Editer</button>
-                                        <hr class="border-b-0 my-4" />
-                                        <button onclick="toggleModal('deleteModal')"
-                                            class="text-sm  text-gray-500 hover:text-black">
-                                            Supprimer
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-
+                        @endforeach
                     </tbody>
                 </table>
             </div>

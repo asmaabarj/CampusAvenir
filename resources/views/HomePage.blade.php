@@ -14,15 +14,14 @@
     @include('components.navbar')
     <main>
         <div class="">
+
             <section class="bg-url bg-no-repeat bg-cover flex-col px-6 h-[120vh] items-center justify-center mt-16 flex"
                 style="background-image: url('{{ asset('storage/images/herosection2.png') }}');">
                 <div class="text-center mt-[50vh]  text-white">
                     <h1 class="font-bold text-xl md:text-5xl">Trouvez Votre <span
                             class="bg-blue-500/60 px-3 pb-1 lg:pb-2 rounded">Avenir</span> Dès
                         Aujourd'hui !</h1>
-                    <p class="font-semibold text-lg md:text-3xl mt-6">Découvrez Le Guide Ultime Des Universités à
-                        Travers
-                        Le Maroc </p>
+                    <p class="font-semibold text-lg md:text-3xl mt-6">Découvrez Le Guide Ultime Des Universités à Travers Le Maroc </p>
                 </div>
                 <section id="categories-container" class="py-8 w-[92%]  mt-36 mx-auto">
                     <div class="carousel-container relative overflow-hidden">
@@ -42,6 +41,7 @@
                                                 Imagination</h3>
                                             <span class="text-sm block text-gray-400 mt-2">10 FEB 2023 | BY JOHN
                                                 DOE</span>
+
                                             <p class="text-sm mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing
                                                 elit. Duis
                                                 accumlanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
