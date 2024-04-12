@@ -62,25 +62,17 @@ Route::get('/addDomaine', function () {
 Route::get('/addUniversity', function () {
     return view('Admin.addUniversity');
 });
-
 Route::get('/manageUniversity', function () {
     return view('Admin.manageUniversity');
 });
-
 Route::get('/addPub', function () {
     return view('Admin.addPub');
 });
-Route::post('/addPub', [AnnonceController::class, 'store'])->name('addPub');
+Route::post('/addPub', [AnnonceController::class, 'store']);
+Route::get('/faqsManage', [FaqController::class, 'index']);
+Route::get('/managePub', [AnnonceController::class, 'index']);
 
-Route::get('/managePub', function () {
-    return view('Admin.managePub');
-});
-
-Route::get('/faqsManage', function () {
-    return view('Admin.faqsManage');
-});
 Route::post('/faqs',[FaqController::class, 'store']);
-
 Route::get('/managePosts', function () {
     return view('Admin.managePosts');
 });
@@ -88,10 +80,12 @@ Route::get('/managePosts', function () {
 Route::get('/contactMe', function () {
     return view('Admin.contactMe');
 });
-
 Route::get('/manageConcours', function () {
     return view('Admin.manageConcours');
 });
+Route::delete('/domaine/{id}', [DomaineController::class, 'destroy']);
+Route::delete('/faq/{id}', [FaqController::class, 'destroy']);
+Route::delete('/annonce/{id}', [AnnonceController::class, 'destroy']);
 
 Route::get('/profileAdmin', function () {
     return view('Admin.profileAdmin');

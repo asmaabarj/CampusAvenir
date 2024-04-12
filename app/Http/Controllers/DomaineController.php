@@ -71,8 +71,11 @@ class DomaineController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+    public function destroy($id)
+{
+    $domaine = Domaine::findOrFail($id);
+    $domaine->delete();
+    return redirect()->back()->with('success', 'Domaine supprimé avec succès.');
+}
+
 }

@@ -12,9 +12,10 @@ class AnnonceController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
-    }
+{
+    $annonces = Annonce::all(); 
+    return view('Admin.managePub', ['annonces' => $annonces]);
+}
 
     /**
      * Show the form for creating a new resource.
@@ -73,8 +74,10 @@ class AnnonceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+    public function destroy($id)
+{
+    $annonce = annonce::findOrFail($id);
+    $annonce->delete();
+    return redirect()->back()->with('success', 'annonce supprimé avec succès.');
+}
 }

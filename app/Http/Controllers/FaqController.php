@@ -11,9 +11,10 @@ class FaqController extends Controller
 
 
     public function index()
-    {
-        //
-    }
+{
+    $faqs = Faq::all(); 
+    return view('Admin.faqsManage', ['faqs' => $faqs]);
+}
 
     /**
      * Show the form for creating a new resource.
@@ -56,11 +57,11 @@ class FaqController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+
+    public function destroy($id)
+{
+    $faq = Faq::findOrFail($id);
+    $faq->delete();
+    return redirect()->back()->with('success', 'FAQ supprimée avec succès.');
+}
 }
