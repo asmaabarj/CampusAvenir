@@ -11,57 +11,47 @@ class FaqController extends Controller
 
 
     public function index()
-{
-    $faqs = Faq::all(); 
-    return view('Admin.faqsManage', ['faqs' => $faqs]);
-}
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
     {
-        //
+        $faqs = Faq::all();
+        return view('Admin.faqs', ['faqs' => $faqs]);
     }
-
 
     public function store(CreateFaqRequest $request)
     {
-        $validatedData=$request->validated();
+        $validatedData = $request->validated();
         $faq = new Faq([
-            'question'=>$validatedData['question'],
-            'reponse'=>$validatedData['reponse'],
-    ]);
-        $faq->save(); 
+            'question' => $validatedData['question'],
+            'reponse' => $validatedData['reponse'],
+        ]);
+        $faq->save();
         return redirect()->back()->with('success', 'La FAQ a été ajoutée avec succès.');
     }
 
-    public function show(string $id)
+    public function edit($id)
     {
-        //
+        $faq = Faq::findOrFail($id);
+        return view('Admin.editFaqs', ['editFaq' => $faq]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    
+    public function update(CreateFaqRequest $request, $id)
     {
-        //
+        $validatedData = $request->validated();
+        $faq = Faq::findOrFail($id);
+
+        $faq->question = $validatedData['question'];
+        $faq->reponse = $validatedData['reponse'];
+
+        $faq->save();
+        return redirect('/faqs')->with('success', 'FAQ mise à jour avec succès.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
 
     public function destroy($id)
-{
-    $faq = Faq::findOrFail($id);
-    $faq->delete();
-    return redirect()->back()->with('success', 'FAQ supprimée avec succès.');
-}
+    {
+        $faq = Faq::findOrFail($id);
+        $faq->delete();
+        return redirect()->back()->with('success', 'FAQ supprimée avec succès.');
+    }
 }

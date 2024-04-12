@@ -44,7 +44,7 @@
             class='lg:!flex lg:space-x-10 max-lg:space-y-2 max-lg:hidden group-hover:block hover:block  max-lg:w-full max-lg:my-4'>
             <li
                 class='max-lg:border-b mt-2 lg:after:bg-black lg:after:w-0 lg:hover:after:w-full lg:hover:after:h-[2px] lg:after:block  lg:after:transition-all lg:after:duration-300'>
-                <a href='/faqsManage' class='text-gray-700 block text-[15px]'>Faqs</a>
+                <a href='/faqs' class='text-gray-700 block text-[15px]'>Faqs</a>
             </li>
             <li
                 class='max-lg:border-b mt-2 lg:after:bg-black lg:after:w-0 lg:hover:after:w-full lg:hover:after:h-[2px] lg:after:block  lg:after:transition-all lg:after:duration-300'>
@@ -194,7 +194,7 @@
             <ul id="collapseMenu" class=' lg:hidden border-t-[1px]  border-gray-600   max-lg:w-full max-lg:my-4'>
                 <li
                     class='max-lg:border-b max-lg:py-2 mt-4 pl-4 relative lg:hover:after:absolute lg:after:bg-black lg:after:w-0 lg:hover:after:w-full lg:hover:after:h-[2px] lg:after:block lg:after:top-6 lg:after:transition-all lg:after:duration-300 hover:text-blue-600 hover:shadow-sm   hover:bg-blue-50 rounded transition-all'>
-                    <a href='/faqsManage' class='text-gray-700 block text-[15px]'>Faqs</a>
+                    <a href='/faqs' class='text-gray-700 block text-[15px]'>Faqs</a>
                 </li>
                 <li
                     class='max-lg:border-b max-lg:py-2 pl-4 relative lg:hover:after:absolute lg:after:bg-black lg:after:w-0 lg:hover:after:w-full lg:hover:after:h-[2px] lg:after:block lg:after:top-6 lg:after:transition-all lg:after:duration-300 hover:text-blue-600 hover:shadow-sm   hover:bg-blue-50 rounded transition-all'>

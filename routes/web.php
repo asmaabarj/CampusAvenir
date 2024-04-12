@@ -51,16 +51,20 @@ Route::get('/resetPassword', function () {
 // ----------------------------------------------admin----------------------------------------------------
 Route::middleware(['check.role:admin'])->group(function () {
 
+    Route::get('/dashboard', function () {
+        return view('Admin.Dashboard');
+    });
+    
     Route::get('/addDomaine', function () {
         return view('Admin.addDomaine');
     });
     Route::get('/domaine/{id}', [DomaineController::class, 'edit']);
     Route::resource('/domaine', DomaineController::class)->except(['show', 'create','edit']);
 
+    Route::resource('faqs', FaqController::class)->except(['show', 'create','edit']);
+    Route::get('/faqs/{id}', [FaqController::class, 'edit']);
 
-Route::get('/dashboard', function () {
-    return view('Admin.Dashboard');
-});
+
 
 Route::get('/addUniversity', function () {
     return view('Admin.addUniversity');
@@ -72,10 +76,8 @@ Route::get('/addPub', function () {
     return view('Admin.addPub');
 });
 Route::post('/addPub', [AnnonceController::class, 'store']);
-Route::get('/faqsManage', [FaqController::class, 'index']);
 Route::get('/managePub', [AnnonceController::class, 'index']);
 
-Route::post('/faqs',[FaqController::class, 'store']);
 Route::get('/managePosts', function () {
     return view('Admin.managePosts');
 });
@@ -86,7 +88,6 @@ Route::get('/contactMe', function () {
 Route::get('/manageConcours', function () {
     return view('Admin.manageConcours');
 });
-Route::delete('/faq/{id}', [FaqController::class, 'destroy']);
 Route::delete('/annonce/{id}', [AnnonceController::class, 'destroy']);
 
 Route::get('/profileAdmin', function () {
