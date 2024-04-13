@@ -110,7 +110,7 @@
                 <div class="mt-8 mb-2">
                     <button type="submit"
                         class="px-4 py-2 bg-gradient-to-r from-blue-300 to-blue-800 text-white rounded-md focus:outline-none ">
-                        Mettre à jour
+                        Enregistrer
                     </button>
                 </div>
             </form>

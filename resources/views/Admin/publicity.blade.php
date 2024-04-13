@@ -97,12 +97,5 @@
             </div>
         </div>
     </div>
-    <script>
-        function toggleModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.classList.toggle('hidden');
-        }
-    </script>
 </body>
-
 </html>

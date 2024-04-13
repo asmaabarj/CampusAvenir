@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AnnonceController;
+use App\Http\Controllers\ConcourController;
 use App\Http\Controllers\DomaineController;
 use App\Http\Controllers\EtablissmentController;
 use App\Http\Middleware\RedirectIfAuthenticated;
@@ -33,13 +34,12 @@ Route::post('/login', [UserController::class, 'login'])->name('login');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
 Route::middleware(RedirectIfAuthenticated::class)->group(function () {
-Route::get('/login', function () {
-    return view('Authentification.login');
-});
-Route::get('/register', function () {
-    return view('Authentification.register');
-});
-
+    Route::get('/login', function () {
+        return view('Authentification.login');
+    });
+    Route::get('/register', function () {
+        return view('Authentification.register');
+    });
 });
 Route::get('/forgetPassword', function () {
     return view('Authentification.ForgetPassword.forgetPassword');
@@ -56,50 +56,50 @@ Route::middleware(['check.role:admin'])->group(function () {
     Route::get('/dashboard', function () {
         return view('Admin.Dashboard');
     });
-    
+
+
     Route::get('/addDomaine', function () {
         return view('Admin.addDomaine');
     });
     Route::get('/domaine/{id}', [DomaineController::class, 'edit']);
-    Route::resource('/domaine', DomaineController::class)->except(['show', 'create','edit']);
+    Route::resource('/domaine', DomaineController::class)->except(['show', 'create', 'edit']);
 
-    Route::resource('faqs', FaqController::class)->except(['show', 'create','edit']);
+
+    Route::resource('faqs', FaqController::class)->except(['show', 'create', 'edit']);
     Route::get('/faqs/{id}', [FaqController::class, 'edit']);
+
 
     Route::get('/addPublicity', function () {
         return view('Admin.addPublicity');
     });
     Route::get('/editPublicity/{id}', [AnnonceController::class, 'edit']);
-    Route::resource('publicity', AnnonceController::class)->except(['show', 'create','edit']);
+    Route::resource('publicity', AnnonceController::class)->except(['show', 'create', 'edit']);
+
+    
+    Route::resource('/university', EtablissmentController::class)->except(['show', 'create', 'edit']);
+    Route::get('/addUniversity', [EtablissmentController::class, 'create']);
+    Route::get('/university/{id}', [EtablissmentController::class, 'edit']);
 
 
-
-// Route::resource('/university', EtablissmentController::class)->except(['show', 'create','edit','index','destroy','edit','update']);
-Route::post('/university', [EtablissmentController::class, 'store']);
-Route::get('/addUniversity', [EtablissmentController::class, 'create']);
-Route::get('/university', [EtablissmentController::class, 'index']);
-Route::delete('/university/{id}', [EtablissmentController::class, 'destroy']);
-Route::get('/university/{id}', [EtablissmentController::class, 'edit']);
-Route::put('/university/{id}', [EtablissmentController::class, 'update']);
+    Route::post('/concour', [ConcourController::class, 'store']);
+    Route::get('/concour', [ConcourController::class, 'index']);
+    Route::delete('/concour/{id}', [ConcourController::class, 'destroy']);
+    Route::get('/concour/{id}', [ConcourController::class, 'edit']);
+    Route::put('/concour/{id}', [ConcourController::class, 'update']);
 
 
+    Route::get('/managePosts', function () {
+        return view('Admin.managePosts');
+    });
 
-Route::get('/managePosts', function () {
-    return view('Admin.managePosts');
-});
-
-Route::get('/contactMe', function () {
-    return view('Admin.contactMe');
-});
-Route::get('/manageConcours', function () {
-    return view('Admin.manageConcours');
-});
-
-Route::get('/profileAdmin', function () {
-    return view('Admin.profileAdmin');
-});
+    Route::get('/contactMe', function () {
+        return view('Admin.contactMe');
+    });
 
 
+    Route::get('/profileAdmin', function () {
+        return view('Admin.profileAdmin');
+    });
 });
 // -------------------------------------------------------------------
 

@@ -56,7 +56,7 @@
             </li>
             <li
                 class='max-lg:border-b mt-2 lg:after:bg-black lg:after:w-0 lg:hover:after:w-full lg:hover:after:h-[2px] lg:after:block  lg:after:transition-all lg:after:duration-300'>
-                <a href='/manageConcours' class='text-gray-700 block text-[15px]'>Concours</a>
+                <a href='/concour' class='text-gray-700 block text-[15px]'>Concours</a>
             </li>
             <li class='lg:mx-8 max-md:hidden bg-gray-100 px-4 rounded-full flex-1'>
                 <a href="/university" type='button' class=' py-2 text-sm text-gray-600 flex gap-8' >
@@ -206,7 +206,7 @@
                 </li>
                 <li
                     class='max-lg:border-b mb-14 max-lg:py-2 pl-4 relative lg:hover:after:absolute lg:after:bg-black lg:after:w-0 lg:hover:after:w-full lg:hover:after:h-[2px] lg:after:block lg:after:top-6 lg:after:transition-all lg:after:duration-300 hover:text-blue-600 hover:shadow-sm   hover:bg-blue-50 rounded transition-all'>
-                    <a href='/manageConcours' class='text-gray-700 block text-[15px]'>Concours</a>
+                    <a href='/concour' class='text-gray-700 block text-[15px]'>Concours</a>
                 </li>
             </ul>
         </div>
@@ -219,9 +219,4 @@
 <section class="xl:w-[78%] mt-14 mb-8 lg:ml-auto   mx-6  rounded-md">
     @yield('manageForm')
 </section>
-<script>
-    function toggleModal(modalId) {
-        const modal = document.getElementById(modalId);
-        modal.classList.toggle('hidden');
-    }
-</script>
+<script src="{{asset('js/toggleModal.js')}}"></script>
