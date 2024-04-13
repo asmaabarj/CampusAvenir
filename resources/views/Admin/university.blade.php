@@ -12,6 +12,7 @@
 
 <body class="bg-[#F7F8FA]">
     @include('layouts.sidebarAdmin')
+    @include('components.Alert')
     <div class="xl:w-[70%] xl:ml-auto  xl:mr-20 mx-2 shadow-md auverflow-auto">
         <div class="relative  shadow-md sm:rounded-lg">
             <div class="flex items-center justify-between bg-white ">
@@ -60,8 +61,10 @@
                                     <i class='bx bx-dots-vertical-rounded'></i>
                                     <div
                                         class="bg-white z-50 group-hover:block hover:block hidden text-center shadow-lg py-4 px-4 sm:min-w-[100px]  absolute -right-6">
+                                        <form action="/university/{{ $etablissment->id }}">
                                         <button class="text-sm  text-gray-500 hover:text-black">
                                             Editer</button>
+                                        </form>
                                         <hr class="border-b-0 my-4" />
                                         <button onclick="toggleModal('deleteModal{{ $etablissment->id }}')"
                                             class="text-sm  text-gray-500 hover:text-black">

@@ -79,6 +79,8 @@ Route::post('/university', [EtablissmentController::class, 'store']);
 Route::get('/addUniversity', [EtablissmentController::class, 'create']);
 Route::get('/university', [EtablissmentController::class, 'index']);
 Route::delete('/university/{id}', [EtablissmentController::class, 'destroy']);
+Route::get('/university/{id}', [EtablissmentController::class, 'edit']);
+Route::put('/university/{id}', [EtablissmentController::class, 'update']);
 
 
 

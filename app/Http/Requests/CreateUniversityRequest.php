@@ -32,7 +32,7 @@ class CreateUniversityRequest extends FormRequest
             'type' => 'required',
             'photo' => 'required|max:2048',
             'description' => 'required',
-            'lien' => 'required',
+            'lien' => 'required|url'
         ];
     }
 
