@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Etablissment extends Model
 {
-    protected $fillable = ['nom', 'Formation', 'etudiants', 'Conditions', 'Filieres', 'concour', 'type', 'photo', 'description', 'lieu', 'domaine_id'];
+    protected $fillable = ['nom', 'formation', 'etudiants', 'conditions', 'filieres', 'concour', 'type', 'photo', 'description', 'lien', 'domaine_id'];
 
     public function domaine()
     {

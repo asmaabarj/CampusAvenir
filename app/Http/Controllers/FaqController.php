@@ -1,15 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Faq;
-use Illuminate\Http\Request;
 use App\Http\Requests\CreateFaqRequest;
 
 class FaqController extends Controller
 {
-
-
     public function index()
     {
         $faqs = Faq::all();
@@ -18,13 +14,12 @@ class FaqController extends Controller
 
     public function store(CreateFaqRequest $request)
     {
-        $validatedData = $request->validated();
-        $faq = new Faq([
-            'question' => $validatedData['question'],
-            'reponse' => $validatedData['reponse'],
+        $data = $request->validated();
+        Faq::create([
+            'question' => $data['question'],
+            'reponse' => $data['reponse'],
         ]);
-        $faq->save();
-        return redirect()->back()->with('success', 'La FAQ a été ajoutée avec succès.');
+        return redirect()->back()->with('success', 'FAQ ajoutée avec succès.');
     }
 
     public function edit($id)
@@ -33,20 +28,16 @@ class FaqController extends Controller
         return view('Admin.editFaqs', ['editFaq' => $faq]);
     }
 
-    
     public function update(CreateFaqRequest $request, $id)
     {
-        $validatedData = $request->validated();
+        $data = $request->validated();
         $faq = Faq::findOrFail($id);
-
-        $faq->question = $validatedData['question'];
-        $faq->reponse = $validatedData['reponse'];
-
-        $faq->save();
+        $faq->update([
+            'question' => $data['question'],
+            'reponse' => $data['reponse'],
+        ]);
         return redirect('/faqs')->with('success', 'FAQ mise à jour avec succès.');
     }
-
-
 
     public function destroy($id)
     {

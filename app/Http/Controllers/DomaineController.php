@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Domaine;
-use Illuminate\Http\Request;
 use App\Http\Requests\CreateDomaineRequest;
-
 class DomaineController extends Controller
 {
-
     public function index()
     {
         $domaines = Domaine::all();
@@ -17,17 +14,19 @@ class DomaineController extends Controller
 
     public function store(CreateDomaineRequest $request)
     {
-        $validatedData = $request->validated();
+        $data = $request->validated();
+
         if ($request->hasFile('photo')) {
             $path = $request->file('photo')->store('uploads', 'public');
-            $validatedData['picture'] = $path;
+            $data['photo'] = $path;
         }
-        $domaine = new Domaine([
-            'titre' => $validatedData['titre'],
-            'photo' => $validatedData['picture'],
+
+        Domaine::create([
+            'titre' => $data['titre'],
+            'photo' => $data['photo'],
         ]);
-        $domaine->save();
-        return redirect()->back()->with('success', 'Le domaine a été ajouté avec succès.');
+
+        return redirect()->back()->with('success', 'Domaine ajouté avec succès.');
     }
 
     public function edit($id)
@@ -38,14 +37,18 @@ class DomaineController extends Controller
 
     public function update(CreateDomaineRequest $request, $id)
     {
-        $validatedData = $request->validated();
+        $data = $request->validated();
         $domaine = Domaine::findOrFail($id);
-        $domaine->titre = $validatedData['titre'];
+
+        $domaine->update([
+            'titre' => $data['titre'],
+        ]);
+
         if ($request->hasFile('photo')) {
             $path = $request->file('photo')->store('uploads', 'public');
-            $domaine->photo = $path;
+            $domaine->update(['photo' => $path]);
         }
-        $domaine->save();
+
         return redirect('/domaine')->with('success', 'Domaine mis à jour avec succès.');
     }
 

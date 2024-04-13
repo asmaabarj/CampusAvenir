@@ -44,7 +44,8 @@
                 <div class="mb-2">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Photo:</label>
                     <input type="file" name="picture" value="{{ $editAnnonce->picture }}"
-                        class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600">
+                    class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600">
+                    <img src="{{ asset('storage/' . $editAnnonce->photo) }}" alt="Annonce photo" class="w-20 h-20 mt-2">
                 </div>
                 <div class="mb-2">
                     <label for="description" class="block text-gray-700 text-sm font-bold mb-2">Description:</label>

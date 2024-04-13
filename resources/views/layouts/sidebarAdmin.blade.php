@@ -59,7 +59,7 @@
                 <a href='/manageConcours' class='text-gray-700 block text-[15px]'>Concours</a>
             </li>
             <li class='lg:mx-8 max-md:hidden bg-gray-100 px-4 rounded-full flex-1'>
-                <a href="/manageUniversity" type='button' class=' py-2 text-sm text-gray-600 flex gap-8' >
+                <a href="/university" type='button' class=' py-2 text-sm text-gray-600 flex gap-8' >
                 <h1>Rechercher </h1>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.904 192.904" width="18px"
                     class="cursor-pointer fill-gray-500 mr-4 rotate-90 inline-block">
@@ -143,7 +143,7 @@
                 </a>
             </li>
             <li>
-                <a href="/manageUniversity"
+                <a href="/university"
                     class="text-black hover:text-blue-600 hover:shadow-sm text-sm flex items-center hover:bg-blue-50 rounded px-4 py-3 transition-all">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-[18px] h-[18px] mr-4"
                         viewBox="0 0 512.003 512.003">

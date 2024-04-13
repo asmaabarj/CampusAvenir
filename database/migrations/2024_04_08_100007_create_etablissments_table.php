@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('etablissments', function (Blueprint $table) {
             $table->id();
             $table->string('nom');
-            $table->text('Formation');
+            $table->text('formation');
             $table->integer('etudiants');
-            $table->string('Conditions');
-            $table->string('Filieres');
+            $table->string('conditions');
+            $table->string('filieres');
             $table->enum('concour', ['avec', 'sans']);
             $table->enum('type', ['prive', 'publique']);
             $table->string('photo');

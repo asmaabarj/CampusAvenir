@@ -1,10 +1,12 @@
 <?php
 
+use App\Models\Etablissment;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AnnonceController;
 use App\Http\Controllers\DomaineController;
+use App\Http\Controllers\EtablissmentController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 
 /*
@@ -71,12 +73,14 @@ Route::middleware(['check.role:admin'])->group(function () {
     Route::resource('publicity', AnnonceController::class)->except(['show', 'create','edit']);
 
 
-Route::get('/addUniversity', function () {
-    return view('Admin.addUniversity');
-});
-Route::get('/manageUniversity', function () {
-    return view('Admin.manageUniversity');
-});
+
+// Route::resource('/university', EtablissmentController::class)->except(['show', 'create','edit','index','destroy','edit','update']);
+Route::post('/university', [EtablissmentController::class, 'store']);
+Route::get('/addUniversity', [EtablissmentController::class, 'create']);
+Route::get('/university', [EtablissmentController::class, 'index']);
+Route::delete('/university/{id}', [EtablissmentController::class, 'destroy']);
+
+
 
 Route::get('/managePosts', function () {
     return view('Admin.managePosts');

@@ -12,7 +12,6 @@
 
 <body class="bg-[#F7F8FA]">
     @extends('layouts.sidebarAdmin')
-
     @section('addForm')
     @include('components.Alert')
         <div class="py-4 px-10">

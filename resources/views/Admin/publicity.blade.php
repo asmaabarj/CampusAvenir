@@ -22,7 +22,7 @@
                     <div class="flex justify-between">
                         <div class="p-4 flex gap-2">
                             <div>
-                                <h4 class="text-base font-bold">{{ $annonce->title }}</h4>
+                                <h4 class="text-base font-bold">{{ $annonce->titre }}</h4>
                                 @if($annonce->date != NULL)
                                 <h3 class='bx bx-time-five'>{{ $annonce->date }}</h3>
                                 @endif
