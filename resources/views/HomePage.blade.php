@@ -14,6 +14,7 @@
     @include('components.navbar')
     <main>
         <div class="">
+            @include('components.Alert')
 
             <section class="bg-url bg-no-repeat bg-cover flex-col px-6 h-[120vh] items-center justify-center mt-16 flex"
                 style="background-image: url('{{ asset('storage/images/herosection2.png') }}');">
@@ -30,133 +31,27 @@
                             <i class='bx bx-chevron-left text-3xl'></i> </button>
                         <div class="viewport">
                             <div class="categories-container flex space-x-4  transition-transform  duration-300">
-
-                                <div
-                                    class="category flex-none bg-white  cursor-pointer w-[44vw] rounded-lg overflow-hidden h-[50vh]   transition duration-300">
+                                @foreach($annonces as $annonce)
+                                <div class="category flex-none bg-white cursor-pointer w-[44vw] rounded-lg overflow-hidden h-[50vh] transition duration-300">
                                     <div class="flex h-full">
-                                        <img src="https://img.freepik.com/photos-gratuite/ecoliere-gabarit_23-2148203875.jpg?w=360&t=st=1712051063~exp=1712051663~hmac=963d0a3d8d9ed9b2df47571574a7ffdb4a2b16296dd1cc8b8394426915b79772"
-                                            alt="Blog Post 1" class="w-[20vw] h-full object-cover" />
+                                        <img src="{{ asset('storage/' . $annonce->photo) }}" alt="Blog Post 1" class="w-[20vw] h-full object-cover" />
                                         <div class="p-4">
-                                            <h3 class="text-xl font-bold text-gray-800">A Guide to Igniting Your
-                                                Imagination</h3>
-                                            <span class="text-sm block text-gray-400 mt-2">10 FEB 2023 | BY JOHN
-                                                DOE</span>
-
-                                            <p class="text-sm mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit. Duis
-                                                accumlanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                                                accumsan, nunc
-                                                et tempus blanditLorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit. Duis accumsan,
-                                                nunc et tempus blanditLorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit. Duis
-                                                accumsan, nunc et </p>
-                                            <a href="javascript:void(0);"
-                                                class="mt-4 inline-block text-blue-600 text-sm hover:underline">Read
-                                                More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div
-                                    class="category flex-none bg-white cursor-pointer w-[44vw]   rounded-lg overflow-hidden h-[50vh]   transition duration-300">
-                                    <div class="flex h-full">
-                                        <img src="https://postbac.ma/wp-content/uploads/2020/08/CESA_Ecole-3.png"
-                                            alt="Blog Post 1" class="w-[20vw] h-full object-cover" />
-                                        <div class="p-4">
-                                            <h3 class="text-xl font-bold text-gray-800">A Guide to Igniting Your
-                                                Imagination</h3>
-                                            <span class="text-sm block text-gray-400 mt-2">10 FEB 2023 | BY JOHN
-                                                DOE</span>
-                                            <p class="text-sm mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit. Duis
-                                                accumlanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                                                accumsan, nunc
-                                                et tempus blanditLorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit. Duis accumsan,
-                                                nunc et tempus blanditLorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit. Duis
+                                            <h3 class="text-xl font-bold text-gray-800">{{ $annonce->titre }}</h3>
+                                            
+                                            <p class="text-sm mt-4">
+                                                @if(strlen($annonce->description) > 355)
+                                                    {{ substr($annonce->description, 0, 355) }}...
+                                                @else
+                                                    {{ $annonce->description }}
+                                                @endif
                                             </p>
-                                            <a href="javascript:void(0);"
-                                                class="mt-4 inline-block text-blue-600 text-sm hover:underline">Read
-                                                More</a>
+                                            
+                                            <a href="apa" class="mt-4 inline-block text-blue-600 text-sm hover:underline">Read More</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div
-                                    class="category flex-none bg-white cursor-pointer w-[44vw]   rounded-lg overflow-hidden h-[50vh]   transition duration-300">
-                                    <div class="flex h-full">
-                                        <img src="https://postbac.ma/wp-content/uploads/2020/08/postbac-Pole-Ingenierie-1.jpg"
-                                            alt="Blog Post 1" class="w-[20vw] h-full object-cover" />
-                                        <div class="p-4">
-                                            <h3 class="text-xl font-bold text-gray-800">A Guide to Igniting Your
-                                                Imagination</h3>
-                                            <span class="text-sm block text-gray-400 mt-2">10 FEB 2023 | BY JOHN
-                                                DOE</span>
-                                            <p class="text-sm mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit. Duis
-                                                accumlanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                                                accumsan, nunc
-                                                et tempus blanditLorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit. Duis accumsan,
-                                                nunc et tempus blanditLorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit. Duis
-                                            </p>
-                                            <a href="javascript:void(0);"
-                                                class="mt-4 inline-block text-blue-600 text-sm hover:underline">Read
-                                                More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div
-                                    class="category flex-none bg-white cursor-pointer w-[44vw]   rounded-lg overflow-hidden h-[50vh]  hover:shadow-lg transition duration-300">
-                                    <div class="flex h-full">
-                                        <img src="https://readymadeui.com/Imagination.webp" alt="Blog Post 1"
-                                            class="w-[17vw] h-full object-cover" />
-                                        <div class="p-4">
-                                            <h3 class="text-xl font-bold text-gray-800">A Guide to Igniting Your
-                                                Imagination</h3>
-                                            <span class="text-sm block text-gray-400 mt-2">10 FEB 2023 | BY JOHN
-                                                DOE</span>
-                                            <p class="text-sm mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit. Duis
-                                                accumlanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                                                accumsan, nunc
-                                                et tempus blanditLorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit. Duis accumsan,
-                                                nunc et tempus blanditLorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit. Duis
-                                                accumsan, nunc et </p>
-                                            <a href="javascript:void(0);"
-                                                class="mt-4 inline-block text-blue-600 text-sm hover:underline">Read
-                                                More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div
-                                    class="category flex-none bg-white cursor-pointer w-[44vw]   rounded-lg overflow-hidden h-[50vh]  hover:shadow-lg transition duration-300">
-                                    <div class="flex h-full">
-                                        <img src="https://readymadeui.com/Imagination.webp" alt="Blog Post 1"
-                                            class="w-[17vw] h-full object-cover" />
-                                        <div class="p-4">
-                                            <h3 class="text-xl font-bold text-gray-800">A Guide to Igniting Your
-                                                Imagination</h3>
-                                            <span class="text-sm block text-gray-400 mt-2">10 FEB 2023 | BY JOHN
-                                                DOE</span>
-                                            <p class="text-sm mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit. Duis
-                                                accumlanditLorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                                                accumsan, nunc
-                                                et tempus blanditLorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit. Duis accumsan,
-                                                nunc et tempus blanditLorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit. Duis
-                                                accumsan, nunc et </p>
-                                            <a href="javascript:void(0);"
-                                                class="mt-4 inline-block text-blue-600 text-sm hover:underline">Read
-                                                More</a>
-                                        </div>
-                                    </div>
-                                </div>
+                            @endforeach
+                            
                             </div>
                         </div>
                         <button
@@ -241,42 +136,20 @@
                             Domaines</h2>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16 max-md:max-w-lg mx-auto">
-                        <div class="bg-white cursor-pointer  overflow-hidden  relative top-0 ">
-                            <img src="https://readymadeui.com/Imagination.webp" alt="Blog Post 1"
+                        @foreach($domaines as $domaine)
+                        <div class="bg-white   overflow-hidden  relative top-0 ">
+                            <img src="{{ asset('storage/' . $domaine->photo) }}" alt="Blog Post 1"
                                 class="w-full h-60  object-cover" />
                             <div class="p-6">
-                                <h3 class="text-xl font-bold text-[#333]">A Guide to Igniting Your Imagination</h3>
-                                <div class="flex items-center gap-2 mt-2 text-blue-500">
+                                <h3 class="text-xl font-bold text-[#333]">{{$domaine->titre}}</h3>
+                                <div class="flex cursor-pointer items-center gap-2 mt-2 text-blue-500">
                                     <p class=" text-sm font-[500] uppercase">détails
                                     </p>
                                     <i class='bx bx-right-arrow-alt text-xl'></i>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-white cursor-pointer  overflow-hidden relative top-0 ">
-                            <img src="https://readymadeui.com/hacks-watch.webp" alt="Blog Post 2"
-                                class="w-full h-60 object-cover" />
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold text-[#333]">A Guide to Igniting Your Imagination</h3>
-                                <div class="flex items-center gap-2 mt-2 text-blue-500">
-                                    <p class=" text-sm font-[500] uppercase">détails
-                                    </p>
-                                    <i class='bx bx-right-arrow-alt text-xl'></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white cursor-pointer  overflow-hidden  relative top-0 ">
-                            <img src="https://readymadeui.com/prediction.webp" alt="Blog Post 3"
-                                class="w-full h-60 object-cover" />
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold text-[#333]">A Guide to Igniting Your Imagination</h3>
-                                <div class="flex items-center gap-2 mt-2 text-blue-500">
-                                    <p class=" text-sm font-[500] uppercase">détails
-                                    </p>
-                                    <i class='bx bx-right-arrow-alt text-xl'></i>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
 
                 </div>
@@ -299,9 +172,10 @@
                         Tous</button>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+                    @foreach ($etablissments as $etablissment)
                     <div class="bg-white cursor-pointer border-b-2 border-blue-500 overflow-hidden group">
                         <div class="relative overflow-hidden">
-                            <img src="https://postbac.ma/wp-content/uploads/2020/09/DUT_FMD_Rabat.png"
+                            <img src="{{ asset('storage/' . $etablissment->photo) }}"
                                 alt="Blog Post 1" class="w-full h-60 object-cover " />
                             <div class="ml-5 flex space-x-1 mt-6">
                                 <svg class="w-5 fill-[#facc15]" viewBox="0 0 14 13" fill="none"
@@ -332,7 +206,7 @@
                             </div>
                         </div>
                         <div class="p-6">
-                            <h3 class="text-xl font-bold text-[#333]">détails
+                            <h3 class="text-xl font-bold text-[#333]">{{$etablissment->nom}}
                             </h3>
 
                             <div class="flex justify-between mt-6 items-center">
@@ -354,115 +228,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="bg-white cursor-pointer border-b-2 border-blue-500 overflow-hidden group">
-                        <div class="relative overflow-hidden">
-                            <img src="https://postbac.ma/wp-content/uploads/2020/08/EMBCI.png" alt="Blog Post 1"
-                                class="w-full h-60 object-cover " />
-                            <div class="ml-5 flex space-x-1 mt-6">
-                                <svg class="w-5 fill-[#facc15]" viewBox="0 0 14 13" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                                </svg>
-                                <svg class="w-5 fill-[#facc15]" viewBox="0 0 14 13" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                                </svg>
-                                <svg class="w-5 fill-[#facc15]" viewBox="0 0 14 13" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                                </svg>
-                                <svg class="w-5 fill-[#CED5D8]" viewBox="0 0 14 13" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                                </svg>
-                                <svg class="w-5 fill-[#CED5D8]" viewBox="0 0 14 13" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-[#333]">A Guide to Igniting Your Imagination</h3>
-
-                            <div class="flex justify-between mt-6 items-center">
-                                <button type="submit"> <svg xmlns="http://www.w3.org/2000/svg" id="Layer_2"
-                                        data-name="Layer 1" width="34" height="34"
-                                        viewBox="0 0 122.88 107.39">
-                                        <defs>
-
-                                        </defs>
-                                        <title>red-heart</title>
-                                        <path class="hover:fill-[#ed1b24]  fill-[#cccccc]"
-                                            d="M60.83,17.18c8-8.35,13.62-15.57,26-17C110-2.46,131.27,21.26,119.57,44.61c-3.33,6.65-10.11,14.56-17.61,22.32-8.23,8.52-17.34,16.87-23.72,23.2l-17.4,17.26L46.46,93.55C29.16,76.89,1,55.92,0,29.94-.63,11.74,13.73.08,30.25.29c14.76.2,21,7.54,30.58,16.89Z" />
-                                    </svg> </button>
-                                <div class="flex items-center gap-2 mt-2 text-blue-500">
-                                    <p class=" text-sm font-[500] uppercase">détails
-                                    </p>
-                                    <i class='bx bx-right-arrow-alt text-xl'></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white cursor-pointer border-b-2 border-blue-500 overflow-hidden group">
-                        <div class="relative overflow-hidden">
-                            <img src="https://postbac.ma/wp-content/uploads/2020/08/postbac-management.jpg"
-                                alt="Blog Post 1" class="w-full h-60 object-cover " />
-                            <div class="ml-5 flex space-x-1 mt-6">
-                                <svg class="w-5 fill-[#facc15]" viewBox="0 0 14 13" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                                </svg>
-                                <svg class="w-5 fill-[#facc15]" viewBox="0 0 14 13" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                                </svg>
-                                <svg class="w-5 fill-[#facc15]" viewBox="0 0 14 13" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                                </svg>
-                                <svg class="w-5 fill-[#CED5D8]" viewBox="0 0 14 13" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                                </svg>
-                                <svg class="w-5 fill-[#CED5D8]" viewBox="0 0 14 13" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M7 0L9.4687 3.60213L13.6574 4.83688L10.9944 8.29787L11.1145 12.6631L7 11.2L2.8855 12.6631L3.00556 8.29787L0.342604 4.83688L4.5313 3.60213L7 0Z" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold text-[#333]">A Guide to Igniting Your Imagination</h3>
-
-                            <div class="flex justify-between mt-6 items-center">
-                                <button type="submit"> <svg xmlns="http://www.w3.org/2000/svg" id="Layer_2"
-                                        data-name="Layer 1" width="34" height="34"
-                                        viewBox="0 0 122.88 107.39">
-                                        <defs>
-
-                                        </defs>
-                                        <title>red-heart</title>
-                                        <path class="hover:fill-[#ed1b24]  fill-[#cccccc]"
-                                            d="M60.83,17.18c8-8.35,13.62-15.57,26-17C110-2.46,131.27,21.26,119.57,44.61c-3.33,6.65-10.11,14.56-17.61,22.32-8.23,8.52-17.34,16.87-23.72,23.2l-17.4,17.26L46.46,93.55C29.16,76.89,1,55.92,0,29.94-.63,11.74,13.73.08,30.25.29c14.76.2,21,7.54,30.58,16.89Z" />
-                                    </svg> </button>
-                                <div class="flex items-center gap-2 mt-2 text-blue-500">
-                                    <p class=" text-sm font-[500] uppercase">détails
-
-                                    </p>
-                                    <i class='bx bx-right-arrow-alt text-xl'></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
@@ -500,40 +266,8 @@
     </main>
     @include('components.Footer')
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const categoryContainer = document.querySelector(".categories-container");
-            const categoryWidth = categoryContainer.querySelector(".category").offsetWidth;
-            let currentIndex = 0;
+    <script src="{{asset('js/carouselHomePage.js')}}"></script>
 
-            const nextButton = document.querySelector(".next-button");
-            const prevButton = document.querySelector(".prev-button");
-
-            nextButton.addEventListener("click", function() {
-                if (currentIndex < categoryContainer.children.length - 1) {
-                    currentIndex++;
-                    updateCarousel();
-                } else {
-                    currentIndex = 0;
-                    updateCarousel();
-                }
-            });
-            prevButton.addEventListener("click", function() {
-                if (currentIndex > 0) {
-                    currentIndex--;
-                    updateCarousel();
-                } else {
-                    currentIndex = categoryContainer.children.length - 1;
-                    updateCarousel();
-                }
-            });
-
-            function updateCarousel() {
-                const translateX = -currentIndex * categoryWidth;
-                categoryContainer.style.transform = `translateX(${translateX}px)`;
-            }
-        });
-    </script>
 </body>
 
 </html>

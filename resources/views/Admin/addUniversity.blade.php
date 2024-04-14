@@ -16,7 +16,7 @@
     @section('addForm')
     @include('components.Alert')
         <div class="py-4 px-10">
-            <form action="/university" method="POST" >
+            <form action="/university" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4">
                 <div class="mb-2">
@@ -27,7 +27,6 @@
                 <div class="mb-2">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Domaine:</label>
                     <select name="domaine_id" class="w-full px-4 py-4 border rounded-md focus:outline-none focus:border-blue-600">
-                        <option >Sélectionner un domaine</option>
                         @foreach ($domaines as $domaine)
                             <option value="{{ $domaine->id }}">{{ $domaine->titre }}</option>
                         @endforeach

@@ -6,7 +6,9 @@ use App\Http\Controllers\FaqController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AnnonceController;
 use App\Http\Controllers\ConcourController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DomaineController;
+use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\EtablissmentController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 
@@ -21,13 +23,11 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 |
 */
 
-Route::get('/', function () {
-    return view('HomePage');
-});
 
-Route::get('/Faqs', function () {
-    return view('Faqs');
-});
+Route::get('/', [HomePageController::class, 'index']);
+
+Route::get('/Faqs', [FaqController::class, 'show']);
+
 
 Route::post('/register', [UserController::class, 'register'])->name('register');
 Route::post('/login', [UserController::class, 'login'])->name('login');
@@ -81,20 +81,17 @@ Route::middleware(['check.role:admin'])->group(function () {
     Route::get('/university/{id}', [EtablissmentController::class, 'edit']);
 
 
-    Route::post('/concour', [ConcourController::class, 'store']);
-    Route::get('/concour', [ConcourController::class, 'index']);
-    Route::delete('/concour/{id}', [ConcourController::class, 'destroy']);
     Route::get('/concour/{id}', [ConcourController::class, 'edit']);
-    Route::put('/concour/{id}', [ConcourController::class, 'update']);
-
+    Route::resource('/concour', ConcourController::class)->except(['show', 'create','edit']);
 
     Route::get('/managePosts', function () {
         return view('Admin.managePosts');
     });
+    Route::get('/contact', [ContactController::class, 'index']);
+    Route::delete('/contact/{id}', [ContactController::class, 'destroy']);
 
-    Route::get('/contactMe', function () {
-        return view('Admin.contactMe');
-    });
+
+  
 
 
     Route::get('/profileAdmin', function () {
@@ -110,3 +107,6 @@ Route::get('/domaines', function () {
 Route::get('/universities', function () {
     return view('universities');
 });
+
+
+Route::post('/contact', [ContactController::class, 'store']);

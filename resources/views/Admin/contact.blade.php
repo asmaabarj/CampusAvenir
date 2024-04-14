@@ -12,56 +12,40 @@
 
 <body class="bg-[#F7F8FA]">
     @include('layouts.sidebarAdmin')
-    <div class="font-[sans-serif] text-[#333] xl:ml-auto xl:w-[82%]">
-        @include('components.Alert')
-        <div class="max-w-5xl mx-auto pb-8">
-            <div
-                class="grid lg:grid-cols-2 md:grid-cols-1  xl:mx-0 md:mx-8 gap-x-8 gap-y-10  max-md:justify-center mt-12">
-                @foreach ($annonces as $annonce)
-                    <div class="border rounded-md overflow-hidden max-md:max-w-[300px]">
-                        <div class="flex justify-between">
-                            <div class="p-4 flex gap-2">
-                                <div>
-                                    <h4 class="text-base font-bold">{{ $annonce->titre }}</h4>
-                                    @if ($annonce->date != null)
-                                        <h3 class='bx bx-time-five'>{{ $annonce->date }}</h3>
-                                    @endif
+    <div class="font-[sans-serif] text-[#333] xl:ml-auto w-full">
+        <div class="xl:w-[83%] w-full xl:ml-auto">
+            <div class="grid lg:grid-cols-2 md:grid-cols-2 xl:gap-y-12 gap-y-8 mx-6 max-md:justify-center pb-10 mt-12">
+                @foreach ($contacts as $contact)
+                    <div
+                        class="mx-8 xl:w-[93%] bg-gray-700 flex justify-between rounded-xl hover:bg-gray-900 hover:scale-105 duration-700 p-5">
+                        <div >
+                        <h4 class="py-2 text-white font-bold">Nom : {{ $contact->nom }}</h4>
+                        <p class="text-base leading-7 text-white font-meduim space-y-4">Email : {{ $contact->email }}
+                        </p>
+                        <p class="text-base leading-7 text-white font-meduim space-y-4">Telephone : {{ $contact->tele }}
+                            <br><br>
+                        <p class="text-sm leading-7 text-slate-300 space-y-4">{{ $contact->message }}</p>
+                    </div>
+                        <div class="pr-6 text-right  py-4">
+                            <div class="relative  group ">
+                                <i class='bx bx-dots-vertical-rounded text-white  text-3xl'></i>
+                                <div
+                                    class="bg-white z-50 group-hover:block hover:block hidden text-center shadow-lg py-4 px-4 sm:min-w-[100px]  absolute -right-6">
+                                    <button onclick="toggleModal('deleteModal{{ $contact->id }}')"
+                                        class="text-sm  text-gray-500 hover:text-black">
+                                        Supprimer
+                                    </button>
                                 </div>
                             </div>
-                            <div class="pr-6 text-right  py-4">
-                                <div class="relative  group ">
-                                    <i class='bx bx-dots-horizontal-rounded text-3xl'></i>
-                                    <div
-                                        class="bg-white z-50 group-hover:block hover:block hidden text-center shadow-lg py-4 px-4 sm:min-w-[100px]  absolute -right-6">
-                                        <form action="/editPublicity/{{ $annonce->id }}" method="get">
-                                            <button class="text-sm text-gray-500 hover:text-black">Modifier</button>
-                                        </form>
-
-                                        <hr class="border-b-0 my-4" />
-                                        <button onclick="toggleModal('deleteModal{{ $annonce->id }}')"
-                                            class="text-sm  text-gray-500 hover:text-black">
-                                            Supprimer
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <img src="{{ asset('storage/' . $annonce->photo) }}"
-                            class="w-full h-60 object-contain  bg-gray-300" />
-                        <div class="p-4">
-                            <p class="text-md leading-relaxed">{{ $annonce->description }}</p>
-                            @if ($annonce->lieu != null)
-                                <h3 class='bx bx-map'>{{ $annonce->lieu }}</h3>
-                            @endif
                         </div>
                     </div>
-                    <div id="deleteModal{{ $annonce->id }}"
+                    <div id="deleteModal{{ $contact->id }}"
                         class="hidden h-screen  flex bg-black/70 fixed top-0 right-0 left-0 z-50 justify-center items-center w-full  ">
                         <div class="relative p-4 w-full max-w-md h-full md:h-auto">
                             <div class="relative p-4 text-center bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
-                                <button onclick="toggleModal('deleteModal{{ $annonce->id }}')" type="button"
+                                <button onclick="toggleModal('deleteModal{{ $contact->id }}')" type="button"
                                     class="text-gray-400 absolute top-2.5 right-2.5 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                    data-modal-toggle="deleteModal{{ $annonce->id }}">
+                                    data-modal-toggle="deleteModal{{ $contact->id }}">
                                     <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd"
@@ -80,12 +64,12 @@
                                 <p class="mb-4 text-gray-500 dark:text-gray-300">Êtes-vous sûr de vouloir supprimer cet
                                     élément</p>
                                 <div class="flex justify-center items-center space-x-4">
-                                    <button onclick="toggleModal('deleteModal{{ $annonce->id }}')"
-                                        data-modal-toggle="deleteModal{{ $annonce->id }}" type="button"
+                                    <button onclick="toggleModal('deleteModal{{ $contact->id }}')"
+                                        data-modal-toggle="deleteModal{{ $contact->id }}" type="button"
                                         class="py-2 px-3 text-sm font-medium text-gray-500 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
                                         Non, annuler
                                     </button>
-                                    <form action="/publicity/{{ $annonce->id }}" method="post">
+                                    <form action="/contact/{{ $contact->id }}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit"

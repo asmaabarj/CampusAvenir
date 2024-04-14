@@ -52,7 +52,7 @@
             </li>
             <li
                 class='max-lg:border-b mt-2 lg:after:bg-black lg:after:w-0 lg:hover:after:w-full lg:hover:after:h-[2px] lg:after:block  lg:after:transition-all lg:after:duration-300'>
-                <a href='/contactMe' class='text-gray-700 block text-[15px]'>Contact</a>
+                <a href='/contact' class='text-gray-700 block text-[15px]'>Contact</a>
             </li>
             <li
                 class='max-lg:border-b mt-2 lg:after:bg-black lg:after:w-0 lg:hover:after:w-full lg:hover:after:h-[2px] lg:after:block  lg:after:transition-all lg:after:duration-300'>
@@ -202,7 +202,7 @@
                 </li>
                 <li
                     class='max-lg:border-b max-lg:py-2 pl-4 relative lg:hover:after:absolute lg:after:bg-black lg:after:w-0 lg:hover:after:w-full lg:hover:after:h-[2px] lg:after:block lg:after:top-6 lg:after:transition-all lg:after:duration-300 hover:text-blue-600 hover:shadow-sm   hover:bg-blue-50 rounded transition-all'>
-                    <a href='/contactMe' class='text-gray-700 block text-[15px]'>Contact</a>
+                    <a href='/contact' class='text-gray-700 block text-[15px]'>Contact</a>
                 </li>
                 <li
                     class='max-lg:border-b mb-14 max-lg:py-2 pl-4 relative lg:hover:after:absolute lg:after:bg-black lg:after:w-0 lg:hover:after:w-full lg:hover:after:h-[2px] lg:after:block lg:after:top-6 lg:after:transition-all lg:after:duration-300 hover:text-blue-600 hover:shadow-sm   hover:bg-blue-50 rounded transition-all'>

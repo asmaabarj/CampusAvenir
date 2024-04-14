@@ -45,4 +45,11 @@ class FaqController extends Controller
         $faq->delete();
         return redirect()->back()->with('success', 'FAQ supprimée avec succès.');
     }
+
+
+    public function show()
+    {
+        $faqs = Faq::all();
+        return view('faqs', ['faqs' => $faqs]);
+    }
 }

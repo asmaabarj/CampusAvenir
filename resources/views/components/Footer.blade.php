@@ -1,3 +1,4 @@
+
 <footer id="contact" class="bg-blue-100 py-12 px-12 font-[sans-serif]">
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
         <div class="xl:col-span-2">
@@ -73,17 +74,16 @@
         <div>
             <h4 class="text-black font-semibold text-lg">Contactez Nous</h4>
             <p class="text-sm text-gray-600 mt-2">Nous répondons généralement dans les 24 heures.</p>
-            <form class="mt-6">
-                <input type='text' placeholder='Nom'
-                    class="w-full rounded h-11 px-6 bg-[#FFF] text-sm mb-2 outline-blue-500" />
-                <input type='text' placeholder='Téléphone'
-                    class="w-full rounded h-11 px-6 bg-[#FFF] text-sm mb-2 outline-blue-500" />
-                <input type='text' placeholder='Email'
-                    class="w-full rounded h-11 px-6 bg-[#FFF] text-sm mb-2 outline-blue-500" />
-                <textarea placeholder='Message' rows="6" class="w-full rounded px-6 bg-[#FFF] text-sm pt-3 outline-blue-500"></textarea>
+            <form action="/contact" method="POST" class="mt-6">
+                @csrf
+                <input type="text" placeholder="Nom" name="nom" class="w-full rounded h-11 px-6 bg-[#FFF] text-sm mb-2 outline-blue-500" required />
+                <input type="text" placeholder="Téléphone" name="tel" class="w-full rounded h-11 px-6 bg-[#FFF] text-sm mb-2 outline-blue-500" required />
+                <input type="email" placeholder="Email" name="email" class="w-full rounded h-11 px-6 bg-[#FFF] text-sm mb-2 outline-blue-500" required />
+                <textarea placeholder="Message" name="message" rows="6" class="w-full rounded px-6 bg-[#FFF] text-sm pt-3 outline-blue-500" required></textarea>
+                <button type="submit" class="text-white bg-blue-500 hover:bg-blue-600 font-semibold rounded-md text-sm px-6 py-3 block w-full mt-3">Envoyer</button>
             </form>
-            <button type='button'
-                class="text-white bg-blue-500 hover:bg-blue-600 font-semibold rounded-md text-sm px-6 py-3 block w-full mt-3">Envoyer</button>
+            
+
         </div>
     </div>
     <hr class="my-8 border-blue-300" />
