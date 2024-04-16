@@ -12,6 +12,7 @@
 
 <body>
     @include('components.navbar')
+    @include('components.Alert')
     <main>
         <section class="mt-32 px-6">
             <div class="bg-white font-[sans-serif] my-4">
@@ -22,174 +23,20 @@
                             Domaines</h2>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16 max-md:max-w-lg mx-auto">
-                        <div class="bg-white cursor-pointer  overflow-hidden  relative top-0 ">
-                            <img src="https://readymadeui.com/Imagination.webp" alt="Blog Post 1"
+                        @foreach($domaines as $domaine)
+                        <div class="bg-white   overflow-hidden  relative top-0 ">
+                            <img src="{{ asset('storage/' . $domaine->photo) }}" alt="Blog Post 1"
                                 class="w-full h-60  object-cover" />
                             <div class="p-6">
-                                <h3 class="text-xl font-bold text-[#333]">A Guide to Igniting Your Imagination</h3>
-                                <div class="flex items-center gap-2 mt-2 text-blue-500">
+                                <h3 class="text-xl font-bold text-[#333]">{{$domaine->titre}}</h3>
+                                <div class="flex cursor-pointer items-center gap-2 mt-2 text-blue-500">
                                     <p class=" text-sm font-[500] uppercase">détails
                                     </p>
                                     <i class='bx bx-right-arrow-alt text-xl'></i>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-white cursor-pointer  overflow-hidden relative top-0 ">
-                            <img src="https://readymadeui.com/hacks-watch.webp" alt="Blog Post 2"
-                                class="w-full h-60 object-cover" />
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold text-[#333]">A Guide to Igniting Your Imagination</h3>
-                                <div class="flex items-center gap-2 mt-2 text-blue-500">
-                                    <p class=" text-sm font-[500] uppercase">see course guid
-                                    </p>
-                                    <i class='bx bx-right-arrow-alt text-xl'></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white cursor-pointer  overflow-hidden relative top-0 ">
-                            <img src="https://readymadeui.com/hacks-watch.webp" alt="Blog Post 2"
-                                class="w-full h-60 object-cover" />
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold text-[#333]">A Guide to Igniting Your Imagination</h3>
-                                <div class="flex items-center gap-2 mt-2 text-blue-500">
-                                    <p class=" text-sm font-[500] uppercase">see course guid
-                                    </p>
-                                    <i class='bx bx-right-arrow-alt text-xl'></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white cursor-pointer  overflow-hidden relative top-0 ">
-                            <img src="https://readymadeui.com/hacks-watch.webp" alt="Blog Post 2"
-                                class="w-full h-60 object-cover" />
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold text-[#333]">A Guide to Igniting Your Imagination</h3>
-                                <div class="flex items-center gap-2 mt-2 text-blue-500">
-                                    <p class=" text-sm font-[500] uppercase">see course guid
-                                    </p>
-                                    <i class='bx bx-right-arrow-alt text-xl'></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white cursor-pointer  overflow-hidden relative top-0 ">
-                            <img src="https://readymadeui.com/hacks-watch.webp" alt="Blog Post 2"
-                                class="w-full h-60 object-cover" />
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold text-[#333]">A Guide to Igniting Your Imagination</h3>
-                                <div class="flex items-center gap-2 mt-2 text-blue-500">
-                                    <p class=" text-sm font-[500] uppercase">see course guid
-                                    </p>
-                                    <i class='bx bx-right-arrow-alt text-xl'></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white cursor-pointer  overflow-hidden relative top-0 ">
-                            <img src="https://readymadeui.com/hacks-watch.webp" alt="Blog Post 2"
-                                class="w-full h-60 object-cover" />
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold text-[#333]">A Guide to Igniting Your Imagination</h3>
-                                <div class="flex items-center gap-2 mt-2 text-blue-500">
-                                    <p class=" text-sm font-[500] uppercase">see course guid
-                                    </p>
-                                    <i class='bx bx-right-arrow-alt text-xl'></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white cursor-pointer  overflow-hidden relative top-0 ">
-                            <img src="https://readymadeui.com/hacks-watch.webp" alt="Blog Post 2"
-                                class="w-full h-60 object-cover" />
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold text-[#333]">A Guide to Igniting Your Imagination</h3>
-                                <div class="flex items-center gap-2 mt-2 text-blue-500">
-                                    <p class=" text-sm font-[500] uppercase">see course guid
-                                    </p>
-                                    <i class='bx bx-right-arrow-alt text-xl'></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white cursor-pointer  overflow-hidden relative top-0 ">
-                            <img src="https://readymadeui.com/hacks-watch.webp" alt="Blog Post 2"
-                                class="w-full h-60 object-cover" />
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold text-[#333]">A Guide to Igniting Your Imagination</h3>
-                                <div class="flex items-center gap-2 mt-2 text-blue-500">
-                                    <p class=" text-sm font-[500] uppercase">see course guid
-                                    </p>
-                                    <i class='bx bx-right-arrow-alt text-xl'></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white cursor-pointer  overflow-hidden relative top-0 ">
-                            <img src="https://readymadeui.com/hacks-watch.webp" alt="Blog Post 2"
-                                class="w-full h-60 object-cover" />
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold text-[#333]">A Guide to Igniting Your Imagination</h3>
-                                <div class="flex items-center gap-2 mt-2 text-blue-500">
-                                    <p class=" text-sm font-[500] uppercase">see course guid
-                                    </p>
-                                    <i class='bx bx-right-arrow-alt text-xl'></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white cursor-pointer  overflow-hidden relative top-0 ">
-                            <img src="https://readymadeui.com/hacks-watch.webp" alt="Blog Post 2"
-                                class="w-full h-60 object-cover" />
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold text-[#333]">A Guide to Igniting Your Imagination</h3>
-                                <div class="flex items-center gap-2 mt-2 text-blue-500">
-                                    <p class=" text-sm font-[500] uppercase">see course guid
-                                    </p>
-                                    <i class='bx bx-right-arrow-alt text-xl'></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white cursor-pointer  overflow-hidden relative top-0 ">
-                            <img src="https://readymadeui.com/hacks-watch.webp" alt="Blog Post 2"
-                                class="w-full h-60 object-cover" />
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold text-[#333]">A Guide to Igniting Your Imagination</h3>
-                                <div class="flex items-center gap-2 mt-2 text-blue-500">
-                                    <p class=" text-sm font-[500] uppercase">see course guid
-                                    </p>
-                                    <i class='bx bx-right-arrow-alt text-xl'></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white cursor-pointer  overflow-hidden relative top-0 ">
-                            <img src="https://readymadeui.com/hacks-watch.webp" alt="Blog Post 2"
-                                class="w-full h-60 object-cover" />
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold text-[#333]">A Guide to Igniting Your Imagination</h3>
-                                <div class="flex items-center gap-2 mt-2 text-blue-500">
-                                    <p class=" text-sm font-[500] uppercase">see course guid
-                                    </p>
-                                    <i class='bx bx-right-arrow-alt text-xl'></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white cursor-pointer  overflow-hidden relative top-0 ">
-                            <img src="https://readymadeui.com/hacks-watch.webp" alt="Blog Post 2"
-                                class="w-full h-60 object-cover" />
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold text-[#333]">A Guide to Igniting Your Imagination</h3>
-                                <div class="flex items-center gap-2 mt-2 text-blue-500">
-                                    <p class=" text-sm font-[500] uppercase">see course guid
-                                    </p>
-                                    <i class='bx bx-right-arrow-alt text-xl'></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-white cursor-pointer  overflow-hidden  relative top-0 ">
-                            <img src="https://readymadeui.com/prediction.webp" alt="Blog Post 3"
-                                class="w-full h-60 object-cover" />
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold text-[#333]">A Guide to Igniting Your Imagination</h3>
-                                <div class="flex items-center gap-2 mt-2 text-blue-500">
-                                    <p class=" text-sm font-[500] uppercase">détails
-                                    </p>
-                                    <i class='bx bx-right-arrow-alt text-xl'></i>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
 
                 </div>

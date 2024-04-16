@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Concour;
+use App\Models\Domaine;
+use App\Models\favoris;
 use App\Models\Etablissment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateConcourRequest;
 
 class ConcourController extends Controller
@@ -73,5 +76,20 @@ class ConcourController extends Controller
         $concour = Concour::findOrFail($id);
         $concour->delete();
         return redirect()->back()->with('success', 'Concour supprimé avec succès.');
+    }
+
+    public function show()
+    {
+        $domainesnav = Domaine::inRandomOrder()
+        ->limit(5)
+        ->get(); 
+        $favoritCount = favoris::where('user_id', Auth::id())
+        ->where('favori', 1)
+        ->count();
+        $concours = concour::all();
+        return view('concours', ['concours' => $concours,
+                                  'favoritCount'=>$favoritCount,
+                                  'domainesnav'=>$domainesnav
+                                ]);
     }
 }

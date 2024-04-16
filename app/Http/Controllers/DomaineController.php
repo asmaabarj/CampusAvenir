@@ -58,4 +58,15 @@ class DomaineController extends Controller
         $domaine->delete();
         return redirect()->back()->with('success', 'Domaine supprimé avec succès.');
     }
+
+    public function show()
+    {
+        $domainesnav = Domaine::inRandomOrder()
+        ->limit(5)
+        ->get();  
+        $domaines = Domaine::all();
+        return view('domaines', ['domaines' => $domaines,
+                                 'domainesnav'=>$domainesnav
+    ]);
+    }
 }

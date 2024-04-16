@@ -22,7 +22,7 @@ return new class extends Migration
             $table->enum('type', ['prive', 'publique']);
             $table->string('photo');
             $table->text('description');
-            $table->string('lieu');
+            $table->string('lien');
             $table->foreignId('domaine_id')->constrained('domaines')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

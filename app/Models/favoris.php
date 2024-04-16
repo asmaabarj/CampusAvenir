@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Favori extends Model
+class favoris extends Model
 {
-    protected $fillable = ['user_id', 'etablissment_id'];
+    protected $fillable = ['user_id', 'etablissment_id','favori'];
 
     public function user()
     {

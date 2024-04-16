@@ -32,9 +32,9 @@ class UserController extends Controller
 
             if ($user->role == 'admin') {
                 return redirect('/dashboard');
-        }else{
-            return redirect('/');
-        }
+            } else {
+                return redirect('/');
+            }
         } catch (\Exception $e) {
             return redirect()->back()->withInput()->withErrors([$e->getMessage()]);
         }
@@ -53,9 +53,10 @@ class UserController extends Controller
                 $user = Auth::user();
                 if ($user->role == 'admin') {
                     return redirect('/dashboard');
-            }else{
-                return redirect('/');
-            }            } else {
+                } else {
+                    return redirect('/');
+                }
+            } else {
                 return redirect()->back()->withErrors([
                     'email' => 'email ou mot de passe incorrect'
                 ])->withInput();

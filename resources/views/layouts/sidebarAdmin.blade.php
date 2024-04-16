@@ -21,7 +21,7 @@
                                     data-original="#000000" />
                             </svg>Profile</a>
                         <hr class="border-b-0 my-4" />
-                        <a href='/' class="text-sm flex text-gray-500 hover:text-black"><svg
+                        <a href='/logout' class="text-sm flex text-gray-500 hover:text-black"><svg
                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-[18px] h-[18px] mr-4"
                                 viewBox="0 0 6.35 6.35">
                                 <path

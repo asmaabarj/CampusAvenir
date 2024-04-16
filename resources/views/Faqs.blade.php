@@ -9,7 +9,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 @include('components.navbar')
+@include('components.Alert')
 
 <main>
 <div class="bg-gray-100 p-8 mt-16 font-[sans-serif] ">

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\Faq;
+use App\Models\Domaine;
+use App\Models\favoris;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateFaqRequest;
 
 class FaqController extends Controller
@@ -9,7 +12,12 @@ class FaqController extends Controller
     public function index()
     {
         $faqs = Faq::all();
-        return view('Admin.faqs', ['faqs' => $faqs]);
+         
+        return view('Admin.faqs', 
+        [
+            'faqs' => $faqs,
+           
+    ]);
     }
 
     public function store(CreateFaqRequest $request)
@@ -50,6 +58,15 @@ class FaqController extends Controller
     public function show()
     {
         $faqs = Faq::all();
-        return view('faqs', ['faqs' => $faqs]);
+        $domainesnav = Domaine::inRandomOrder()
+        ->limit(5)
+        ->get();  
+        $favoritCount = favoris::where('user_id', Auth::id())
+        ->where('favori', 1)
+        ->count(); 
+        return view('faqs', ['faqs' => $faqs,
+                             'domainesnav' => $domainesnav,
+                             'favoritCount'=>$favoritCount    
+                            ]);
     }
 }

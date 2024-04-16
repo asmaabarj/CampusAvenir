@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Domaine;
+use App\Models\favoris;
 use App\Models\Etablissment;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateUniversityRequest;
 
 class EtablissmentController extends Controller
@@ -65,5 +67,22 @@ class EtablissmentController extends Controller
         $etablissment = Etablissment::findOrFail($id);
         $etablissment->delete();
         return redirect()->back()->with('success', 'Établissement supprimé avec succès.');
+    }
+
+    public function show()
+    {
+
+        $universities = Etablissment::all();
+        $domainesnav = Domaine::inRandomOrder()
+            ->limit(5)
+            ->get();
+        $favorites = favoris::where('favori', '1')
+            ->where('user_id', Auth::id())
+            ->get();
+        return view('universities', [
+            'universities' => $universities,
+            'domainesnav' => $domainesnav,
+            'favorites' => $favorites
+        ]);
     }
 }

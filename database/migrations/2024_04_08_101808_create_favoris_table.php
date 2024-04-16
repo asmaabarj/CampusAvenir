@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('favoris', function (Blueprint $table) {
             $table->id();
+            $table->enum('favori',['1','0'])->default('0');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('etablissment_id')->constrained('etablissments')->onDelete('cascade')->onUpdate('cascade');            
             $table->timestamps();
