@@ -116,6 +116,10 @@
             </li>
             <li class='max-lg:border-b max-lg:py-2'><a href='/concours'
                     class='hover:text-[#007bff] text-gray-600 text-[15px] font-bold block'>Concours</a></li>
+                    @if (auth()->check() && auth()->user()->role === 'user')
+                    <li class='max-lg:border-b max-lg:py-2'><a href='/posts'
+                        class='hover:text-[#007bff] text-gray-600 text-[15px] font-bold block'>Publications</a></li>
+                        @endif
             <li class='max-lg:border-b max-lg:py-2'><a href='/Faqs'
                     class='hover:text-[#007bff] text-gray-600 text-[15px] font-bold block'>Faqs</a></li>
             <li class='max-lg:border-b max-lg:py-2'><a href='#contact'
@@ -124,9 +128,5 @@
     </div>
 </header>
 
-<script>
-    function toggleModal(modalId) {
-        const modal = document.getElementById(modalId);
-        modal.classList.toggle('hidden');
-    }
-</script>
+<script src="{{asset('js/toggleModal.js')}}"></script>
+

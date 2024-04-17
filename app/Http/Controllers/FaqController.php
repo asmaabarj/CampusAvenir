@@ -12,7 +12,7 @@ class FaqController extends Controller
 {
     public function index()
     {
-        $users=User::where('role','user')->get();
+        $users=User::all();
         $faqs = Faq::all();
          
         return view('Admin.faqs', 

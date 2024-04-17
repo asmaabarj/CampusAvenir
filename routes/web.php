@@ -4,6 +4,7 @@ use App\Models\Etablissment;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostesController;
 use App\Http\Controllers\AnnonceController;
 use App\Http\Controllers\ConcourController;
 use App\Http\Controllers\ContactController;
@@ -77,9 +78,9 @@ Route::middleware(['check.role:admin'])->group(function () {
     Route::get('/concour/{id}', [ConcourController::class, 'edit']);
     Route::resource('/concour', ConcourController::class)->except(['show', 'create','edit']);
 
-    Route::get('/managePosts', function () {
-        return view('Admin.managePosts');
-    });
+    Route::post('/posts/accept/{id}', [PostesController::class, 'updateStatus']);
+    Route::delete('/posts/{id}',[PostesController::class, 'destroy']);
+    Route::get('/managePosts',[PostesController::class,'index']);
     Route::resource('/contact', ContactController::class)->only(['index', 'destroy']);
 
     Route::get('/profileAdmin', function () {
@@ -106,6 +107,9 @@ Route::middleware(['check.role:user'])->group(function () {
     });    
     Route::post('/favorit', [FavorisController::class, 'favorit']);
     Route::get('/favoris', [FavorisController::class, 'show']);
+    Route::put('/posts/{id}', [PostesController::class, 'update']);
 
+    Route::get('/posts', [PostesController::class, 'show']);
+    Route::post('/posts',[PostesController::class, 'store']);
 });
-// Route::get('/', [HomePageController::class, 'domainesnav']);
+Route::delete('/posts/{id}',[PostesController::class, 'destroy']);
