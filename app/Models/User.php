@@ -33,7 +33,7 @@ class User extends Authenticatable
 
     public function favoris()
     {
-        return $this->hasMany(Favori::class);
+        return $this->hasMany(Favoris::class);
     }
 
     public function publications()

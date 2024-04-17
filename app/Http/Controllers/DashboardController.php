@@ -7,7 +7,6 @@ use App\Models\Domaine;
 use App\Models\Etablissment;
 use App\Models\Publication;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {

@@ -3,13 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Domaine;
+use App\Models\User;
 use App\Http\Requests\CreateDomaineRequest;
 class DomaineController extends Controller
 {
     public function index()
     {
+        $users=User::where('role','user')->get();
         $domaines = Domaine::all();
-        return view('Admin.domaine', ['domaines' => $domaines]);
+        return view('Admin.domaine', [
+                                      'domaines' => $domaines,
+                                      'users'=>$users
+                                      ]);
     }
 
     public function store(CreateDomaineRequest $request)
@@ -31,8 +36,11 @@ class DomaineController extends Controller
 
     public function edit($id)
     {
+        $users=User::where('role','user')->get();
         $domaine = Domaine::findOrFail($id);
-        return view('Admin.editDomaine', ['editDomaine' => $domaine]);
+        return view('Admin.editDomaine', ['editDomaine' => $domaine
+        ,
+        'users'=>$users]);
     }
 
     public function update(CreateDomaineRequest $request, $id)
@@ -68,5 +76,13 @@ class DomaineController extends Controller
         return view('domaines', ['domaines' => $domaines,
                                  'domainesnav'=>$domainesnav
     ]);
+    
+
+    }
+    public function showAdmin(){
+        $users=User::where('role','user')->get();
+        return view('Admin.addDomaine', [
+            'users'=>$users
+            ]);
     }
 }

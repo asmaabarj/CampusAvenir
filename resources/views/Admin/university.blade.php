@@ -16,9 +16,9 @@
     @include('layouts.sidebarAdmin')
     @include('components.Alert')
     <div class="lg:w-[76%] xl:ml-auto xl:mr-10 mb-10 mx-2 ">
-        <div class="relative xl:shadow-md py-4 sm:rounded-lg">
-            <div class="flex items-center justify-between ">
-                <table id="datatable" class="w-full text-sm text-left text-gray-500">
+        <div class="relative  py-4 sm:rounded-lg">
+            <div class="flex items-center  justify-between ">
+                <table id="datatable" class="w-full xl:shadow-md text-sm text-left text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                         <tr>
                             <th class="pl-6 text-left py-3">Établissement</th>

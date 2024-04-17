@@ -13,93 +13,94 @@
 <body>
     @include('components.navbar')
     <main>
-            @include('components.Alert')
+        @include('components.Alert')
 
-            <section class="bg-url bg-no-repeat bg-cover flex-col px-6 h-[120vh] items-center justify-center mt-16 flex"
-                style="background-image: url('{{ asset('storage/images/herosection2.png') }}');">
-                <div class="text-center mt-[50vh]  text-white">
-                    <h1 class="font-bold text-xl md:text-5xl">Trouvez Votre <span
-                            class="bg-blue-500/60 px-3 pb-1 lg:pb-2 rounded">Avenir</span> Dès
-                        Aujourd'hui !</h1>
-                    <p class="font-semibold text-lg md:text-3xl mt-6">Découvrez Le Guide Ultime Des Universités à
-                        Travers Le Maroc </p>
-                </div>
-                <section id="categories-container" class="py-8 w-[92%]  mt-36 mx-auto">
-                    <div class="carousel-container relative overflow-hidden">
-                        <button
-                            class="prev-button absolute top-1/2 left-0 transform  -translate-y-1/2 cursor-pointer p-2 px-3 rounded-full bg-blue-600/60 text-white z-10">
-                            <i class='bx bx-chevron-left text-3xl'></i> </button>
-                        <div class="viewport">
-                            <div class=" categories-container flex space-x-4  transition-transform  duration-300">
-                                @foreach ($annonces as $annonce)
-                                    <div
-                                        class="category flex-none bg-white cursor-pointer w-[44vw] rounded-lg overflow-hidden h-[50vh] transition duration-300">
-                                        <div class="flex h-full">
-                                            <img src="{{ asset('storage/' . $annonce->photo) }}" alt="Blog Post 1"
-                                                class="w-[20vw] h-full object-cover" />
-                                            <div class="p-4">
-                                                <h3 class="text-xl font-bold text-gray-800">{{ $annonce->titre }}</h3>
+        <section class="bg-url bg-no-repeat bg-cover flex-col px-6 h-[120vh] items-center justify-center mt-16 flex"
+            style="background-image: url('{{ asset('storage/images/herosection2.png') }}');">
+            <div class="text-center mt-[50vh]  text-white">
+                <h1 class="font-bold text-xl md:text-5xl">Trouvez Votre <span
+                        class="bg-blue-500/60 px-3 pb-1 lg:pb-2 rounded">Avenir</span> Dès
+                    Aujourd'hui !</h1>
+                <p class="font-semibold text-lg md:text-3xl mt-6">Découvrez Le Guide Ultime Des Universités à
+                    Travers Le Maroc </p>
+            </div>
+            <section id="categories-container" class="py-8 w-[92%]  mt-36 mx-auto">
+                <div class="carousel-container relative overflow-hidden">
+                    <button
+                        class="prev-button absolute top-1/2 left-0 transform  -translate-y-1/2 cursor-pointer p-2 px-3 rounded-full bg-blue-600/60 text-white z-10">
+                        <i class='bx bx-chevron-left text-3xl'></i> </button>
+                    <div class="viewport">
+                        <div class=" categories-container flex space-x-4  transition-transform  duration-300">
+                            @foreach ($annonces as $annonce)
+                                <div
+                                    class="category flex-none bg-white cursor-pointer w-[44vw] rounded-lg overflow-hidden h-[50vh] transition duration-300">
+                                    <div class="flex h-full">
+                                        <img src="{{ asset('storage/' . $annonce->photo) }}" alt="Blog Post 1"
+                                            class="w-[20vw] h-full object-cover" />
+                                        <div class="p-4">
+                                            <h3 class="text-xl font-bold text-gray-800">{{ $annonce->titre }}</h3>
 
-                                                <p class="text-sm mt-4">
-                                                    @if (strlen($annonce->description) > 355)
-                                                        {{ substr($annonce->description, 0, 355) }}...
-                                                    @else
-                                                        {{ $annonce->description }}
-                                                    @endif
-                                                </p>
-                                                <div class="mt-4 inline-block text-blue-600 text-sm hover:underline"
-                                                    onclick="toggleModal('pop{{ $annonce->id }}')">Read
-                                                    More</div>
+                                            <p class="text-sm mt-4">
+                                                @if (strlen($annonce->description) > 355)
+                                                    {{ substr($annonce->description, 0, 355) }}...
+                                                @else
+                                                    {{ $annonce->description }}
+                                                @endif
+                                            </p>
+                                            <div class="mt-4 inline-block text-blue-600 text-sm hover:underline"
+                                                onclick="toggleModal('pop{{ $annonce->id }}')">Read
+                                                More</div>
 
 
-                                            </div>
                                         </div>
                                     </div>
-                                @endforeach
+                                </div>
+                            @endforeach
 
-                            </div>
                         </div>
-                        <button
-                            class="next-button absolute top-1/2 right-0 transform -translate-y-1/2 cursor-pointer  p-2 px-3 rounded-full bg-blue-600/60 text-white z-10">
-                            <i class='bx bx-chevron-right text-3xl '></i> </button>
                     </div>
-                </section>
-                @foreach ($annonces as $annonce)
-                    <div id='pop{{ $annonce->id }}' onclick="toggleModal('pop{{ $annonce->id }}')"
-                        class="fixed top-0 bottom-0 left-0 right-0 bg-black/60 z-50 overflow-y-scroll hidden">
-                        <div class="">
-                            <div
-                                class="font-[sans-serif] w-[75%]  fixed   left-0 right-0  px-[7%] p-8 rounded-md mx-auto shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] bg-white  mt-8 max-h-[90vh] overflow-y-auto">
-                                <h1 class="text-4xl font-extrabold my-7  ">{{ $annonce->titre }}</h1>
-                                <img src="{{ asset('storage/' . $annonce->photo) }}" class=" w-full  h-96 " />
-                                <div class="text-left ">
-                                    @if ($annonce->date != null)
-                                        <p class="text-sm text-right text-[#333] leading-relaxed mt-[13px]">
-                                            <span class="text-[#555] font-bold bg-blue-200 py-4 px-4  "> date
-                                                :{{ $annonce->date }}
-                                            </span>
-                                        </p>
-                                    @endif
-                                    <p class="text-xl mt-12  text-[#444] leading-relaxed">
-                                        {{ $annonce->description }}.</p>
-                                        @if ($annonce->temps != null)
+                    <button
+                        class="next-button absolute top-1/2 right-0 transform -translate-y-1/2 cursor-pointer  p-2 px-3 rounded-full bg-blue-600/60 text-white z-10">
+                        <i class='bx bx-chevron-right text-3xl '></i> </button>
+                </div>
+            </section>
+            @foreach ($annonces as $annonce)
+                <div id='pop{{ $annonce->id }}' onclick="toggleModal('pop{{ $annonce->id }}')"
+                    class="fixed top-0 bottom-0 left-0 right-0 bg-black/60 z-50 overflow-y-scroll hidden">
+                    <div class="">
+                        <div
+                            class="font-[sans-serif] w-[75%]  fixed   left-0 right-0  px-[7%] p-8 rounded-md mx-auto shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] bg-white  mt-8 max-h-[90vh] overflow-y-auto">
+                            <h1 class="text-4xl font-extrabold my-7  ">{{ $annonce->titre }}</h1>
+                            <img src="{{ asset('storage/' . $annonce->photo) }}" class=" w-full  h-96 " />
+                            <div class="text-left ">
+                                @if ($annonce->date != null)
+                                    <p class="text-sm text-right text-[#333] leading-relaxed mt-[13px]">
+                                        <span class="text-[#555] font-bold bg-blue-200 py-4 px-4  "> date
+                                            :{{ $annonce->date }}
+                                        </span>
+                                    </p>
+                                @endif
+                                <p class="text-xl mt-12  text-[#444] leading-relaxed">
+                                    {{ $annonce->description }}.</p>
+                                @if ($annonce->temps != null)
                                     <h6 class="text-base mt-5 mb-1 font-bold text-gray-900">
                                         <i class='bx bx-time-five'></i>
-                                        {{ $annonce->temps }}</h6>
-                                        @endif
-                                        @if ($annonce->lieu != null)
+                                        {{ $annonce->temps }}
+                                    </h6>
+                                @endif
+                                @if ($annonce->lieu != null)
                                     <h6 class="text-base mb-5 font-bold text-gray-900">
                                         <i class='bx bx-map'></i>
                                         {{ $annonce->lieu }}
-                                        @endif
-                                    </h6>
+                                @endif
+                                </h6>
 
 
-                                </div>
                             </div>
                         </div>
                     </div>
-                @endforeach
+                </div>
+            @endforeach
         </section>
 
 
@@ -261,18 +262,16 @@
                                     @php
                                         $isFavorited = $favorites->contains('etablissment_id', $university->id);
                                     @endphp
-                                    <form action="/favorit" class="" method="POST">
+                                    <form id="favoriForm{{ $university->id }}" action="/favorit" class=""
+                                        method="POST">
                                         @csrf
                                         <input type="hidden" name="favori" value="{{ $isFavorited ? '0' : '1' }}">
-                                        <input type="hidden" name="etablissment_id"
-                                            value="{{ $university->id }}">
-                                        <button type="submit">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34"
-                                                viewBox="0 0 122.88 107.39">
-
-                                                <path
-                                                    class="hover:fill-[#ed1b24] {{ $isFavorited ? 'fill-[#ed1b24]' : 'fill-[#cccccc]' }}"
-                                                    d="M60.83,17.18c8-8.35,13.62-15.57,26-17C110-2.46,131.27,21.26,119.57,44.61c-3.33,6.65-10.11,14.56-17.61,22.32-8.23,8.52-17.34,16.87-23.72,23.2l-17.4,17.26L46.46,93.55C29.16,76.89,1,55.92,0,29.94-.63,11.74,13.73.08,30.25.29c14.76.2,21,7.54,30.58,16.89Z" />
+                                        <input type="hidden" name="etablissment_id" value="{{ $university->id }}">
+                                        <button type="submit" id="favButton">
+                                            <input type="checkbox" id="favCheckbox" style="display: none;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 122.88 107.39">
+                                                <path id="favIcon" d="M60.83,17.18c8-8.35,13.62-15.57,26-17C110-2.46,131.27,21.26,119.57,44.61c-3.33,6.65-10.11,14.56-17.61,22.32-8.23,8.52-17.34,16.87-23.72,23.2l-17.4,17.26L46.46,93.55C29.16,76.89,1,55.92,0,29.94-.63,11.74,13.73.08,30.25.29c14.76.2,21,7.54,30.58,16.89Z"
+                                                class="{{ $isFavorited ? 'fill-[#ed1b24]' : 'fill-gray-300 hover:fill-[#ed1b24]' }}">
                                             </svg>
                                         </button>
                                     </form>
@@ -288,6 +287,7 @@
                 </div>
             </div>
         </section>
+
 
         <section>
             <div
@@ -321,14 +321,8 @@
 
     </main>
     @include('components.Footer')
-
-    <script>
-        function toggleModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.classList.toggle('hidden');
-        }
-    </script>
     <script src="{{ asset('js/carouselHomePage.js') }}"></script>
+    <script src="{{ asset('js/ajaxFavorit.js') }}"></script>
 
 </body>
 

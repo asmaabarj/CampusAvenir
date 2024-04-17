@@ -6,20 +6,27 @@ use App\Models\Domaine;
 use App\Models\favoris;
 use App\Models\Etablissment;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Http\Request;
 use App\Http\Requests\CreateUniversityRequest;
 
 class EtablissmentController extends Controller
 {
     public function index()
     {
+        $users=User::where('role','user')->get();
         $etablissments = Etablissment::all();
-        return view('Admin.university', ['etablissments' => $etablissments]);
+        return view('Admin.university', ['etablissments' => $etablissments,                                        'users'=>$users
+    ]);
     }
 
     public function create()
     {
         $domaines = Domaine::all();
-        return view('Admin.addUniversity', ['domaines' => $domaines]);
+        $users=User::where('role','user')->get();
+        return view('Admin.addUniversity', ['domaines' => $domaines,
+                                            'users'=>$users
+                                            ]);
     }
 
     public function store(CreateUniversityRequest $request)
@@ -38,12 +45,14 @@ class EtablissmentController extends Controller
 
     public function edit($id)
     {
+        $users=User::where('role','user')->get();
         $etablissment = Etablissment::findOrFail($id);
         $domaines = Domaine::all();
 
         return view('Admin.editUniversity', [
             'editEtablissment' => $etablissment,
             'domaines' => $domaines,
+            'users'=>$users
         ]);
     }
 
@@ -72,6 +81,9 @@ class EtablissmentController extends Controller
     public function show()
     {
 
+        $favoritCount = favoris::where('user_id', Auth::id())
+        ->where('favori', 1)
+        ->count();
         $universities = Etablissment::all();
         $domainesnav = Domaine::inRandomOrder()
             ->limit(5)
@@ -82,7 +94,12 @@ class EtablissmentController extends Controller
         return view('universities', [
             'universities' => $universities,
             'domainesnav' => $domainesnav,
-            'favorites' => $favorites
+            'favorites' => $favorites,
+            'favoritCount'=>$favoritCount
         ]);
     }
+
+
+
+
 }

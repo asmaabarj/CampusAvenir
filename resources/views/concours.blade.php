@@ -16,9 +16,9 @@
 <body>
     @include('components.navbar')
     @include('components.Alert')
-    <div class=" w-[50%] mx-auto mt-32 sm:rounded-lg">
+    <div class=" px-64  mx-auto mt-32 sm:rounded-lg">
         <div class="flex items-center justify-between bg-white ">
-            <table id="datatable"  class="w-full text-sm text-left  text-gray-500 ">
+            <table id="datatable"  class="w-full p-4 shadow-md text-sm text-left  text-gray-500 ">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50  ">
                     <tr>
                         <th class="px-6 text-left py-3 ">
@@ -49,7 +49,9 @@
                                 {{ $concour->date }}
                             </td>
                             <td class="py-4 pr-10  flex justify-end">
-                                <img src='{{ asset('storage/images/pdf.png') }}' class="w-16 cursor-pointer h-16 ">
+                                <a href="{{ asset('storage/' . $concour->pdf) }}" download>
+                                    <img src='{{ asset('storage/images/pdf.png') }}' class="w-16 cursor-pointer h-16">
+                                </a>
                             </td>
                         </tr>
                     @endforeach

@@ -6,7 +6,7 @@ use App\Models\Concour;
 use App\Models\Domaine;
 use App\Models\favoris;
 use App\Models\Etablissment;
-use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateConcourRequest;
 
@@ -14,9 +14,13 @@ class ConcourController extends Controller
 {
     public function index()
     {
+        $users=User::where('role','user')->get();
         $concours = Concour::all();
         $etablissments = Etablissment::all();
-        return view('Admin.concour', ['concours' => $concours, 'etablissments' => $etablissments]);
+        return view('Admin.concour', ['concours' => $concours,
+                                      'etablissments' => $etablissments,
+                                      'users'=>$users
+                                    ]);
     }
 
 
@@ -43,8 +47,10 @@ class ConcourController extends Controller
     public function edit($id)
     {
         $etablissments = Etablissment::all();
+        $users=User::where('role','user')->get();
         $concour = Concour::findOrFail($id);
-        return view('Admin.editConcour', ['editConcour' => $concour, 'etablissments' => $etablissments]);
+        return view('Admin.editConcour', ['editConcour' => $concour, 'etablissments' => $etablissments,
+        'users'=>$users]);
     }
 
 

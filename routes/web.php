@@ -59,19 +59,14 @@ Route::middleware(['check.role:admin'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index']);
 
-
-    Route::get('/addDomaine', function () {
-        return view('Admin.addDomaine');
-    });
+    Route::get('/addDomaine', [DomaineController::class, 'showAdmin']);
     Route::get('/domaine/{id}', [DomaineController::class, 'edit']);
     Route::resource('/domaine', DomaineController::class)->except(['show', 'create', 'edit']);
 
     Route::resource('faqs', FaqController::class)->except(['show', 'create', 'edit']);
     Route::get('/faqs/{id}', [FaqController::class, 'edit']);
 
-    Route::get('/addPublicity', function () {
-        return view('Admin.addPublicity');
-    });
+    Route::get('/addPublicity', [AnnonceController::class, 'show']);
     Route::get('/editPublicity/{id}', [AnnonceController::class, 'edit']);
     Route::resource('publicity', AnnonceController::class)->except(['show', 'create', 'edit']);
 
@@ -113,6 +108,4 @@ Route::middleware(['check.role:user'])->group(function () {
     Route::get('/favoris', [FavorisController::class, 'show']);
 
 });
-
-
 // Route::get('/', [HomePageController::class, 'domainesnav']);

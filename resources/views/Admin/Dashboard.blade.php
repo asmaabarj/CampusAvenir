@@ -105,8 +105,9 @@
                     <tbody>
                         @foreach($users as $user)
                         <tr class="bg-white border-b hover:bg-gray-50 ">
-                            <td class="px-4 text-left py-4">
-                                {{$user->nom}} {{$user->prenom}}
+                            <td class="px-2 gap-1 text-left flex py-4">
+                                <img src="{{ asset('storage/images/' . $user->photo) }}" class="w-10 h-10 rounded" />
+                                <p>{{$user->nom}} {{$user->prenom}}</p>
 
                             </td>
                             <td class="px-4 text-left py-4">

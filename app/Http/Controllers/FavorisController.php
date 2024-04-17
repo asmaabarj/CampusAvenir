@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Domaine;
-use App\Models\Etablissment;
 use App\Models\favoris;
+use App\Models\Etablissment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CreateFavorisRequest;
 
 class FavorisController extends Controller
 {
-    public function favorit(Request $request)
+    public function favorit(CreateFavorisRequest $request)
     {
-        $data = $request->validate([
-            'favori' => 'required',
-            'etablissment_id' => 'required',
-            'user_id' => ''
-        ]);
+        $data = $request->validated();
 
         $data['user_id'] = Auth::id();
 

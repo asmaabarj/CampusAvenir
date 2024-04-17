@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateContactRequest;
 use App\Models\contact;
-use Illuminate\Http\Request;
+use App\Models\User;
 
 class ContactController extends Controller
 {
     public function index()
     {
+        $users=User::where('role','user')->get();
         $contacts = Contact::all();
-        return view('Admin.contact', ['contacts' => $contacts]);
+        return view('Admin.contact', ['contacts' => $contacts,
+                                      'users'=>$users
+                                     ]);
     }
 
     public function store(CreateContactRequest $request)

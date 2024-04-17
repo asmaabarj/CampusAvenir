@@ -6,7 +6,7 @@ use App\Models\Annonce;
 use App\Models\Domaine;
 use App\Models\favoris;
 use App\Models\Etablissment;
-use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class HomePageController extends Controller
