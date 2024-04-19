@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Domaine;
 use App\Models\User;
+use App\Models\Domaine;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateDomaineRequest;
+
 class DomaineController extends Controller
 {
     public function index()
     {
-        $users=User::where('role','user')->get();
+        $admin = User::findOrFail(Auth::id());
         $domaines = Domaine::all();
         return view('Admin.domaine', [
                                       'domaines' => $domaines,
-                                      'users'=>$users
+                                      'admin'=>$admin
                                       ]);
     }
 
@@ -36,11 +38,12 @@ class DomaineController extends Controller
 
     public function edit($id)
     {
-        $users=User::where('role','user')->get();
+        $admin = User::findOrFail(Auth::id());
         $domaine = Domaine::findOrFail($id);
-        return view('Admin.editDomaine', ['editDomaine' => $domaine
-        ,
-        'users'=>$users]);
+        return view('Admin.editDomaine', [
+                                          'editDomaine' => $domaine,
+                                          'admin'=>$admin
+                                         ]);
     }
 
     public function update(CreateDomaineRequest $request, $id)
@@ -80,9 +83,9 @@ class DomaineController extends Controller
 
     }
     public function showAdmin(){
-        $users=User::where('role','user')->get();
+        $admin = User::findOrFail(Auth::id());
         return view('Admin.addDomaine', [
-            'users'=>$users
+            'admin'=>$admin
             ]);
     }
 }

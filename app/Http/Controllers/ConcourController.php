@@ -14,12 +14,12 @@ class ConcourController extends Controller
 {
     public function index()
     {
-        $users=User::where('role','user')->get();
+        $admin = User::findOrFail(Auth::id());
         $concours = Concour::all();
         $etablissments = Etablissment::all();
         return view('Admin.concour', ['concours' => $concours,
                                       'etablissments' => $etablissments,
-                                      'users'=>$users
+                                      'admin'=>$admin
                                     ]);
     }
 

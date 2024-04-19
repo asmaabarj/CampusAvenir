@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateContactRequest;
-use App\Models\contact;
 use App\Models\User;
+use App\Models\contact;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CreateContactRequest;
 
 class ContactController extends Controller
 {
     public function index()
     {
-        $users=User::where('role','user')->get();
+        $admin = User::findOrFail(Auth::id());
         $contacts = Contact::all();
         return view('Admin.contact', ['contacts' => $contacts,
-                                      'users'=>$users
+                                      'admin'=>$admin
                                      ]);
     }
 

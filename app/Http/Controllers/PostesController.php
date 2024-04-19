@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Domaine;
 use App\Models\favoris;
 use App\Models\publication;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CreatePosteRequest;
@@ -18,10 +17,10 @@ class PostesController extends Controller
      */
     public function index()
     {
-        $users=User::where('role','admin')->get();
+        $admin = User::findOrFail(Auth::id());
         $postes=publication::where('status','0')->get();
         return view('Admin.managePosts', [
-        'postes'=>$postes ,'users'=>$users, 
+        'postes'=>$postes ,'admin'=>$admin, 
         ]);
     
     }
@@ -50,6 +49,8 @@ class PostesController extends Controller
 
     public function show()
     {
+
+        Carbon::setLocale('fr');
         $postes=publication::where('status','1')->get();
         $domainesnav = Domaine::inRandomOrder()
         ->limit(5)
@@ -57,22 +58,23 @@ class PostesController extends Controller
         $favoritCount = favoris::where('user_id', Auth::id())
         ->where('favori', 1)
         ->count();
+        $publications = Publication::with(['user', 'commentaires.user'])
+        ->orderBy('created_at', 'desc')
+        ->get();
         return view('posts', [
         'favoritCount'=>$favoritCount,
         'domainesnav'=>$domainesnav,
-        'postes'=>$postes
-      ]);
+        'postes'=>$postes,
+        'publications' => $publications,
+         ]);
         }
         
 
-        public function update(Request $request, string $id)
+        public function update(CreatePosteRequest $request, $id)
         {
             $publication = Publication::findOrFail($id);
-            
-            $validatedData = $request->validate([
-                'description' => 'required|string|max:255',
-                'photo' => 'nullable|image|max:2048',
-            ]);
+    
+            $validatedData = $request->validated();
             
             $publication->contenue = $validatedData['description'];
             

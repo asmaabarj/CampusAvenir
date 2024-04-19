@@ -14,18 +14,20 @@ class EtablissmentController extends Controller
 {
     public function index()
     {
-        $users=User::where('role','user')->get();
+        $admin = User::findOrFail(Auth::id());
+
         $etablissments = Etablissment::all();
-        return view('Admin.university', ['etablissments' => $etablissments,                                        'users'=>$users
-    ]);
-    }
+        return view('Admin.university', ['etablissments' => $etablissments,
+                                        'admin'=>$admin
+                                        ]);
+     }
 
     public function create()
     {
         $domaines = Domaine::all();
-        $users=User::where('role','user')->get();
+        $admin = User::findOrFail(Auth::id());
         return view('Admin.addUniversity', ['domaines' => $domaines,
-                                            'users'=>$users
+                                            'admin'=>$admin
                                             ]);
     }
 
@@ -45,14 +47,14 @@ class EtablissmentController extends Controller
 
     public function edit($id)
     {
-        $users=User::where('role','user')->get();
+        $admin = User::findOrFail(Auth::id());
         $etablissment = Etablissment::findOrFail($id);
         $domaines = Domaine::all();
 
         return view('Admin.editUniversity', [
             'editEtablissment' => $etablissment,
             'domaines' => $domaines,
-            'users'=>$users
+            'admin'=>$admin
         ]);
     }
 

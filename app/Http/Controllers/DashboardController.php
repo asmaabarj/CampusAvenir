@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Concour;
 use App\Models\Domaine;
-use App\Models\Etablissment;
 use App\Models\Publication;
-use App\Models\User;
+use App\Models\Etablissment;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index(){
         $usersCount=User::where('role','user')->count();
+        $admin = User::findOrFail(Auth::id());
         $domainesCount=Domaine::count();
         $users=User::where('role','user')->get();
         $universitiesCount=Etablissment::count();
@@ -23,7 +25,8 @@ class DashboardController extends Controller
             'universitiesCount'=>$universitiesCount,
             'concoursCount'=>$concoursCount,
             'publicationsCount'=>$publicationsCount,
-            'users'=>$users
+            'users'=>$users,
+            'admin'=>$admin
         ]);
     }
 }

@@ -26,5 +26,9 @@ class Etablissment extends Model
     {
         return $this->morphMany(Commentaire::class, 'commentable');
     }
+    public function reviews()
+    {
+        return $this->morphMany(Review::class, 'reviewable');
+    }
 }
 

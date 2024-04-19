@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('tele');
             $table->string('photo')->default('profile.png');
             $table->string('adresse');
-            $table->string('date_naissance');
+            $table->string('date_naissance')->nullable();
             $table->string('niveau')->nullable();
             $table->string('ecole')->nullable();
             $table->enum('role', ['admin', 'user'])->default('user');

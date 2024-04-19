@@ -20,13 +20,18 @@
                             </a>
                     </li>
                     <li>
-                        <a href="#contact"
+                        <a href="/domaines"
+                            class="text-white hover:text-gray-400 text-sm font-semibold block py-1 px-3">Domaines
+                            </a>
+                    </li>
+                    <li>
+                        <a href="/#contact"
                             class="text-white hover:text-gray-400 text-sm font-semibold block py-1 px-3">Contactez
                             Nous</a>
                     </li>
                     <li>
-                        <a href="/domaines"
-                            class="text-white hover:text-gray-400 text-sm font-semibold block py-1 px-3">Domaines
+                        <a href="/Faqs"
+                            class="text-white hover:text-gray-400 text-sm font-semibold block py-1 px-3">Faqs
                             </a>
                     </li>
                     

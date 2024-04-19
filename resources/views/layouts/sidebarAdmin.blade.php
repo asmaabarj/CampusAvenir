@@ -7,10 +7,9 @@
         </a>
         <div class='flex items-center max-sm:ml-auto lg:order-1'>
             <ul class="flex ">
-                @foreach($users as $user)
                 <li
                     class="relative mr-4 px-1 after:absolute group  after:bg-black after:w-full lg:after:h-[2px] after:block after:top-10 after:left-0 after:transition-all after:duration-300">
-                    <img src="{{ asset('storage/images/' . $user->photo) }}" class="w-9 h-9  rounded-full" />
+                    <img src="{{ asset('storage/' . $admin->photo) }}" class="w-9 h-9  rounded-full" />
 
                     <div
                         class="bg-white z-50 group-hover:block hover:block hidden shadow-md py-6 px-6 sm:min-w-[180px]  absolute right-0  top-9">
@@ -32,7 +31,6 @@
                         </a>
                     </div>
                 </li>
-                @endforeach
                 <button onclick="toggleModal('sideBar')" class='  xl:hidden   ml-7 border-l-2 border-black pl-2 h-6'>
                     <svg class="w-7 h-7" fill="#000" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"

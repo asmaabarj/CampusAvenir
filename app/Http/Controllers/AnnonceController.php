@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Annonce;
 use App\Models\User;
+use App\Models\Annonce;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateAnnonceRequest;
 
 class AnnonceController extends Controller
 {
     public function index()
     {
-        $users=User::where('role','user')->get();
+        $admin = User::findOrFail(Auth::id());
         $annonces = Annonce::all();
         return view('Admin.publicity', ['annonces' => $annonces,
-                                        'users'=>$users
+                                        'admin'=>$admin
                                     ]);
     }
 
@@ -34,9 +35,9 @@ class AnnonceController extends Controller
     {
         $annonce = Annonce::findOrFail($id);
 
-        $users=User::where('role','user')->get();
+        $admin = User::findOrFail(Auth::id());
         return view('Admin.editPublicity', ['editAnnonce' => $annonce,
-    'users'=>$users
+    'admin'=>$admin
     ]);
     }
 
@@ -64,8 +65,8 @@ class AnnonceController extends Controller
     }
 
     public function show(){
-        $users=User::where('role','user')->get();
-        return view('Admin.addPublicity',['users'=>$users
+        $admin = User::findOrFail(Auth::id());
+        return view('Admin.addPublicity',['admin'=>$admin
     ]);
     }
 }

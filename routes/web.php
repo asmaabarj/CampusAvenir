@@ -13,6 +13,7 @@ use App\Http\Controllers\FavorisController;
 use App\Http\Controllers\FavoritController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\EtablissmentController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 
@@ -83,9 +84,10 @@ Route::middleware(['check.role:admin'])->group(function () {
     Route::get('/managePosts',[PostesController::class,'index']);
     Route::resource('/contact', ContactController::class)->only(['index', 'destroy']);
 
-    Route::get('/profileAdmin', function () {
-        return view('Admin.profileAdmin');
-    });
+    Route::get('/profileAdmin',[UserController::class,'profileAdmin']);
+    Route::post('/admin/update-profile', [UserController::class, 'updateProfile'])->name('admin.updateProfile');
+    Route::post('/user/updatePassword', [UserController::class, 'updatePassword'])->name('user.updatePassword');
+
 });
 // -------------------------------------------------------------------
 
@@ -108,8 +110,10 @@ Route::middleware(['check.role:user'])->group(function () {
     Route::post('/favorit', [FavorisController::class, 'favorit']);
     Route::get('/favoris', [FavorisController::class, 'show']);
     Route::put('/posts/{id}', [PostesController::class, 'update']);
-
+    Route::post('/commentaires/store', [CommentaireController::class, 'store'])->name('commentaires.store');
+    Route::resource('commentaires', CommentaireController::class)
+    ->only(['store', 'destroy']);
     Route::get('/posts', [PostesController::class, 'show']);
     Route::post('/posts',[PostesController::class, 'store']);
-});
-Route::delete('/posts/{id}',[PostesController::class, 'destroy']);
+   });
+    Route::delete('/posts/{id}',[PostesController::class, 'destroy']);

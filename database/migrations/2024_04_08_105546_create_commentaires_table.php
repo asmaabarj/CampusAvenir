@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('contenue');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('commentable_id')->nullable();
+            $table->string('commentable_type')->nullable();
+            $table->index(['commentable_id', 'commentable_type']);
             $table->timestamps();
         });
     }

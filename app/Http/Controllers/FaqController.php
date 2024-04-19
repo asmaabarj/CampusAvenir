@@ -12,12 +12,12 @@ class FaqController extends Controller
 {
     public function index()
     {
-        $users=User::all();
+        $admin = User::findOrFail(Auth::id());
         $faqs = Faq::all();
          
         return view('Admin.faqs', 
         [
-            'faqs' => $faqs,'users'=>$users
+            'faqs' => $faqs,'admin'=>$admin
            
     ]);
     }
@@ -34,10 +34,10 @@ class FaqController extends Controller
 
     public function edit($id)
     {
-        $users=User::where('role','user')->get();
+        $admin = User::findOrFail(Auth::id());
         $faq = Faq::findOrFail($id);
         return view('Admin.editFaqs', ['editFaq' => $faq,
-        'users'=>$users]);
+        'admin'=>$admin]);
     }
 
     public function update(CreateFaqRequest $request, $id)
@@ -73,4 +73,5 @@ class FaqController extends Controller
                              'favoritCount'=>$favoritCount    
                             ]);
     }
+    
 }
