@@ -86,16 +86,14 @@ class ConcourController extends Controller
 
     public function show()
     {
+        $user = Auth::check() ? User::find(Auth::id()) : null;
         $domainesnav = Domaine::inRandomOrder()
         ->limit(5)
         ->get(); 
-        $favoritCount = favoris::where('user_id', Auth::id())
-        ->where('favori', 1)
-        ->count();
         $concours = concour::all();
         return view('concours', ['concours' => $concours,
-                                  'favoritCount'=>$favoritCount,
-                                  'domainesnav'=>$domainesnav
+                                  'domainesnav'=>$domainesnav,
+                                  'user'=>$user
                                 ]);
     }
 }

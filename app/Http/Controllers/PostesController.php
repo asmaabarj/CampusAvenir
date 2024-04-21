@@ -51,21 +51,20 @@ class PostesController extends Controller
     {
 
         Carbon::setLocale('fr');
+        $user = User::findOrFail(Auth::id());
         $postes=publication::where('status','1')->get();
         $domainesnav = Domaine::inRandomOrder()
         ->limit(5)
         ->get();  
-        $favoritCount = favoris::where('user_id', Auth::id())
-        ->where('favori', 1)
-        ->count();
+
         $publications = Publication::with(['user', 'commentaires.user'])
         ->orderBy('created_at', 'desc')
         ->get();
         return view('posts', [
-        'favoritCount'=>$favoritCount,
         'domainesnav'=>$domainesnav,
         'postes'=>$postes,
         'publications' => $publications,
+        'user'=>$user
          ]);
         }
         
@@ -108,4 +107,6 @@ class PostesController extends Controller
         $publication->delete();
         return redirect()->back()->with('success', 'Publication supprimée avec succès.');
     }
+
+
 }

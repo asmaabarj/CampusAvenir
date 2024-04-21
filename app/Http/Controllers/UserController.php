@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Domaine;
+use App\Models\favoris;
+use App\Models\publication;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UpdateUserRequest;
@@ -84,25 +88,22 @@ class UserController extends Controller
         ]);
     }
 
-    public function updateProfile(Request $request)
+    public function updateProfile(UpdateUserRequest $request)
     {
         $user = Auth::user();
-    
-        $request->validate([
-            'prenom' => 'required|string|max:255',
-            'nom' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'tele' => 'required|string|max:15',
-            'adresse' => 'required|string|max:255',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
-    
+        $request->validated();
+        
         $user->prenom = $request->prenom;
         $user->nom = $request->nom;
         $user->email = $request->email;
         $user->tele = $request->tele;
         $user->adresse = $request->adresse;
-    
+    if(($request->niveau!=NULL))
+    {
+        $user->date_naissance = $request->date_naissance;
+        $user->niveau = $request->niveau;
+        $user->ecole = $request->ecole;
+    }
         if ($request->hasFile('photo')) {
             $photoPath = $request->file('photo')->store('images', 'public');
             $user->photo = $photoPath;
@@ -129,4 +130,27 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', 'Mot de passe mis à jour avec succès.');
     }
+
+
+    public function profileUser()
+    {
+        $user = User::findOrFail(Auth::id());
+        $domainesnav = Domaine::inRandomOrder()
+        ->limit(5)
+        ->get();
+        Carbon::setLocale('fr');
+        $postes=publication::where('status','1')->get()->where('user_id', Auth::id());
+        $publications = Publication::with(['user', 'commentaires.user'])
+        ->orderBy('created_at', 'desc')
+        ->get();
+        return view('profileUser', [
+            'user' => $user,
+            'domainesnav'=>$domainesnav,
+            'publications' => $publications,
+            'postes'=>$postes
+
+
+        ]);
+    }
+    
 }

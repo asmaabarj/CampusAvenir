@@ -1,5 +1,5 @@
 
-<footer id="contact" class="bg-blue-100 py-12 px-12 font-[sans-serif]">
+<footer id="contact" class="bg-gradient-to-r from-[#FFFBF6] via-[#EFEEEC]  to-[#E4E4E4] border-t-2 border py-12 px-12 font-[sans-serif]">
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
         <div class="xl:col-span-2">
             <h1
@@ -72,11 +72,11 @@
             </ul>
         </div>
         <div>
-            <h4 class="text-black font-semibold text-lg">Contactez Nous</h4>
+            <h4 class="text-black font-semibold  text-lg">Contactez Nous</h4>
             <p class="text-sm text-gray-600 mt-2">Nous répondons généralement dans les 24 heures.</p>
-            <form action="/contact" method="POST" class="mt-6">
+            <form action="/contact" method="POST" class="mt-6 p-4 ">
                 @csrf
-                <input type="text" placeholder="Nom" name="nom" class="w-full rounded h-11 px-6 bg-[#FFF] text-sm mb-2 outline-blue-500" required />
+                <input type="text" placeholder="Nom " name="nom" class="w-full rounded h-11 px-6 bg-[#FFF] text-sm mb-2 outline-blue-500" required />
                 <input type="text" placeholder="Téléphone" name="tel" class="w-full rounded h-11 px-6 bg-[#FFF] text-sm mb-2 outline-blue-500" required />
                 <input type="email" placeholder="Email" name="email" class="w-full rounded h-11 px-6 bg-[#FFF] text-sm mb-2 outline-blue-500" required />
                 <textarea placeholder="Message" name="message" rows="6" class="w-full rounded px-6 bg-[#FFF] text-sm pt-3 outline-blue-500" required></textarea>

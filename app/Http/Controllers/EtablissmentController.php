@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Annonce;
 use App\Models\Domaine;
 use App\Models\favoris;
 use App\Models\Etablissment;
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateUniversityRequest;
 
 class EtablissmentController extends Controller
@@ -82,10 +83,8 @@ class EtablissmentController extends Controller
 
     public function show()
     {
-
-        $favoritCount = favoris::where('user_id', Auth::id())
-        ->where('favori', 1)
-        ->count();
+        $annonces = Annonce::orderBy('created_at', 'desc')->limit(2)->get();
+        $domaines = domaine::all();
         $universities = Etablissment::all();
         $domainesnav = Domaine::inRandomOrder()
             ->limit(5)
@@ -97,11 +96,42 @@ class EtablissmentController extends Controller
             'universities' => $universities,
             'domainesnav' => $domainesnav,
             'favorites' => $favorites,
-            'favoritCount'=>$favoritCount
+            'domaines'=>$domaines,
+            'annonces'=>$annonces   
         ]);
     }
 
+    public function filter(Request $request)
+{
+    $type = $request->input('type');
+    $domaine = $request->input('domaine');
+
+    $filteredUniversities = Etablissment::where('type', $type)
+        ->where('domaine_id', $domaine)
+        ->get();
+
+    return response()->json($filteredUniversities);
+}
+
+public function search(Request $request)
+{
+    $query = $request->input('query');
+
+    $filteredUniversities = Etablissment::where('nom', 'like', "%$query%")->get();
+
+    return response()->json($filteredUniversities);
+}
 
 
+public function showSingle($id)
+{
+    $domainesnav = Domaine::inRandomOrder()
+            ->limit(5)
+            ->get();
+    $university = Etablissment::findOrFail($id);
+    return view('etablissment', ['university' => $university,
+                                 'domainesnav'=>$domainesnav
+                                ]);
+}
 
 }

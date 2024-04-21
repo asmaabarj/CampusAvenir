@@ -55,14 +55,10 @@ class FavorisController extends Controller
             ->where('favori', '1')
             ->isNotEmpty();
     }
-    $favoritCount = favoris::where('user_id', Auth::id())
-    ->where('favori', 1)
-    ->count();
 return view('favoris', [
         'universities' => $favoriteUniversities,
         'domainesnav' => $domainesnav,
         'isFavoritedData' => $isFavoritedData,
-        'favoritCount'=>$favoritCount
     ]);
 }
 

@@ -15,15 +15,13 @@ class HomePageController extends Controller
     public function index()
     {
 
+        $user = Auth::check() ? User::find(Auth::id()) : null;
         $universities = Etablissment::all();
         $domaines = Domaine::inRandomOrder()
             ->limit(3)
             ->get();
 
         $annonces = Annonce::orderBy('created_at', 'desc')->get();
-        $favoritCount = favoris::where('user_id', Auth::id())
-        ->where('favori', 1)
-        ->count();
         $favorites = favoris::where('favori', '1')
             ->where('user_id', Auth::id())
             ->get();
@@ -35,8 +33,8 @@ class HomePageController extends Controller
             'domaines' => $domaines,
             'universities' => $universities,
             'domainesnav'=>$domainesnav,
-            'favoritCount'=>$favoritCount,
             'favorites' => $favorites,
+            'user'=>$user
         ]);
     }
 

@@ -65,12 +65,9 @@ class FaqController extends Controller
         $domainesnav = Domaine::inRandomOrder()
         ->limit(5)
         ->get();  
-        $favoritCount = favoris::where('user_id', Auth::id())
-        ->where('favori', 1)
-        ->count(); 
+
         return view('faqs', ['faqs' => $faqs,
                              'domainesnav' => $domainesnav,
-                             'favoritCount'=>$favoritCount    
                             ]);
     }
     

@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="py-4 px-10 bg-white shadow-md rounded">
-            <form action="{{ route('admin.updateProfile') }}" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 gap-4">
+            <form action="/update-profile" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 gap-4">
                 @csrf
                 <div>
                     <label class="block text-gray-700 text-sm font-bold mb-2">Prénom:</label>
@@ -69,7 +69,7 @@
         </div>
         
         <div class="py-4 px-10 bg-white shadow-md rounded">
-            <form action="{{ route('user.updatePassword') }}" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 gap-4">
+            <form action="/updatePassword" method="POST" enctype="multipart/form-data" class="grid grid-cols-1 gap-4">
                 @csrf
                 <div>
                     <label class="block text-gray-700 text-sm font-bold mb-2">Ancien mot de passe:</label>

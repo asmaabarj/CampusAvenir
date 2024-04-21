@@ -29,7 +29,7 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 */
 
 
-Route::get('/', [HomePageController::class, 'index']);
+
 
 Route::get('/Faqs', [FaqController::class, 'show']);
 Route::get('/domaines', [DomaineController::class, 'show']);
@@ -75,7 +75,6 @@ Route::middleware(['check.role:admin'])->group(function () {
     Route::resource('/university', EtablissmentController::class)->except(['show', 'create', 'edit']);
     Route::get('/addUniversity', [EtablissmentController::class, 'create']);
     Route::get('/university/{id}', [EtablissmentController::class, 'edit']);
-
     Route::get('/concour/{id}', [ConcourController::class, 'edit']);
     Route::resource('/concour', ConcourController::class)->except(['show', 'create','edit']);
 
@@ -86,10 +85,10 @@ Route::middleware(['check.role:admin'])->group(function () {
 
     Route::get('/profileAdmin',[UserController::class,'profileAdmin']);
     Route::post('/admin/update-profile', [UserController::class, 'updateProfile'])->name('admin.updateProfile');
-    Route::post('/user/updatePassword', [UserController::class, 'updatePassword'])->name('user.updatePassword');
 
 });
 // -------------------------------------------------------------------
+
 
 Route::get('/universities', function () {
     return view('universities');
@@ -104,9 +103,7 @@ Route::get('/profileUser', function () {
 });
 
 Route::middleware(['check.role:user'])->group(function () {
-    Route::get('/profileUser', function () {
-        return view('ProfileUser');
-    });    
+
     Route::post('/favorit', [FavorisController::class, 'favorit']);
     Route::get('/favoris', [FavorisController::class, 'show']);
     Route::put('/posts/{id}', [PostesController::class, 'update']);
@@ -115,5 +112,14 @@ Route::middleware(['check.role:user'])->group(function () {
     ->only(['store', 'destroy']);
     Route::get('/posts', [PostesController::class, 'show']);
     Route::post('/posts',[PostesController::class, 'store']);
+    Route::get('/profileUser',[UserController::class,'profileUser']);
+
    });
     Route::delete('/posts/{id}',[PostesController::class, 'destroy']);
+    Route::post('/updatePassword', [UserController::class, 'updatePassword']);
+    Route::post('/update-profile', [UserController::class, 'updateProfile']);
+    Route::get('/', [HomePageController::class, 'index']);
+    Route::get('/filter', [EtablissmentController::class, 'filter']);
+    Route::get('/search', [EtablissmentController::class, 'search']);
+
+    Route::get('/etablissment/{id}', [EtablissmentController::class, 'showSingle'])->name('etablissment.show');
