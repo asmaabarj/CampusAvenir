@@ -16,7 +16,7 @@ class ConcourController extends Controller
     {
         $admin = User::findOrFail(Auth::id());
         $concours = Concour::all();
-        $etablissments = Etablissment::all();
+        $etablissments = Etablissment::where('concour','avec')->get();
         return view('Admin.concour', ['concours' => $concours,
                                       'etablissments' => $etablissments,
                                       'admin'=>$admin

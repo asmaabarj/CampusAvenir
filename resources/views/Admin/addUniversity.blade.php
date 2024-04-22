@@ -45,12 +45,6 @@
                         class="w-full px-4 py-4 border rounded-md focus:outline-none focus:border-blue-600">
                 </div>
                 <div class="mb-2">
-                    <label class="block text-gray-700 text-sm font-bold mb-2">Condition d'accès:</label>
-                    <textarea type="text" name="conditions" value=""
-                        class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-600">
-                        </textarea>
-                </div>
-                <div class="mb-2">
                     <label class="block text-gray-700 text-sm font-bold mb-2">concours:</label>
                     <select name="concours"
                         class="w-full px-4 py-4 border rounded-md focus:outline-none focus:border-blue-600">

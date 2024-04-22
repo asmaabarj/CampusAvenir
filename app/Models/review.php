@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-    protected $fillable = ['note'];
+    protected $fillable = ['etablissment_id', 'note','user_id'];
 
-    public function reviewable()
+    public function etablissment()
     {
-        return $this->morphTo();
+        return $this->belongsTo(Etablissment::class);
     }
 }
 

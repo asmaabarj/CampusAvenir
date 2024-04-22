@@ -7,6 +7,7 @@ use App\Models\Annonce;
 use App\Models\Domaine;
 use App\Models\favoris;
 use App\Models\Etablissment;
+use App\Models\Commentaire;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateUniversityRequest;
@@ -83,6 +84,7 @@ class EtablissmentController extends Controller
 
     public function show()
     {
+        $user = Auth::check() ? User::find(Auth::id()) : null;
         $annonces = Annonce::orderBy('created_at', 'desc')->limit(2)->get();
         $domaines = domaine::all();
         $universities = Etablissment::all();
@@ -97,7 +99,8 @@ class EtablissmentController extends Controller
             'domainesnav' => $domainesnav,
             'favorites' => $favorites,
             'domaines'=>$domaines,
-            'annonces'=>$annonces   
+            'annonces'=>$annonces,
+            'user'=>$user  
         ]);
     }
 
@@ -125,13 +128,26 @@ public function search(Request $request)
 
 public function showSingle($id)
 {
-    $domainesnav = Domaine::inRandomOrder()
-            ->limit(5)
-            ->get();
+    $user = Auth::check() ? User::find(Auth::id()) : null;
+    $domainesnav = Domaine::inRandomOrder()->limit(5)->get();
+
+    $commentCount = Commentaire::where('commentable_type', 'App\Models\Etablissment')
+                                ->where('commentable_id', $id)
+                                ->count();
+
     $university = Etablissment::findOrFail($id);
-    return view('etablissment', ['university' => $university,
-                                 'domainesnav'=>$domainesnav
-                                ]);
+    $comments = Commentaire::where('commentable_type', 'App\Models\Etablissment')
+                            ->where('commentable_id', $id)
+                            ->get();
+
+    return view('etablissment', [
+        'university' => $university,
+        'domainesnav' => $domainesnav,
+        'user' => $user,
+        'comments' => $comments,
+        'commentCount' => $commentCount,
+    ]);
 }
+
 
 }

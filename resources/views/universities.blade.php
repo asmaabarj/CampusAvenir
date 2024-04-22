@@ -47,7 +47,7 @@
                         d'étudiants sans restrictions majeures sur les critères d'admission. Ils offrent une
                         large gamme de programmes académiques.<br>
                         <span class="text-gray-400 font-meduim">Établissements à accès régulé :</span> Ces
-                        établissements publics ont des conditions
+                        établissements publics ont des s
                         d'admission spécifiques, telles que des exigences de spécialisation, des notes
                         minimales, etc. Ils peuvent également imposer des frais d'inscription et/ou
                         d'enregistrement. Le processus d'admission est donc plus sélectif.<br><br>

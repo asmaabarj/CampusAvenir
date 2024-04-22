@@ -53,13 +53,6 @@
                         <input type="number" name="etudiants" value="{{ $editEtablissment->etudiants }}"
                             class="w-full px-4 py-5 border rounded-md focus:outline-none focus:border-blue-600">
                     </div>
-
-                    <div class="mb-2">
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Conditions d'accès:</label>
-                        <textarea name="conditions"
-                            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:border-blue-600">{{ $editEtablissment->conditions }}</textarea>
-                    </div>
-
                     <div class="mb-2">
                         <label class="block text-gray-700 text-sm font-bold mb-2">Concours:</label>
                         <select name="concours"

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Etablissment extends Model
 {
-    protected $fillable = ['nom', 'formation', 'etudiants', 'conditions', 'filieres', 'concour', 'type', 'photo', 'description', 'lien', 'domaine_id'];
+    protected $fillable = ['nom', 'formation', 'etudiants', 'filieres', 'concour', 'type', 'photo', 'description', 'lien', 'domaine_id'];
 
     public function domaine()
     {
@@ -22,13 +22,15 @@ class Etablissment extends Model
     {
         return $this->belongsToMany(User::class, 'favoris', 'etablissment_id', 'user_id');
     }
-    public function etablissmentCommentaires()
+    public function comments()
     {
         return $this->morphMany(Commentaire::class, 'commentable');
     }
+    
     public function reviews()
     {
-        return $this->morphMany(Review::class, 'reviewable');
+        return $this->hasMany(Review::class);
     }
+    
 }
 

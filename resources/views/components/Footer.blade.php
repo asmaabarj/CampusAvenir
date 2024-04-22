@@ -1,5 +1,5 @@
 
-<footer id="contact" class="bg-gradient-to-r from-[#FFFBF6] via-[#EFEEEC]  to-[#E4E4E4] border-t-2 border py-12 px-12 font-[sans-serif]">
+<footer id="contact" class="bg-gradient-to-r from-white via-[#EFEEEC]  to-[#E4E4E4] border-t-2 border py-12 px-12 font-[sans-serif]">
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
         <div class="xl:col-span-2">
             <h1

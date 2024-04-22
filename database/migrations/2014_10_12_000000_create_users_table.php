@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('prenom');
             $table->string('email')->unique();
             $table->string('tele');
-            $table->string('photo')->default('profile.png');
+            $table->string('photo')->default('images/profile.png');
             $table->string('adresse');
             $table->string('date_naissance')->nullable();
             $table->string('niveau')->nullable();

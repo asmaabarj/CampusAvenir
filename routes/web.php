@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostesController;
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\AnnonceController;
 use App\Http\Controllers\ConcourController;
 use App\Http\Controllers\ContactController;
@@ -107,7 +108,7 @@ Route::middleware(['check.role:user'])->group(function () {
     Route::post('/favorit', [FavorisController::class, 'favorit']);
     Route::get('/favoris', [FavorisController::class, 'show']);
     Route::put('/posts/{id}', [PostesController::class, 'update']);
-    Route::post('/commentaires/store', [CommentaireController::class, 'store'])->name('commentaires.store');
+    Route::post('/commentaires', [CommentaireController::class, 'store'])->name('commentaires.store');
     Route::resource('commentaires', CommentaireController::class)
     ->only(['store', 'destroy']);
     Route::get('/posts', [PostesController::class, 'show']);
@@ -121,5 +122,5 @@ Route::middleware(['check.role:user'])->group(function () {
     Route::get('/', [HomePageController::class, 'index']);
     Route::get('/filter', [EtablissmentController::class, 'filter']);
     Route::get('/search', [EtablissmentController::class, 'search']);
-
     Route::get('/etablissment/{id}', [EtablissmentController::class, 'showSingle'])->name('etablissment.show');
+    Route::post('/ratings/store', [RatingController::class, 'store'])->name('ratings.store');

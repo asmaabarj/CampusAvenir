@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('nom');
             $table->text('formation');
             $table->integer('etudiants');
-            $table->string('conditions');
             $table->string('filieres');
             $table->enum('concour', ['avec', 'sans']);
             $table->enum('type', ['prive', 'publique']);
