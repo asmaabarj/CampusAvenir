@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Domaine;
+use App\Models\Etablissment;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateDomaineRequest;
 
@@ -76,8 +77,12 @@ class DomaineController extends Controller
         ->limit(5)
         ->get();  
         $domaines = Domaine::all();
+        $universitiesnav=Etablissment::inRandomOrder()
+            ->limit(5)
+            ->get(); 
         return view('domaines', ['domaines' => $domaines,
-                                 'domainesnav'=>$domainesnav
+                                 'domainesnav'=>$domainesnav,
+                                 'universitiesnav'=>$universitiesnav
     ]);
     
 

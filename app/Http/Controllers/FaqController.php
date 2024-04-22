@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Faq;
 use App\Models\Domaine;
-use App\Models\favoris;
+use App\Models\Etablissment;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateFaqRequest;
@@ -65,9 +65,12 @@ class FaqController extends Controller
         $domainesnav = Domaine::inRandomOrder()
         ->limit(5)
         ->get();  
-
+        $universitiesnav=Etablissment::inRandomOrder()
+            ->limit(5)
+            ->get(); 
         return view('faqs', ['faqs' => $faqs,
                              'domainesnav' => $domainesnav,
+                             'universitiesnav'=>$universitiesnav
                             ]);
     }
     

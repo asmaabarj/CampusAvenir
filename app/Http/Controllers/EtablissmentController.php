@@ -94,13 +94,19 @@ class EtablissmentController extends Controller
         $favorites = favoris::where('favori', '1')
             ->where('user_id', Auth::id())
             ->get();
+        
+            $universitiesnav=Etablissment::inRandomOrder()
+            ->limit(5)
+            ->get();
+
         return view('universities', [
             'universities' => $universities,
             'domainesnav' => $domainesnav,
             'favorites' => $favorites,
             'domaines'=>$domaines,
             'annonces'=>$annonces,
-            'user'=>$user  
+            'user'=>$user ,
+            'universitiesnav'=>$universitiesnav 
         ]);
     }
 
@@ -139,6 +145,9 @@ public function showSingle($id)
     $comments = Commentaire::where('commentable_type', 'App\Models\Etablissment')
                             ->where('commentable_id', $id)
                             ->get();
+                     $universitiesnav=Etablissment::inRandomOrder()
+                            ->limit(5)
+                            ->get();
 
     return view('etablissment', [
         'university' => $university,
@@ -146,6 +155,7 @@ public function showSingle($id)
         'user' => $user,
         'comments' => $comments,
         'commentCount' => $commentCount,
+        'universitiesnav'=>$universitiesnav,
     ]);
 }
 

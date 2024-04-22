@@ -1,7 +1,7 @@
 @foreach ($annonces as $annonce)
 <div id='pop{{ $annonce->id }}' onclick="toggleModal('pop{{ $annonce->id }}')"
     class="fixed top-0 bottom-0 left-0 right-0 bg-black/60 z-50 overflow-y-scroll hidden">
-    <div class="">
+    <div >
         <div
             class="font-[sans-serif] w-[60%]  fixed   left-0 right-0  px-[8%] p-8 rounded-md mx-auto shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] bg-white  mt-24 max-h-[80vh] overflow-y-auto">
             <h1 class="text-4xl font-extrabold my-7  ">{{ $annonce->titre }}</h1>
@@ -28,8 +28,6 @@
                         {{ $annonce->lieu }}
                 @endif
                 </h6>
-
-
             </div>
         </div>
     </div>

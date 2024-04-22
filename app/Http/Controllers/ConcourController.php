@@ -90,10 +90,14 @@ class ConcourController extends Controller
         $domainesnav = Domaine::inRandomOrder()
         ->limit(5)
         ->get(); 
+        $universitiesnav=Etablissment::inRandomOrder()
+            ->limit(5)
+            ->get();  
         $concours = concour::all();
         return view('concours', ['concours' => $concours,
                                   'domainesnav'=>$domainesnav,
-                                  'user'=>$user
+                                  'user'=>$user,
+                                  'universitiesnav'=>$universitiesnav
                                 ]);
     }
 }

@@ -11,6 +11,8 @@
     }, 3000);
 </script>
 @endif
+
+
 @if ($errors->any())
 <div class="bg-red-100 text-red-800 px-4 py-4 rounded fixed right-24 w-[30%] top-50 z-50 text-sm sm:inline-block max-sm:block"
     role="alert">

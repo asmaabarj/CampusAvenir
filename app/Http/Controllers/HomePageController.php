@@ -27,14 +27,18 @@ class HomePageController extends Controller
             ->get();
             $domainesnav = Domaine::inRandomOrder()
                         ->limit(5)
-                        ->get();    
+                        ->get();
+            $universitiesnav=Etablissment::inRandomOrder()
+            ->limit(5)
+            ->get();  
         return view('HomePage', [
             'annonces' => $annonces,
             'domaines' => $domaines,
             'universities' => $universities,
             'domainesnav'=>$domainesnav,
             'favorites' => $favorites,
-            'user'=>$user
+            'user'=>$user,
+            'universitiesnav'=>$universitiesnav
         ]);
     }
 

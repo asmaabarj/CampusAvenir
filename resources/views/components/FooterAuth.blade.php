@@ -33,8 +33,7 @@
                         <a href="/Faqs"
                             class="text-white hover:text-gray-400 text-sm font-semibold block py-1 px-3">Faqs
                             </a>
-                    </li>
-                    
+                    </li>  
                 </ul>
             </div>
         </div>

@@ -1,12 +1,11 @@
 <header
     class='fixed left-0 right-0 top-0 shadow-md font-sans min-h-[80px] z-50 bg-gradient-to-r from-[#FEFEFE] via-[#EFEEEC]  to-[#E4E4E4]'>
     <div class='flex flex-wrap items-center justify-between px-10 py-3 gap-4 relative'>
-        <a href="">
+        
             <h1
-                class="bg-gradient-to-r from-[#69A8F3] via-[#5102F8] font-bold text-2xl to-indigo-400 inline-block text-transparent bg-clip-text">
+                class="bg-gradient-to-r cursor-pointer from-[#69A8F3] via-[#5102F8] font-bold text-2xl to-indigo-400 inline-block text-transparent bg-clip-text">
                 CampusAvenir</h1>
-        </a>
-
+        
         <div class='flex items-center mt-1 pl-5 border-gray-600 max-lg:ml-auto gap-2 lg:order-1'>
             @if (auth()->check() && auth()->user()->role === 'user')
                 <div class="relative mr-4 px-1 after:absolute group">
@@ -62,7 +61,7 @@
             <li class='group max-lg:border-b max-lg:py-2 relative'>
                 <a href=''
                     class='hover:text-[#007bff] text-gray-600 text-[15px] font-bold lg:hover:fill-[#007bff] block'>
-                    Domaine
+                    Domaines
                     <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" class="ml-1 inline-block"
                         viewBox="0 0 24 24">
                         <path
@@ -83,11 +82,27 @@
                 </ul>
             </li>
             <li class='group max-lg:border-b max-lg:py-2 relative'>
-                <a href='/universities'
+                <a href=''
                     class='hover:text-[#007bff] text-gray-600 text-[15px] font-bold lg:hover:fill-[#007bff] block'>
-                    Etablissments
+                    Établissement
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" class="ml-1 inline-block"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M12 16a1 1 0 0 1-.71-.29l-6-6a1 1 0 0 1 1.42-1.42l5.29 5.3 5.29-5.29a1 1 0 0 1 1.41 1.41l-6 6a1 1 0 0 1-.7.29z"
+                            data-name="16" data-original="#000000" />
+                    </svg>
                 </a>
-
+                <ul
+                    class='absolute hidden group-hover:block shadow-lg bg-white px-6 pb-4 pt-6 space-y-3 lg:top-5 max-lg:top-8 -left-6 min-w-[200px] z-50'>
+                    @foreach ($universitiesnav as $universitynav)
+                        <li class='border-b py-2 '><a href='/etablissment/{{$universitynav->id}}'
+                                class='hover:text-[#007bff] text-gray-600 text-[15px] font-bold block'>{{ $universitynav->nom }}</a>
+                        </li>
+                    @endforeach
+                    <li class='border-b py-2 '><a href='/universities'
+                            class='hover:text-[#007bff] text-gray-600 text-[15px] font-bold block'>Tous</a>
+                    </li>
+                </ul>
             </li>
             <li class='max-lg:border-b max-lg:py-2'><a href='/concours'
                     class='hover:text-[#007bff] text-gray-600 text-[15px] font-bold block'>Concours</a></li>
