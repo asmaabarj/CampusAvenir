@@ -71,7 +71,7 @@
                                     @endfor
                                     
                                 </div>
-                                     ({{ $commentCount }} reviews)
+                                     ({{ $commentCount }} Commentaires)
 
                             </div>
                             <a href="#" title=""
@@ -141,8 +141,6 @@
 
         <section class="py-10 bg-gray-100 sm:py-16 lg:py-24">
             <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-
-
                 <div class="mt-6 shadow-md pt-10 bg-white rounded-xl">
                     <div class="max-w-2xl mx-auto text-center">
                         <h2 class="text-3xl font-bold leading-tight text-gray-900 sm:text-4xl lg:text-5xl">Partagez
@@ -151,7 +149,6 @@
                             cette établissement. Nous sommes impatients de vous entendre !</p>
                     </div>
                     <div class="px-6 py-12 sm:p-12">
-
                         <form action="{{ route('commentaires.store') }}" method="POST" class="mt-14">
                             @csrf
                             <div class="grid grid-cols-1 gap-x-5 gap-y-4">
@@ -173,7 +170,6 @@
                                 </div>
                             </div>
                         </form>
-
 
                         <div class="mt-8">
                             <h3 class="text-xl font-semibold text-gray-900">Partagez votre avis en attribuant une note
@@ -217,7 +213,9 @@
                 type: 'POST',
                 url: "/ratings/store",
                 data: formData,
-                success: function(data) {},
+                success: function(data) {
+                    alert('Merci Pour votre Note!')
+                },
                 error: function(xhr, status, error) {
                     console.log(xhr.responseText);
                 }
