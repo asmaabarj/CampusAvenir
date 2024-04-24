@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Domaine extends Model
 {
-    protected $fillable = ['titre', 'photo'];
+    protected $fillable = ['titre', 'photo','description'];
 
     public function etablissements()
     {

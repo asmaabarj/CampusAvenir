@@ -31,6 +31,11 @@
                     <img src="{{ asset('storage/' . $editDomaine->photo) }}" alt="Domaine photo" class="w-20 h-20 mt-2">
                 </div>
                 <div class="mb-2">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Description:</label>
+                    <textarea name="description"
+                        class="w-full p-4 h-[20vh] border rounded-md focus:outline-none focus:border-blue-600">{{ $editDomaine->description }}</textarea>
+                </div>
+                <div class="mb-2">
                     <button type="submit"
                         class="px-4 py-2 bg-gradient-to-r from-blue-300 to-blue-800 text-white rounded-md focus:outline-none">
                         Enregistrer

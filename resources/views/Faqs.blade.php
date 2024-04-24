@@ -37,13 +37,13 @@
 
         <div class="flex items-center justify-center mt-12 md:mt-20">
             <div class="px-8 py-4 text-center bg-gray-100 shadow-md rounded-full">
-                <p class="text-gray-800">Vous n'avez pas trouvé la réponse que vous cherchez ? <a href="#" title="" class="text-blue-400  transition-all duration-200 hover:text-blue-500 focus:text-blue-500 hover:underline">Contactez notre support</a></p>
+                <p class="text-gray-800">Vous n'avez pas trouvé la réponse que vous cherchez ? <a href="/#contact" title="" class="text-blue-400  transition-all duration-200 hover:text-blue-500 focus:text-blue-500 hover:underline">Contactez notre support</a></p>
             </div>
         </div>
     </div>
 </section>
 
 </main>
-@include('components.Footer')
+@include('components.minifooter')
 
 </html>

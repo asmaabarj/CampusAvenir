@@ -70,13 +70,13 @@
                     </svg>
                 </a>
                 <ul
-                    class='absolute hidden group-hover:block shadow-lg bg-white px-6 pb-4 pt-6 space-y-3 lg:top-5 max-lg:top-8 -left-6 min-w-[200px] z-50'>
+                    class='absolute hidden group-hover:block shadow-lg rou bg-white px-6 pb-4 pt-6 space-y-3 lg:top-5 max-lg:top-8 -left-6 min-w-[250px] z-50'>
                     @foreach ($domainesnav as $domainenav)
                         <li class='border-b py-2 '><a href='javascript:void(0)'
                                 class='hover:text-[#007bff] text-gray-600 text-[15px] font-bold block'>{{ $domainenav->titre }}</a>
                         </li>
                     @endforeach
-                    <li class='border-b py-2 '><a href='/domaines'
+                    <li class=' py-2 '><a href='/domaines'
                             class='hover:text-[#007bff] text-gray-600 text-[15px] font-bold block'>Tous</a>
                     </li>
                 </ul>
@@ -93,13 +93,13 @@
                     </svg>
                 </a>
                 <ul
-                    class='absolute hidden group-hover:block shadow-lg bg-white px-6 pb-4 pt-6 space-y-3 lg:top-5 max-lg:top-8 -left-6 min-w-[200px] z-50'>
+                    class='absolute hidden group-hover:block shadow-lg bg-white px-6 pb-4 pt-6 space-y-3 lg:top-5 max-lg:top-8 -left-6 min-w-[250px] z-50'>
                     @foreach ($universitiesnav as $universitynav)
                         <li class='border-b py-2 '><a href='/etablissment/{{$universitynav->id}}'
                                 class='hover:text-[#007bff] text-gray-600 text-[15px] font-bold block'>{{ $universitynav->nom }}</a>
                         </li>
                     @endforeach
-                    <li class='border-b py-2 '><a href='/universities'
+                    <li class=' py-2 '><a href='/universities'
                             class='hover:text-[#007bff] text-gray-600 text-[15px] font-bold block'>Tous</a>
                     </li>
                 </ul>
@@ -112,7 +112,7 @@
             @endif
             <li class='max-lg:border-b max-lg:py-2'><a href='/Faqs'
                     class='hover:text-[#007bff] text-gray-600 text-[15px] font-bold block'>Faqs</a></li>
-            <li class='max-lg:border-b max-lg:py-2'><a href='#contact'
+            <li class='max-lg:border-b max-lg:py-2'><a href='/#contact'
                     class='hover:text-[#007bff] text-gray-600 text-[15px] font-bold block'>Contact</a></li>
         </ul>
     </div>

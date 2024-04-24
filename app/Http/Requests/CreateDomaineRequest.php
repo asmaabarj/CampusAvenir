@@ -23,6 +23,7 @@ class CreateDomaineRequest extends FormRequest
     {
         return [
             'titre' => 'required|string|max:255',
+            'description' =>'required',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
@@ -31,6 +32,7 @@ class CreateDomaineRequest extends FormRequest
         return [
             'titre.required' => 'Le titre est requis.',
             'photo.required' => 'La photo est requise.',
+            'description.required'=>'la description est requise.',
             'photo.image' => 'Le fichier doit être une image.',
             'photo.mimes' => 'L\'image doit être au format jpeg, png, jpg ou gif.',
             'photo.max' => 'L\'image ne doit pas dépasser 2 Mo.',

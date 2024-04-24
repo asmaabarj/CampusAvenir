@@ -131,7 +131,7 @@
                         </h3>
                         <p class="text-sm">Partagez vos expériences scolaires, discutez avec d'autres membres et
                             posez-leur des questions pour élargir votre compréhension et enrichir votre expérience.</p>
-                        <a href="/universities"
+                        <a href="/posts"
                             class="flex items-center justify-center group-hover:text-white gap-2 mt-2 text-blue-500">
                             <p class=" text-sm font-[500] uppercase">COMMENCER
                             </p>

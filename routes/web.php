@@ -129,3 +129,4 @@ Route::middleware(['check.role:user'])->group(function () {
     Route::get('/search', [EtablissmentController::class, 'search']);
     Route::get('/etablissment/{id}', [EtablissmentController::class, 'showSingle']);
     Route::post('/ratings/store', [RatingController::class, 'store']);
+    Route::get('/domaineUniversities/{id}', [DomaineController::class, 'showSingleDomaine']);

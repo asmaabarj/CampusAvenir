@@ -227,7 +227,7 @@
             </svg>
         </div>
     </main>
-    @include('components.Footer')
+    @include('components.minifooter')
 
 
 

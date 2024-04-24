@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
@@ -209,7 +210,7 @@
                                         minute: '2-digit'
                                     });
                                     var commentHTML = `
-                                        <div class="px-4 py-2 pt-4 flex gap-2" id="comment-${comment.id}">
+                                        <div  class="px-4 py-2 pt-4 flex gap-2" id="comment-${comment.id}">
                                             <img src="storage/${comment.user.photo}" class="w-9 h-9 rounded-full" />
                                             <div>
                                                 <div class="flex gap-3 items-center">
@@ -228,7 +229,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <p class="mx-5 text-sm font-light text-gray-700">
+                                        <p class="mx-5 text-sm font-light text-gray-700" >
                                             ${comment.contenue}
                                         </p>`;
                                     $('#comment-container-' + postId).append(commentHTML);
@@ -270,6 +271,7 @@
             });
 
             function deleteComment(commentId) {
+                console.log(commentId);
                 if (confirm("Are you sure you want to delete this comment?")) {
                     $.ajax({
                         url: '/comments/' + commentId,
@@ -278,6 +280,7 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         success: function(response) {
+
                             if (response.success) {
                                 $('#comment-' + commentId).remove();
                             } else {

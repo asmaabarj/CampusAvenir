@@ -204,6 +204,8 @@
 
         
     </main>
+    @include('components.minifooter')
+
     <script>
         $('#RatingForm').submit(function(e) {
             e.preventDefault();

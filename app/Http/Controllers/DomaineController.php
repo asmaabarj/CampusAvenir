@@ -31,6 +31,7 @@ class DomaineController extends Controller
 
         Domaine::create([
             'titre' => $data['titre'],
+            'description'=>$data['description'],
             'photo' => $data['photo'],
         ]);
 
@@ -54,6 +55,7 @@ class DomaineController extends Controller
 
         $domaine->update([
             'titre' => $data['titre'],
+            'description'=>$data['description'],
         ]);
 
         if ($request->hasFile('photo')) {
@@ -94,5 +96,25 @@ class DomaineController extends Controller
         return view('Admin.addDomaine', [
             'admin'=>$admin
             ]);
+    }
+
+    public function showSingleDomaine($id){
+        $user = Auth::check() ? User::find(Auth::id()) : null;
+        $domainesnav = Domaine::inRandomOrder()
+        ->limit(5)
+        ->get();  
+        $domaines = Domaine::all();
+        $universitiesnav=Etablissment::inRandomOrder()
+            ->limit(5)
+            ->get(); 
+        $domain = Domaine::findOrFail($id);
+        $universities=Etablissment::where('domaine_id',$id)->get();
+        return view('domaineUniversities', ['domaines' => $domaines,
+                                 'domainesnav'=>$domainesnav,
+                                 'universitiesnav'=>$universitiesnav,
+                                 'user'=>$user,
+                                 'universities'=>$universities,
+                                 'domain'=>$domain
+    ]);
     }
 }
