@@ -16,10 +16,10 @@
 <body>
     @include('components.navbar')
     @include('components.Alert')
-    <section class="lg:flex ml-4 lg:ml-36 lg:w-[80%] w-full mt-36 mx-auto ">
-        <div class="bg-blue-950 text-gray-200 p-4 rounded-b-[2px] w-full lg:w-[27%]">
-            <h1 class="text-4xl lg:text-xl font-extrabold text-white mb-6 ">Préparation aux Concours Universitaires: Exemples et Corrections en PDF</h1>
-            <p class="text-lg lg:text-base text-gray-200 mb-5 ">Commencez votre préparation aux concours universitaires {{ now()->year }} avec la correction des épreuves d'accès aux
+    <section class="lg:flex gap-1 ml-4 lg:ml-36 lg:w-[80%] w-full mt-36 mx-auto ">
+        <div class="bg-blue-950 text-gray-200 p-4 rounded-xl shadow-xl w-full lg:w-[27%]">
+            <h1 class="text-4xl lg:text-xl font-extrabold text-white mb-6 shadow-xl ">Préparation aux Concours Universitaires: Exemples et Corrections en PDF</h1>
+            <p class="text-lg lg:text-base text-gray-50 mb-5 ">Commencez votre préparation aux concours universitaires {{ now()->year }} avec la correction des épreuves d'accès aux
                 facultés diverses. Corrigé par nos enseignants spécialistes des concours, cet ensemble de ressources
                 couvre une gamme de concours universitaires, vous permettant de vous entraîner de manière efficace pour
                 réussir votre examen. Peu importe le domaine dans lequel vous aspirez à étudier, ces ressources sont
@@ -28,8 +28,8 @@
                 vos chances de succès dans votre concours universitaire de choix.</p>
         </div>
         <div class="lg:w-[73%]">
-        <img img src='{{ asset('storage/images/concour.png') }}' class=" lg:h-[50vh] " alt="">
-        <li class="ml-5 mt-8 font-semibold">Explorez votre potentiel avec nos ressources uniques: des concours blancs et des épreuves antérieures de concours universitaires, le tout accessible en PDF!</li>
+        <img img src='{{ asset('storage/images/concour.png') }}' class="rounded-xl shadow-xl lg:h-[50vh] " alt="">
+        <div class="ml-5 mt-14 font-semibold"><i class='bx bxs-check-circle text-blue-900'></i> Explorez votre potentiel avec nos ressources uniques: des concours blancs et des épreuves antérieures de concours universitaires, le tout accessible en PDF!</div >
     </div>
     </section>
     <section class="lg:w-[80%]  mb-10 mx-auto">

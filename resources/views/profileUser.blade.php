@@ -21,7 +21,7 @@
     <section class="xl:w-[70%] my-10    grid grid-cols-1 mx-auto gap-8 ">
         <div class="bg-white rounded-md border flex flex-col  overflow-hidden">
             <div class="bg-blue-100 w-full  h-44"></div>
-            <div class="flex justify-evenly">
+            <div class="flex justify-evenly pr-2">
                 <div class="flex mb-10">
                     <img src="{{ asset('storage/' . $user->photo) }}"
                         class="w-44 h-44 border-4 border-white rounded-full ml-10 -mt-12 shadow-xl inline-block" />
@@ -203,21 +203,16 @@
         <div class="max-w-5xl mx-auto pb-8">
             <div class="grid grid-cols-1 xl:mx-0 md:mx-8  gap-x-8 gap-y-16 max-md:justify-center mt-12">
                 @foreach ($postes as $poste)
-                    <div class="grid grid-cols-1 border relative rounded-md">
-                        <div class="flex bg-[#f7f9fa] justify-between shadow-sm">
-                            <div class="p-4 flex gap-2">
-                                <img src="{{ asset('storage/' . $poste->user->photo) }}"
-                                    class="w-11 h-11 rounded-full" />
-                                <div>
-                                    <h4 class="text-base font-bold">
-                                        {{ $poste->user->nom }} {{ $poste->user->prenom }}
-                                    </h4>
-                                    <p class="text-xs mt-1 text-gray-600">
-                                        {{ Carbon\Carbon::parse($poste->created_at)->diffForHumans() }}
-                                    </p>
-                                </div>
+                    <div class="grid grid-cols-1 border relative p-2 rounded-md">
+                        <div class=" shadow-sm">
+                            <div class="my-4">
+                                <p class="text-gray-600 mt-10 text-sm">{{ $poste->contenue }}</p>
+                                @if ($poste->photo != null)
+                                    <img src="{{ asset('storage/' . $poste->photo) }}"
+                                        class="h-64 my-4 object-contain left-0 px-4 py" />
+                                @endif
                             </div>
-                            <div class="pr-6 text-right py-4">
+                            <div class="pr-4 absolute right-0 top-0 text-right py-2">
                                 <div class="relative group">
                                     <i class='bx bx-dots-horizontal-rounded text-2xl'></i>
                                     <div
@@ -321,71 +316,50 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="overflow-hidden   max-md:max-w-[300px]">
-                            <div class="p-6">
-                                <p class="text-[15px] leading-relaxed">{{ $poste->contenue }}</p>
-                            </div>
-                            @if ($poste->photo != null)
-                                <img src="{{ asset('storage/' . $poste->photo) }}" class=" object-contain px-6" />
-                            @endif
-                        </div>
-                        <div class=" mt-4">
-                            <form id="commentForm" data-publication-id="{{ $poste->id }}"
-                                class="flex items-center p-5 mx-6  border rounded">
-                                @csrf
-                                <input required placeholder="Ajouter un commentaire..." type="text"
-                                    name="contenue"
-                                    class="h-full w-full bg-transparent focus:outline-none pl-2 text-black" />
-                                <input type="hidden" name="publication_id" value="{{ $poste->id }}">
-                                <button type="submit" class="flex items-center justify-center h-full cursor-pointer">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 664 663"
-                                        class="h-4 transition-all duration-300">
-                                        <path fill="none"
-                                            d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888">
-                                        </path>
-                                        <path stroke-linejoin="round" stroke-linecap="round" stroke-width="33.67"
-                                            stroke="#6c6c6c"
-                                            d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888">
-                                        </path>
-                                    </svg>
-                                </button>
-                            </form>
-                            <div class="flex items-center ml-6 gap-2  text-blue-500  cursor-pointer my-4 text-sm">
-
-                                <i class='bx bx-comment'></i>
-                                <button onclick="toggleModal('comments{{ $poste->id }}')">afficher
-                                    les 34 commentaires
-                                </button>
-                            </div>
-                        </div>
-                        <div id='comments{{ $poste->id }}'
-                            class="hidden fixed top-0 bottom-0 left-0 right-0 bg-black/40 z-40">
-                            <div class="w-[70%] h-screen cursor-pointer" onclick="toggleModal('comments{{ $poste->id }}')">
-                            </div>
-                            <nav
-                                class="  bg-[#FFFFFF]  h-screen z-50 fixed top-0 right-0 w-[30%] px-4 font-[sans-serif] overflow-y-auto">
-                                <div class="pt-24 pb-5 ">
-                                    @foreach ($poste->commentaires as $commentaire)
-                                        <div class="px-4 py-2 pt-4 flex gap-2">
-                                            <img src="{{ asset('storage/' . $commentaire->user->photo) }}"
-                                                class="w-9 h-9 rounded-full" />
-                                            <div>
-                                                <h4 class="text-sm  font-[600]">
-                                                    {{ $commentaire->user->nom }} {{ $commentaire->user->prenom }}
-                                                </h4>
-                                                <p class="text-xs text-gray-700">
-                                                    {{ $commentaire->created_at->diffForHumans() }}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <p class="mx-5 text-sm font-light text-gray-700">
-                                            {{ $commentaire->contenue }}
-                                        </p>
-                                    @endforeach
+                        <div class="flex justify-between  mt-8 items-center">
+                            <div class="flex items-center gap-3">
+                                <img src='{{ asset('storage/' . $poste->user->photo) }}'
+                                    class="w-10 h-10 rounded-full" />
+                                <div>
+                                    <p class="text-sm text-gray-500">{{ $poste->user->nom }}
+                                        {{ $poste->user->prenom }}</p>
+                                    <p class="text-xs block text-gray-400 ">
+                                        {{ Carbon\Carbon::parse($poste->created_at)->diffForHumans() }}</p>
                                 </div>
-
-                            </nav>
+                            </div>
+                            <div class="text-blue-500 mr-10 gap-2 flex mt-2 items-center">
+                                <p>5</p>
+                                <button onclick="toggleModal('comments{{ $poste->id }}')"
+                                    class='bx bx-message-rounded 5 text-2xl '></button>
+                                <div id='comments{{ $poste->id }}'
+                                    class=" hidden fixed top-0 bottom-0 left-0 right-0 bg-black/40 z-40">
+                                    <div class="w-[70%] h-screen cursor-pointer"
+                                        onclick="toggleModal('comments{{ $poste->id }}')">
+                                    </div>
+                                    <nav
+                                        class="  bg-[#FFFFFF]  h-screen z-50 fixed top-0 right-0 w-[30%] px-4 font-[sans-serif] overflow-y-auto">
+                                        <div class="pt-28 pb-5 ">
+                                            <form class="commentForm" data-publication-id="{{ $poste->id }}"
+                                                class="flex items-center mb-4 border rounded">
+                                                @csrf
+                                                <input required placeholder="Ajouter un commentaire..."
+                                                    type="text" name="contenue"
+                                                    class="h-20 w-full border rounded  bg-transparent focus:outline-none pl-2 text-black" />
+                                                <input type="hidden" name="publication_id"
+                                                    value="{{ $poste->id }}">
+                                                <button type="submit"
+                                                    class="flex items-center ml-2 text-sm bg-gray-100 my-2 shadow-md  px-4 py-2 mb-6 rounded-full">
+                                                    Envoyer
+                                                </button>
+                                            </form>
+                                            <div id="comment-container-{{ $poste->id }}" data-poste-id="{{ $poste->id }}">
+                                        </div>
+                                    </nav>
+                                </div>
+                            </div>
                         </div>
+                        
+                        
                     </div>
                 @endforeach
             </div>
@@ -393,35 +367,109 @@
     </div>
 
     <script>
-        $(document).ready(function() {
-            $('#commentForm').submit(function(event) {
+        $(document).ready(function () {
+            $('.commentForm').each(function () {
+                const postId = $(this).data("publication-id");
+                getAllComments(postId);
+            });
+        
+            function getAllComments(postId) {
+            $('#comment-container-' + postId).empty();
+            $.ajax({
+                url: '/comments/' + postId,
+                type: 'GET',
+                success: function (response) {
+                    if (response.success) {
+                        response.comments.forEach(function (comment) {
+                            var createdAt = new Date(comment.created_at);
+                            var formattedDate = createdAt.toLocaleString('fr-FR', { 
+                                year: 'numeric', 
+                                month: '2-digit', 
+                                day: '2-digit', 
+                                hour: '2-digit', 
+                                minute: '2-digit' 
+                            });
+                            var commentHTML = `
+                                
+                                <div class="px-4 py-2 pt-4 flex gap-2">
+                                    <img src="storage/${comment.user.photo}" class="w-9 h-9 rounded-full" />
+                                    <div>
+                                        <div class="flex gap-3 items-center">
+                                        <h4 class="text-sm font-[600]">
+                                            ${comment.user.nom} ${comment.user.prenom}
+                                        </h4>
+                                        <button class='bx bxs-trash cursor-pointer' onclick="deleteComment(${comment.id})"></button>                                           
+                                        </div>
+                                        <p class="text-xs text-gray-700">
+                                            ${formattedDate}
+                                        </p>
+                                    </div>
+                                </div>
+                                <p class="mx-5 text-sm font-light text-gray-700">
+                                    ${comment.contenue}
+                                </p>`;
+                            $('#comment-container-' + postId).append(commentHTML);
+                        });
+                    } else {
+                        console.log("Error retrieving comments:", response.error);
+                    }
+                },
+                error: function (xhr) {
+                    console.log("Error retrieving comments:", xhr.responseText);
+                }
+            });
+        }
+        
+        
+            $('.commentForm').submit(function (event) {
                 event.preventDefault();
-
+        
                 const form = $(this);
-                const publicationId = form.data("publication-id");
+                const postId = form.data("publication-id");
                 const formData = form.serialize();
-
+        
                 $.ajax({
                     type: "POST",
                     url: "/commentaires/store",
                     data: formData,
-                     
-                    success: function(data) {
+                    success: function (data) {
                         if (data.success) {
-                            $('#commentForm')[0].reset();
+                            form[0].reset();
+                            getAllComments(postId);
                         } else {
-                            $('#commentForm')[0].reset();
-
                             console.error("Failed to add comment:", data.error);
                         }
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error("Error adding comment:", error);
                     }
                 });
             });
         });
-    </script>
+        function deleteComment(commentId) {
+    if (confirm("Are you sure you want to delete this comment?")) {
+        $.ajax({
+            url: '/comments/' + commentId,
+            type: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+                if (response.success) {
+                    $('#comment-container-' + commentId).remove();
+                } else {
+                    console.error("Failed to delete comment:", response.error);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error("Error deleting comment:", error);
+            }
+        });
+    }
+}
+
+
+                </script>
 </body>
 
 </html>

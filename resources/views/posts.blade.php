@@ -90,6 +90,7 @@
                 </div>
                 <hr class="my-10" />
                 <div class="grid gap-16">
+
                     @foreach ($postes as $poste)
                         <div class="rounded border p-4 overflow-hidden group">
                             <div>
@@ -135,101 +136,157 @@
                                                         Envoyer
                                                     </button>
                                                 </form>
-                                                <div id="comment-container-{{ $poste->id }}" data-poste-id="{{ $poste->id }}">
-                                            </div>
+                                                <div id="comment-container-{{ $poste->id }}"
+                                                    data-poste-id="{{ $poste->id }}">
+                                                </div>
                                         </nav>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     @endforeach
+                    <div class="flex justify-center">
+                    <div class="d-flex justify-content-center my-3">  <ul class="pagination flex justify-content-center border-2 rounded-md divide-x-2 ">
+                        @if ($postes->onFirstPage())
+                          <li class=" text-base font-bold text-blue-300 text-center min-w-[110px] px-2 py-2 cursor-not-allowed">
+                            Précédent
+                          </li>
+                        @else
+                          <li class=" hover:bg-gray-200 cursor-pointer text-center text-base font-bold text-blue-500 min-w-[110px] px-2 py-2">
+                            <a href="{{ $postes->previousPageUrl() }}">
+                                Précédent
+                            </a>
+                          </li>
+                        @endif
+                    
+                        @if ($postes->hasMorePages())
+                          <li class=" hover:bg-gray-200 cursor-pointer text-center text-base font-bold text-blue-500 min-w-[110px] px-2 py-2">
+                            <a href="{{ $postes->nextPageUrl() }}">Suivant</a>
+                          </li>
+                        @else
+                          <li class="  text-base font-bold text-center   text-blue-300 min-w-[110px] px-2 py-2 cursor-not-allowed">
+                            Suivant 
+                          </li>
+                        @endif
+                      </ul>
+                    </div>
+                </div>
+                    
                 </div>
             </div>
         </div>
 
-        <div class="flex justify-center  my-10"> {{ $postes->links() }}</div>
 
 
 
 
         <script>
-$(document).ready(function () {
-    $('.commentForm').each(function () {
-        const postId = $(this).data("publication-id");
-        getAllComments(postId);
-    });
-
-    function getAllComments(postId) {
-    $('#comment-container-' + postId).empty();
-    $.ajax({
-        url: '/comments/' + postId,
-        type: 'GET',
-        success: function (response) {
-            if (response.success) {
-                response.comments.forEach(function (comment) {
-                    // Parse the timestamp
-                    var createdAt = new Date(comment.created_at);
-                    var formattedDate = createdAt.toLocaleString('fr-FR', { 
-                        year: 'numeric', 
-                        month: '2-digit', 
-                        day: '2-digit', 
-                        hour: '2-digit', 
-                        minute: '2-digit' 
-                    });
-                    var commentHTML = `
-                        <div class="px-4 py-2 pt-4 flex gap-2">
-                            <img src="storage/${comment.user.photo}" class="w-9 h-9 rounded-full" />
-                            <div>
-                                <h4 class="text-sm font-[600]">
-                                    ${comment.user.nom} ${comment.user.prenom}
-                                </h4>
-                                <p class="text-xs text-gray-700">
-                                    ${formattedDate}
-                                </p>
-                            </div>
-                        </div>
-                        <p class="mx-5 text-sm font-light text-gray-700">
-                            ${comment.contenue}
-                        </p>`;
-                    $('#comment-container-' + postId).append(commentHTML);
-                });
-            } else {
-                console.log("Error retrieving comments:", response.error);
-            }
-        },
-        error: function (xhr) {
-            console.log("Error retrieving comments:", xhr.responseText);
-        }
-    });
-}
-
-
-    $('.commentForm').submit(function (event) {
-        event.preventDefault();
-
-        const form = $(this);
-        const postId = form.data("publication-id");
-        const formData = form.serialize();
-
-        $.ajax({
-            type: "POST",
-            url: "/commentaires/store",
-            data: formData,
-            success: function (data) {
-                if (data.success) {
-                    form[0].reset();
+            $(document).ready(function() {
+                $('.commentForm').each(function() {
+                    const postId = $(this).data("publication-id");
                     getAllComments(postId);
-                } else {
-                    console.error("Failed to add comment:", data.error);
+                });
+
+                function getAllComments(postId) {
+                    $('#comment-container-' + postId).empty();
+                    $.ajax({
+                        url: '/comments/' + postId,
+                        type: 'GET',
+                        success: function(response) {
+                            if (response.success) {
+                                response.comments.forEach(function(comment) {
+                                    var createdAt = new Date(comment.created_at);
+                                    var formattedDate = createdAt.toLocaleString('fr-FR', {
+                                        year: 'numeric',
+                                        month: '2-digit',
+                                        day: '2-digit',
+                                        hour: '2-digit',
+                                        minute: '2-digit'
+                                    });
+                                    var commentHTML = `
+                                        <div class="px-4 py-2 pt-4 flex gap-2" id="comment-${comment.id}">
+                                            <img src="storage/${comment.user.photo}" class="w-9 h-9 rounded-full" />
+                                            <div>
+                                                <div class="flex gap-3 items-center">
+                                                    <h4 class="text-sm font-[600]">
+                                                        ${comment.user.nom} ${comment.user.prenom}
+                                                    </h4>`;
+                                    var authId = {{ auth()->id() }};
+                                    if (authId === comment.user.id) {
+                                        commentHTML +=
+                                            `<button class="bx bxs-trash cursor-pointer" onclick="deleteComment(${comment.id})"></button>`;
+                                    }
+                                    commentHTML += `
+                                                </div>
+                                                <p class="text-xs text-gray-700">
+                                                    ${formattedDate}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <p class="mx-5 text-sm font-light text-gray-700">
+                                            ${comment.contenue}
+                                        </p>`;
+                                    $('#comment-container-' + postId).append(commentHTML);
+                                });
+                            } else {
+                                console.log("Error retrieving comments:", response.error);
+                            }
+                        },
+                        error: function(xhr) {
+                            console.log("Error retrieving comments:", xhr.responseText);
+                        }
+                    });
                 }
-            },
-            error: function (xhr, status, error) {
-                console.error("Error adding comment:", error);
+
+                $('.commentForm').submit(function(event) {
+                    event.preventDefault();
+
+                    const form = $(this);
+                    const postId = form.data("publication-id");
+                    const formData = form.serialize();
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/commentaires/store",
+                        data: formData,
+                        success: function(data) {
+                            if (data.success) {
+                                form[0].reset();
+                                getAllComments(postId);
+                            } else {
+                                console.error("Failed to add comment:", data.error);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("Error adding comment:", error);
+                        }
+                    });
+                });
+            });
+
+            function deleteComment(commentId) {
+                if (confirm("Are you sure you want to delete this comment?")) {
+                    $.ajax({
+                        url: '/comments/' + commentId,
+                        type: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                $('#comment-' + commentId).remove();
+                            } else {
+                                console.error("Failed to delete comment:", response.error);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error("Error deleting comment:", error);
+                        }
+                    });
+                }
             }
-        });
-    });
-});
         </script>
+
 </body>
 
 </html>

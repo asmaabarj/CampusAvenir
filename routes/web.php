@@ -115,7 +115,12 @@ Route::middleware(['check.role:user'])->group(function () {
     Route::post('/posts',[PostesController::class, 'store']);
     Route::get('/profileUser',[UserController::class,'profileUser']);
     Route::post('/commentaires/store', [CommentaireController::class, 'store']);
-
+    Route::delete('/comments/{id}', [CommentaireController::class, 'destroy']);
+    Route::get('/get-auth-user-id', function () {
+        $authId = auth()->id();
+    
+        return response()->json(['success' => true, 'authId' => $authId]);
+    });
 
    });
     Route::delete('/posts/{id}',[PostesController::class, 'destroy']);

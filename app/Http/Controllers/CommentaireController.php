@@ -81,8 +81,28 @@ class CommentaireController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
+
+public function destroy($id)
+{
+    $comment = Commentaire::find($id);
+
+    if (!$comment) {
+        return response()->json(['error' => 'Comment not found'], 404);
     }
+
+    // Ensure the authenticated user is authorized to delete the comment
+    if ($comment->user_id !== auth()->id()) {
+        return response()->json(['error' => 'Unauthorized'], 403);
+    }
+
+    try {
+        $comment->delete();
+        return response()->json(['success' => true], 200);
+    } catch (\Exception $e) {
+        return response()->json(['error' => 'Failed to delete comment'], 500);
+    }
+}
+
+    
+
 }
