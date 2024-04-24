@@ -140,29 +140,31 @@ class UserController extends Controller
 
 
     public function profileUser()
-    {
-        $universitiesnav=Etablissment::inRandomOrder()
-            ->limit(5)
-            ->get();
-        $user = User::findOrFail(Auth::id());
-        $domainesnav = Domaine::inRandomOrder()
+{
+    Carbon::setLocale('fr');
+    $user = User::findOrFail(Auth::id());
+    $domainesnav = Domaine::inRandomOrder()
         ->limit(5)
         ->get();
-        Carbon::setLocale('fr');
-        $postes=publication::where('status','1')->get()->where('user_id', Auth::id());
-        $publications = Publication::with(['user', 'commentaires.user'])
-        ->orderBy('created_at', 'desc')
+    $universitiesnav = Etablissment::inRandomOrder()
+        ->limit(5)
         ->get();
-        return view('profileUser', [
-            'user' => $user,
-            'domainesnav'=>$domainesnav,
-            'publications' => $publications,
-            'postes'=>$postes,
-            'universitiesnav'=>$universitiesnav
+    
+    $postes = Publication::withCount('commentaires')
+                ->where('status', '1')
+                ->where('user_id', Auth::id())
+                ->get();
+
+    return view('profileUser', [
+        'user' => $user,
+        'domainesnav' => $domainesnav,
+        'postes' => $postes,
+        'universitiesnav' => $universitiesnav
+    ]);
+}
 
 
-        ]);
-    }
+
     public function deleteAccount($id)
     {
         $user = User::find($id);

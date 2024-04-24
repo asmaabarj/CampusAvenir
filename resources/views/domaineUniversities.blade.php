@@ -17,11 +17,11 @@
       
         <div class="mt-20">        
             <section class=" bg-opacity-30 py-10 sm:py-16 lg:py-24">
-                <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-10">
                     <div class="grid items-center grid-cols-1 gap-12 lg:grid-cols-2">
                         <div>
                             <p class="text-base font-semibold tracking-wider text-blue-600 uppercase">votre Guide Ultime CampusAvenir</p>
-                            <h1 class="mt-4 text-4xl font-bold text-black lg:mt-8 sm:text-5xl xl:text-6xl">{{$domain->titre}}</h1>
+                            <h1 class="mt-4 text-3xl font-bold text-black lg:mt-8 sm:text-4xl xl:text-5xl">{{$domain->titre}}</h1>
                             <p class="mt-4 text-base text-black lg:mt-8 sm:text-lg">{{$domain->description}}</p>
         
                         </div>
@@ -34,12 +34,12 @@
             </section>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-24  gap-8 mt-8 universities-grid">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 px-32  gap-8 mt-8 ">
             @foreach ($universities as $university)
-                <div class="bg-white border-b-2 border-blue-500 overflow-hidden group">
+                <div class="bg-white shadow-md border-b-2 border-blue-500 overflow-hidden group">
                     <div class="relative overflow-hidden">
                         <img src="{{ asset('storage/' . $university->photo) }}" alt="University Photo"
-                            class="w-full h-40 object-cover">
+                            class="w-full h-48 object-cover">
                     </div>
                     <div class="p-6">
                         <h3 class="text-lg font-bold text-[#333]">{{ $university->nom }}</h3>

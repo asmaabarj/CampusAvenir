@@ -15,17 +15,13 @@ class CommentaireController extends Controller
     public function index($id)
     {
         $comments = Commentaire::where('commentable_id', $id)->with('user')->get();
-
+        
         return response()->json([
             'success' => true,
             'comments' => $comments,
         ]);
     }
-
-
-    public function create()
-    {
-    }
+    
 
 
     public function store(CreateCommentRequest $request)
@@ -51,37 +47,7 @@ class CommentaireController extends Controller
         return response()->json(['success' => true, 'comment' => $comment], 200);
     }
 
-
-
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-
+ 
 public function destroy($id)
 {
     $comment = Commentaire::find($id);

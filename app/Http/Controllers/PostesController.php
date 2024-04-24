@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Domaine;
+use App\Models\Commentaire;
 use App\Models\Etablissment;
 use App\Models\publication;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\CreatePosteRequest;
+
 
 class PostesController extends Controller
 {
@@ -48,24 +50,28 @@ class PostesController extends Controller
     
 
     public function show()
-    {
-        Carbon::setLocale('fr');
-        $user = User::findOrFail(Auth::id());
-        $postes = publication::where('status', '1')->orderByDesc('created_at')->paginate(4);
-        $domainesnav = Domaine::inRandomOrder()
-            ->limit(5)
-            ->get();  
-        $universitiesnav = Etablissment::inRandomOrder()
-            ->limit(5)
-            ->get();
-    
-        return view('posts', [
-            'domainesnav' => $domainesnav,
-            'postes' => $postes,
-            'user' => $user,
-            'universitiesnav' => $universitiesnav
-        ]);
-    }
+{
+    Carbon::setLocale('fr');
+    $user = User::findOrFail(Auth::id());
+    $postes = Publication::withCount('commentaires') 
+                        ->where('status', '1')
+                        ->orderByDesc('created_at')
+                        ->paginate(4);
+    $domainesnav = Domaine::inRandomOrder()
+                    ->limit(5)
+                    ->get();  
+    $universitiesnav = Etablissment::inRandomOrder()
+                        ->limit(5)
+                        ->get();
+
+    return view('posts', [
+        'domainesnav' => $domainesnav,
+        'postes' => $postes,
+        'user' => $user,
+        'universitiesnav' => $universitiesnav,
+    ]);
+}
+
     
         
 
