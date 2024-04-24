@@ -73,6 +73,7 @@ class DomaineController extends Controller
 
     public function show()
     {
+        $user = Auth::check() ? User::find(Auth::id()) : null;
         $domainesnav = Domaine::inRandomOrder()
         ->limit(5)
         ->get();  
@@ -82,7 +83,8 @@ class DomaineController extends Controller
             ->get(); 
         return view('domaines', ['domaines' => $domaines,
                                  'domainesnav'=>$domainesnav,
-                                 'universitiesnav'=>$universitiesnav
+                                 'universitiesnav'=>$universitiesnav,
+                                 'user'=>$user
     ]);
     
 

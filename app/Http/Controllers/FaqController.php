@@ -62,6 +62,7 @@ class FaqController extends Controller
     public function show()
     {
         $faqs = Faq::all();
+        $user = Auth::check() ? User::find(Auth::id()) : null;
         $domainesnav = Domaine::inRandomOrder()
         ->limit(5)
         ->get();  
@@ -70,7 +71,8 @@ class FaqController extends Controller
             ->get(); 
         return view('faqs', ['faqs' => $faqs,
                              'domainesnav' => $domainesnav,
-                             'universitiesnav'=>$universitiesnav
+                             'universitiesnav'=>$universitiesnav,
+                             'user'=>$user
                             ]);
     }
     

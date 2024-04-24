@@ -149,7 +149,7 @@
                             cette établissement. Nous sommes impatients de vous entendre !</p>
                     </div>
                     <div class="px-6 py-12 sm:p-12">
-                        <form action="{{ route('commentaires.store') }}" method="POST" class="mt-14">
+                        <form action="/commentaires/store" method="POST" class="mt-14">
                             @csrf
                             <div class="grid grid-cols-1 gap-x-5 gap-y-4">
                                 <div class="sm:col-span-2">

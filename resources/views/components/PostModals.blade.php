@@ -41,35 +41,3 @@
                             </div>
                         </div>
                     </div>
-                    <div id="updateModal{{ $poste->id }}"
-                        class="hidden h-screen flex bg-black/70 fixed top-0 right-0 left-0 z-50 justify-center items-center w-full">
-                        <form action="/posts/{{ $poste->id }}" method="POST" enctype="multipart/form-data"
-                            class="grid grid-cols-1 w-[50%] p-8 relative rounded shadow-md bg-white gap-8">
-                            @csrf
-                            @method('PUT')
-                            <div class="mb-2">
-                                <label class="block text-black text-sm font-bold mb-2">Photo:</label>
-                                <input type="file" name="photo" value="{{ $poste->photo }}"
-                                    class="w-full px-4 py-3 border rounded-md focus:outline-none focus:border-blue-600">
-                                <img src="{{ asset('storage/' . $poste->photo) }}" alt="Post photo"
-                                    class="w-20 h-20 mt-2">
-                            </div>
-
-                            <div class="mb-2">
-                                <label for="description"
-                                    class="block text-black text-sm font-bold mb-2">Description:</label>
-                                <textarea id="description" name="description"
-                                    class="w-full px-4 py-14 border rounded-md focus:outline-none focus:border-blue-600">{{ $poste->contenue }}</textarea>
-                            </div>
-
-                            <div class="mb-2">
-                                <button type="submit"
-                                    class="px-4 py-2 bg-gradient-to-r from-blue-300 to-blue-800 text-white rounded-md focus:outline-none">
-                                    Enregistrer
-                                </button>
-                                <button onclick="toggleModal('updateModal')" type="button" name="annuler"
-                                    class="bx bx-x text-black absolute text-2xl top-2 right-2 text-white rounded-md focus:outline-none">
-                                </button>
-                            </div>
-                        </form>
-                    </div>

@@ -14,6 +14,33 @@
 <body>
 <main>
 <div class="flex justify-center  h-screen items-center">
+    @if (session('error'))
+    <div id="error-message"
+        class="fixed inset-0 px-4 flex flex-wrap justify-center items-center w-full h-full z-[1000] before:fixed before:inset-0 before:w-full before:h-full before:bg-[rgba(0,0,0,0.5)] overflow-auto font-[sans-serif]">
+        <div class="w-full max-w-md bg-white shadow-lg rounded-md px-5 py-10 relative mx-auto text-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-24 h-24 fill-red-500 absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2" viewBox="0 0 32 32">
+                <circle cx="16" cy="16" r="15" fill="#FFFFFF" />
+                <path 
+                    d="M16 1a15 15 0 1 0 15 15A15 15 0 0 0 16 1zm6.36 20L21 22.36l-5-4.95-4.95 4.95L9.64 21l4.95-5-4.95-4.95 1.41-1.41L16 14.59l5-4.95 1.41 1.41-5 4.95z"
+                    fill="#E70E0E" />
+            </svg>
+            
+            <div class="mt-8">
+                <h3 class="text-2xl font-semibold flex-1">Oops!</h3>
+                <p class="text-sm text-gray-500 mt-2">{{ session('error') }}</p>
+                <button type="submit"
+                    class="px-5 py-2.5 mt-8 w-full rounded text-white text-sm font-semibold border-none outline-none bg-red-500 hover:bg-red-600">Compris</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        setTimeout(function () {
+            document.getElementById('error-message').style.display = 'none';
+        }, 2000);
+    </script>
+    @endif
+    
     <form action="/login" method="POST" class="flex lg:w-[30%] w-96 mx-auto flex-col space-y-5 rounded-lg border py-10 px-5 bg-[#F9F9F9] shadow-xl">
         @csrf
         <div class="mx-auto mb-2 space-y-3">

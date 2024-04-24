@@ -21,7 +21,7 @@
                 <div class="border rounded-md overflow-hidden max-md:max-w-[300px]">
                     <div class="flex justify-between">
                         <div class="p-4 flex gap-2">
-                            <img src="{{ asset('storage/images/' . $poste->user->photo) }}" class="w-10 h-10 rounded-full" />
+                            <img src="{{ asset('storage/' . $poste->user->photo) }}" class="w-10 h-10 rounded-full" />
                             <div>
                                 <h4 class="text-base font-bold">{{ $poste->user->nom }}{{ $poste->user->prenom }}</h4>
                                 <p class="text-xs mt-1 test-gray-600">{{ $poste->created_at }}</p>

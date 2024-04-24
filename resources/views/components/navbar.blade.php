@@ -1,5 +1,5 @@
 <header
-    class='fixed left-0 right-0 top-0 shadow-md font-sans min-h-[80px] z-50 bg-gradient-to-r from-[#FEFEFE] via-[#EFEEEC]  to-[#E4E4E4]'>
+    class='fixed left-0 right-0 top-0 shadow-md font-sans min-h-[80px] z-50 bg-gradient-to-r from-[#FEFEFE] via-[#EFEEEE]  to-[#f5f7fa]'>
     <div class='flex flex-wrap items-center justify-between px-10 py-3 gap-4 relative'>
         
             <h1
@@ -12,7 +12,7 @@
                     <img src="{{asset('storage/' . $user->photo)}}" class="w-10 h-10  rounded-full" />
 
                     <div
-                        class="bg-white rounded z-50  group-hover:block hover:block hidden shadow-md py-6 px-6 sm:min-w-[220px]  absolute right-0  top-9">
+                        class="bg-white rounded z-50  group-hover:block hover:block hidden shadow-md py-6 px-6 sm:min-w-[250px]  absolute right-0  top-9">
                         <div class="text-sm flex mb-3 justify-center items-center gap-3 text-gray-500  hover:text-black">
                             <img src="{{asset('storage/' . $user->photo)}}" class="w-12 h-12  rounded-full" />
                             <div>

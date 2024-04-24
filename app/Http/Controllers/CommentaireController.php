@@ -12,8 +12,14 @@ use App\Http\Requests\CreateCommentRequest;
 class CommentaireController extends Controller
 {
 
-    public function index()
+    public function index($id)
     {
+        $comments = Commentaire::where('commentable_id', $id)->with('user')->get();
+
+        return response()->json([
+            'success' => true,
+            'comments' => $comments,
+        ]);
     }
 
 
@@ -21,31 +27,31 @@ class CommentaireController extends Controller
     {
     }
 
- 
+
     public function store(CreateCommentRequest $request)
     {
-        $request->validated();
-    
+        $validatedData = $request->validated();
+
+        $comment = new Commentaire([
+            'contenue' => $validatedData['contenue'],
+            'user_id' => auth()->id(),
+        ]);
+
         $commentableType = $request->has('publication_id') ? Publication::class : Etablissment::class;
         $commentableId = $request->input('publication_id') ?? $request->input('etablissment_id');
-    
+
         $commentableModel = $commentableType::find($commentableId);
+
         if (!$commentableModel) {
             return response()->json(['error' => 'Commentable model not found'], 404);
         }
-    
-        $comment = new Commentaire([
-            'contenue' => $request->input('contenue'),
-            'user_id' => auth()->id(),
-            'commentable_type' => $commentableType,
-            'commentable_id' => $commentableId,
-        ]);
-    
-        $comment->save();
-    
-        return redirect()->back()->with('success', 'Le commentaire a été ajouté avec succès.');
+
+        $commentableModel->commentaires()->save($comment);
+
+        return response()->json(['success' => true, 'comment' => $comment], 200);
     }
-    
+
+
 
 
     /**

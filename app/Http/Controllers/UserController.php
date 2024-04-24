@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Domaine;
-use App\Models\favoris;
+use App\Models\commentaire;
 use App\Models\publication;
-use Illuminate\Http\Request;
+use App\Models\Etablissment;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -14,6 +14,8 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Http\Requests\CreateLoginRequest;
 use App\Http\Requests\CreateRegisterRequest;
 use App\Http\Requests\UpdatePasswordRequest;
+use App\Models\favoris;
+use App\Models\Review;
 
 class UserController extends Controller
 {
@@ -53,7 +55,12 @@ class UserController extends Controller
     {
         try {
             $validatedData = $request->validated();
+            $userBanned = User::withTrashed()->where('email', $validatedData['email'])->first();
+            if ($userBanned->trashed()) {
+                auth()->logout();
 
+                return redirect('/login')->with('error', 'Votre compte a été banni');
+            }
             if (auth()->attempt([
                 'email' => $validatedData['email'],
                 'password' => $validatedData['password']
@@ -134,6 +141,9 @@ class UserController extends Controller
 
     public function profileUser()
     {
+        $universitiesnav=Etablissment::inRandomOrder()
+            ->limit(5)
+            ->get();
         $user = User::findOrFail(Auth::id());
         $domainesnav = Domaine::inRandomOrder()
         ->limit(5)
@@ -147,10 +157,32 @@ class UserController extends Controller
             'user' => $user,
             'domainesnav'=>$domainesnav,
             'publications' => $publications,
-            'postes'=>$postes
+            'postes'=>$postes,
+            'universitiesnav'=>$universitiesnav
 
 
         ]);
+    }
+    public function deleteAccount($id)
+    {
+        $user = User::find($id);
+
+        if ($user) {
+            $user = user::where('id', $id)->first();
+            if ($user) {
+                $user->delete();
+                commentaire::where('user_id', $user)->delete();
+                favoris::where('user_id', $user)->delete();
+                publication::where('user_id',$user)->delete();
+                Review::where('user_id',$user)->delete();
+            }
+
+
+            $user->delete();
+        } else {
+        }
+
+        return redirect()->back()->with('error', 'cet utilisateur a été banné avec succès ');
     }
     
 }

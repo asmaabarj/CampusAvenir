@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Domaine;
-use App\Models\favoris;
+use App\Models\Etablissment;
 use App\Models\publication;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -56,7 +56,9 @@ class PostesController extends Controller
         $domainesnav = Domaine::inRandomOrder()
         ->limit(5)
         ->get();  
-
+        $universitiesnav=Etablissment::inRandomOrder()
+            ->limit(5)
+            ->get();
         $publications = Publication::with(['user', 'commentaires.user'])
         ->orderBy('created_at', 'desc')
         ->get();
@@ -64,7 +66,8 @@ class PostesController extends Controller
         'domainesnav'=>$domainesnav,
         'postes'=>$postes,
         'publications' => $publications,
-        'user'=>$user
+        'user'=>$user,
+        'universitiesnav'=>$universitiesnav
          ]);
         }
         

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('etablissment_id')->constrained('etablissments')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->enum('note', ['1','2','3','4','5']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

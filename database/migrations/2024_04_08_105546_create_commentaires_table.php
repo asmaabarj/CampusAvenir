@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('commentable_id')->nullable();
             $table->string('commentable_type')->nullable();
             $table->index(['commentable_id', 'commentable_type']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

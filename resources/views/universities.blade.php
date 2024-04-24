@@ -180,7 +180,7 @@
                                         </button>
                                     </form>
                                 @endif
-                                <a href="{{ route('etablissment.show', $university->id) }}" class="flex items-center gap-2 mt-2 text-blue-500">
+                                <a href="/etablissment/{{$university->id}}" class="flex items-center gap-2 mt-2 text-blue-500">
                                     <p class="text-sm font-[500] uppercase">détails</p>
                                     <i class='bx bx-right-arrow-alt text-xl'></i>
                                 </a>                                

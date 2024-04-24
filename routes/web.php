@@ -76,32 +76,31 @@ Route::middleware(['check.role:admin'])->group(function () {
     Route::resource('/university', EtablissmentController::class)->except(['show', 'create', 'edit']);
     Route::get('/addUniversity', [EtablissmentController::class, 'create']);
     Route::get('/university/{id}', [EtablissmentController::class, 'edit']);
+
     Route::get('/concour/{id}', [ConcourController::class, 'edit']);
     Route::resource('/concour', ConcourController::class)->except(['show', 'create','edit']);
 
     Route::post('/posts/accept/{id}', [PostesController::class, 'updateStatus']);
     Route::delete('/posts/{id}',[PostesController::class, 'destroy']);
     Route::get('/managePosts',[PostesController::class,'index']);
+
     Route::resource('/contact', ContactController::class)->only(['index', 'destroy']);
 
+    Route::post('DeleteAccount/{id}',[UserController::class, 'deleteAccount']);
     Route::get('/profileAdmin',[UserController::class,'profileAdmin']);
-    Route::post('/admin/update-profile', [UserController::class, 'updateProfile'])->name('admin.updateProfile');
 
 });
 // -------------------------------------------------------------------
 
 
-Route::get('/universities', function () {
-    return view('universities');
-});
-Route::get('/universities', [EtablissmentController::class, 'show']);
 
+
+Route::get('/universities', [EtablissmentController::class, 'show']);
 Route::get('/concours', [ConcourController::class, 'show']);
 Route::post('/contact', [ContactController::class, 'store']);
+Route::post('/update-profile', [UserController::class, 'updateProfile']);
+Route::post('/updatePassword', [UserController::class, 'updatePassword']);
 
-Route::get('/profileUser', function () {
-    return view('ProfileUser');
-});
 
 Route::middleware(['check.role:user'])->group(function () {
 
@@ -109,18 +108,19 @@ Route::middleware(['check.role:user'])->group(function () {
     Route::get('/favoris', [FavorisController::class, 'show']);
     Route::put('/posts/{id}', [PostesController::class, 'update']);
     Route::post('/commentaires', [CommentaireController::class, 'store'])->name('commentaires.store');
+    Route::get('/comments/{postId}', [CommentaireController::class, 'index']);
     Route::resource('commentaires', CommentaireController::class)
     ->only(['store', 'destroy']);
     Route::get('/posts', [PostesController::class, 'show']);
     Route::post('/posts',[PostesController::class, 'store']);
     Route::get('/profileUser',[UserController::class,'profileUser']);
+    Route::post('/commentaires/store', [CommentaireController::class, 'store']);
+
 
    });
     Route::delete('/posts/{id}',[PostesController::class, 'destroy']);
-    Route::post('/updatePassword', [UserController::class, 'updatePassword']);
-    Route::post('/update-profile', [UserController::class, 'updateProfile']);
     Route::get('/', [HomePageController::class, 'index']);
     Route::get('/filter', [EtablissmentController::class, 'filter']);
     Route::get('/search', [EtablissmentController::class, 'search']);
-    Route::get('/etablissment/{id}', [EtablissmentController::class, 'showSingle'])->name('etablissment.show');
-    Route::post('/ratings/store', [RatingController::class, 'store'])->name('ratings.store');
+    Route::get('/etablissment/{id}', [EtablissmentController::class, 'showSingle']);
+    Route::post('/ratings/store', [RatingController::class, 'store']);
