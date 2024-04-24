@@ -146,32 +146,37 @@
                         </div>
                     @endforeach
                     <div class="flex justify-center">
-                    <div class="d-flex justify-content-center my-3">  <ul class="pagination flex justify-content-center border-2 rounded-md divide-x-2 ">
-                        @if ($postes->onFirstPage())
-                          <li class=" text-base font-bold text-blue-300 text-center min-w-[110px] px-2 py-2 cursor-not-allowed">
-                            Précédent
-                          </li>
-                        @else
-                          <li class=" hover:bg-gray-200 cursor-pointer text-center text-base font-bold text-blue-500 min-w-[110px] px-2 py-2">
-                            <a href="{{ $postes->previousPageUrl() }}">
-                                Précédent
-                            </a>
-                          </li>
-                        @endif
-                    
-                        @if ($postes->hasMorePages())
-                          <li class=" hover:bg-gray-200 cursor-pointer text-center text-base font-bold text-blue-500 min-w-[110px] px-2 py-2">
-                            <a href="{{ $postes->nextPageUrl() }}">Suivant</a>
-                          </li>
-                        @else
-                          <li class="  text-base font-bold text-center   text-blue-300 min-w-[110px] px-2 py-2 cursor-not-allowed">
-                            Suivant 
-                          </li>
-                        @endif
-                      </ul>
+                        <div class="d-flex justify-content-center my-3">
+                            <ul class="pagination flex justify-content-center border-2 rounded-md divide-x-2 ">
+                                @if ($postes->onFirstPage())
+                                    <li
+                                        class=" text-base font-bold text-blue-300 text-center min-w-[110px] px-2 py-2 cursor-not-allowed">
+                                        Précédent
+                                    </li>
+                                @else
+                                    <li
+                                        class=" hover:bg-gray-200 cursor-pointer text-center text-base font-bold text-blue-500 min-w-[110px] px-2 py-2">
+                                        <a href="{{ $postes->previousPageUrl() }}">
+                                            Précédent
+                                        </a>
+                                    </li>
+                                @endif
+
+                                @if ($postes->hasMorePages())
+                                    <li
+                                        class=" hover:bg-gray-200 cursor-pointer text-center text-base font-bold text-blue-500 min-w-[110px] px-2 py-2">
+                                        <a href="{{ $postes->nextPageUrl() }}">Suivant</a>
+                                    </li>
+                                @else
+                                    <li
+                                        class="  text-base font-bold text-center   text-blue-300 min-w-[110px] px-2 py-2 cursor-not-allowed">
+                                        Suivant
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                    
+
                 </div>
             </div>
         </div>
