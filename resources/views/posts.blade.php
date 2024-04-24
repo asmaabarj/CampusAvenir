@@ -147,6 +147,8 @@
             </div>
         </div>
 
+        <div class="flex justify-center  my-10"> {{ $postes->links() }}</div>
+
 
 
 

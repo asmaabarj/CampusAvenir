@@ -49,27 +49,24 @@ class PostesController extends Controller
 
     public function show()
     {
-
         Carbon::setLocale('fr');
         $user = User::findOrFail(Auth::id());
-        $postes=publication::where('status','1')->get();
+        $postes = publication::where('status', '1')->orderByDesc('created_at')->paginate(4);
         $domainesnav = Domaine::inRandomOrder()
-        ->limit(5)
-        ->get();  
-        $universitiesnav=Etablissment::inRandomOrder()
+            ->limit(5)
+            ->get();  
+        $universitiesnav = Etablissment::inRandomOrder()
             ->limit(5)
             ->get();
-        $publications = Publication::with(['user', 'commentaires.user'])
-        ->orderBy('created_at', 'desc')
-        ->get();
+    
         return view('posts', [
-        'domainesnav'=>$domainesnav,
-        'postes'=>$postes,
-        'publications' => $publications,
-        'user'=>$user,
-        'universitiesnav'=>$universitiesnav
-         ]);
-        }
+            'domainesnav' => $domainesnav,
+            'postes' => $postes,
+            'user' => $user,
+            'universitiesnav' => $universitiesnav
+        ]);
+    }
+    
         
 
         public function update(CreatePosteRequest $request, $id)
