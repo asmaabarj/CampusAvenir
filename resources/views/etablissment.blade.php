@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -40,8 +41,8 @@
                                 {{ $university->nom }}</h2>
                             <div class="flex  items-center mt-9">
                                 <img src="{{ asset('storage/images/check.png') }}" alt="" class="w-10 h-10">
-                                <p class="text-xl leading-relaxed text-gray-700 ">{{ $university->etudiants }}+ learners
-                                    enrolled</p>
+                                <p class="text-xl leading-relaxed text-gray-700 ">{{ $university->etudiants }}+
+                                    Apprenants par an</p>
                             </div>
                             <p class="mt-6 text-xl leading-relaxed text-gray-700">Découvrez l'établissement
                                 {{ $university->nom }}
@@ -69,19 +70,25 @@
                                             </svg>
                                         @endif
                                     @endfor
-                                    
+
                                 </div>
-                                     ({{ $commentCount }} Commentaires)
+                                ({{ $commentCount }} Commentaires)
 
                             </div>
-                            <a href="#" title=""
-                                class="inline-flex items-center justify-center px-6 py-4 mt-12 text-base font-semibold text-white transition-all duration-200 bg-gradient-to-r to-blue-950 from-blue-300 rounded-md  "
-                                role="button"> Ajouter aux favoris &emsp; <i class='bx bx-heart'></i></a>
+                            <form id="favoriForm" data-university-id="{{ $university->id }}">
+                                @csrf
+                                <input type="hidden" name="etablissment_id" value="{{ $university->id }}"
+                                    class="hidden">
+                                <input type="hidden" name="favori" class="hidden">
+                                <button id="add-to-favorites" type="submit"
+                                    class=" inline-flex items-center justify-center px-6 py-4 mt-12 text-base font-semibold text-white transition-all duration-200 bg-gradient-to-r to-blue-950 from-blue-300 rounded-md  ">Ajouter
+                                    aux favoris &emsp; <i class='bx bx-bookmark text-3xl'></i></button>
+                                <button id="remove-from-favorites" type="submit"
+                                    class=" inline-flex items-center justify-center px-6 py-4 mt-12 text-base font-semibold text-white transition-all duration-200 bg-gradient-to-r to-blue-950 from-blue-300 rounded-md  hidden">Supprimer
+                                    des favoris &emsp; <i class='bx bxs-bookmark text-3xl'></i></button>
+                            </form>
                         </div>
-
-
                     </div>
-
                 </div>
             </div>
         </section>
@@ -149,7 +156,7 @@
                             cette établissement. Nous sommes impatients de vous entendre !</p>
                     </div>
                     <div class="px-6 py-12 sm:p-12">
-                        <form action="/commentaires/store" method="POST" class="mt-14">
+                        <form action="/universityCommentaires" method="POST" class="mt-14">
                             @csrf
                             <div class="grid grid-cols-1 gap-x-5 gap-y-4">
                                 <div class="sm:col-span-2">
@@ -202,27 +209,54 @@
             </div>
         </section>
 
-        
+
     </main>
     @include('components.minifooter')
 
-    <script>
-        $('#RatingForm').submit(function(e) {
-            e.preventDefault();
-            var formData = $(this).serialize();
 
-            $.ajax({
-                type: 'POST',
-                url: "/ratings/store",
-                data: formData,
-                success: function(data) {
-                    alert('Merci Pour votre Note!')
-                },
-                error: function(xhr, status, error) {
-                    console.log(xhr.responseText);
-                }
+    <script>
+        $(document).ready(function() {
+
+            function ifFavorit() {
+                const universityId = $('#favoriForm').data('university-id');
+                console.log(universityId);
+                $.ajax({
+                    type: 'GET',
+                    url: '/favoritStyle/' + universityId,
+                    success: function(response) {
+                        console.log(response);
+                        if (response.hasOwnProperty('etablissment')) {
+                            const etablissment = response.etablissment
+                            if (etablissment.favori == '1') {
+                                $('#add-to-favorites').addClass('hidden');
+                                $('#remove-from-favorites').removeClass('hidden');
+                            } else {
+                                $('#add-to-favorites').removeClass('hidden');
+                                $('#remove-from-favorites').addClass('hidden');
+                            }
+                        }
+                    }
+                })
+
+            }
+            ifFavorit()
+            $('#favoriForm').submit(function(e) {
+                e.preventDefault();
+                var formData = $(this).serialize();
+
+                $.ajax({
+                    type: 'POST',
+                    url: "/favoris/store",
+                    data: formData,
+                    success: function(data) {
+                        ifFavorit()
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(xhr.responseText);
+                    }
+                });
             });
+
         });
     </script>
-
-    
+    <script src="{{ asset('js/rating.js') }}"></script>

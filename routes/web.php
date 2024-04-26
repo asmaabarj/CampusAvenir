@@ -15,6 +15,7 @@ use App\Http\Controllers\FavoritController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CommentaireController;
+use App\Http\Controllers\ForgetPasswordManager;
 use App\Http\Controllers\EtablissmentController;
 use App\Http\Middleware\RedirectIfAuthenticated;
 
@@ -48,15 +49,17 @@ Route::middleware(RedirectIfAuthenticated::class)->group(function () {
         return view('Authentification.register');
     });
 });
-Route::get('/forgetPassword', function () {
-    return view('Authentification.ForgetPassword.forgetPassword');
-});
+
 Route::get('/newPassword', function () {
     return view('Authentification.ForgetPassword.newPassword');
 });
 Route::get('/resetPassword', function () {
     return view('Authentification.ForgetPassword.resetPassword');
 });
+Route::get("/forgetPassword", [ForgetPasswordManager::class, 'forgetPassword'])->middleware(RedirectIfAuthenticated::class);
+Route::post("/forgetPasswordPost", [ForgetPasswordManager::class, 'forgetPasswordPost'])->name('forget.Password.Post')->middleware(RedirectIfAuthenticated::class);
+Route::match(['get', 'post'], "/resetPassword/{token}", [ForgetPasswordManager::class, 'resetPassword'])->name('reset.password.link')->middleware(RedirectIfAuthenticated::class);
+Route::post("/resetPasswordPost", [ForgetPasswordManager::class, 'resetPasswordPost'])->name('reset.password.done')->middleware(RedirectIfAuthenticated::class);
 // ----------------------------------------------admin----------------------------------------------------
 Route::middleware(['check.role:admin'])->group(function () {
 
@@ -78,17 +81,16 @@ Route::middleware(['check.role:admin'])->group(function () {
     Route::get('/university/{id}', [EtablissmentController::class, 'edit']);
 
     Route::get('/concour/{id}', [ConcourController::class, 'edit']);
-    Route::resource('/concour', ConcourController::class)->except(['show', 'create','edit']);
+    Route::resource('/concour', ConcourController::class)->except(['show', 'create', 'edit']);
 
     Route::post('/posts/accept/{id}', [PostesController::class, 'updateStatus']);
-    Route::delete('/posts/{id}',[PostesController::class, 'destroy']);
-    Route::get('/managePosts',[PostesController::class,'index']);
+    Route::delete('/posts/{id}', [PostesController::class, 'destroy']);
+    Route::get('/managePosts', [PostesController::class, 'index']);
 
     Route::resource('/contact', ContactController::class)->only(['index', 'destroy']);
 
-    Route::post('DeleteAccount/{id}',[UserController::class, 'deleteAccount']);
-    Route::get('/profileAdmin',[UserController::class,'profileAdmin']);
-
+    Route::post('DeleteAccount/{id}', [UserController::class, 'deleteAccount']);
+    Route::get('/profileAdmin', [UserController::class, 'profileAdmin']);
 });
 // -------------------------------------------------------------------
 
@@ -104,29 +106,31 @@ Route::post('/updatePassword', [UserController::class, 'updatePassword']);
 
 Route::middleware(['check.role:user'])->group(function () {
 
-    Route::post('/favorit', [FavorisController::class, 'favorit']);
     Route::get('/favoris', [FavorisController::class, 'show']);
+    Route::post('/favoris/store', [FavorisController::class, 'store']);
+
     Route::put('/posts/{id}', [PostesController::class, 'update']);
     Route::post('/commentaires', [CommentaireController::class, 'store'])->name('commentaires.store');
     Route::get('/comments/{postId}', [CommentaireController::class, 'index']);
     Route::resource('commentaires', CommentaireController::class)
-    ->only(['store', 'destroy']);
+        ->only(['store', 'destroy']);
     Route::get('/posts', [PostesController::class, 'show']);
-    Route::post('/posts',[PostesController::class, 'store']);
-    Route::get('/profileUser',[UserController::class,'profileUser']);
+    Route::post('/posts', [PostesController::class, 'store']);
+    Route::get('/profileUser', [UserController::class, 'profileUser']);
     Route::post('/commentaires/store', [CommentaireController::class, 'store']);
+    Route::post('/universityCommentaires', [CommentaireController::class, 'universityComments']);
     Route::delete('/comments/{id}', [CommentaireController::class, 'destroy']);
+    Route::get('/favoritStyle/{id}', [EtablissmentController::class, 'favoritStyle']);
     Route::get('/get-auth-user-id', function () {
         $authId = auth()->id();
-    
+
         return response()->json(['success' => true, 'authId' => $authId]);
     });
-
-   });
-    Route::delete('/posts/{id}',[PostesController::class, 'destroy']);
-    Route::get('/', [HomePageController::class, 'index']);
-    Route::get('/filter', [EtablissmentController::class, 'filter']);
-    Route::get('/search', [EtablissmentController::class, 'search']);
-    Route::get('/etablissment/{id}', [EtablissmentController::class, 'showSingle']);
-    Route::post('/ratings/store', [RatingController::class, 'store']);
-    Route::get('/domaineUniversities/{id}', [DomaineController::class, 'showSingleDomaine']);
+});
+Route::delete('/posts/{id}', [PostesController::class, 'destroy']);
+Route::get('/', [HomePageController::class, 'index']);
+Route::get('/filter', [EtablissmentController::class, 'filter']);
+Route::get('/search', [EtablissmentController::class, 'search']);
+Route::get('/etablissment/{id}', [EtablissmentController::class, 'showSingle']);
+Route::post('/ratings/store', [RatingController::class, 'store']);
+Route::get('/domaineUniversities/{id}', [DomaineController::class, 'showSingleDomaine']);

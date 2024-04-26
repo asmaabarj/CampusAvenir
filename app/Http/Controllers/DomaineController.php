@@ -109,6 +109,10 @@ class DomaineController extends Controller
             ->get(); 
         $domain = Domaine::findOrFail($id);
         $universities=Etablissment::where('domaine_id',$id)->get();
+        foreach ($universities as $university) {
+            $averageRating = $university->reviews->avg('note');
+            $university->ratingUniversity = round($averageRating);
+        }
         return view('domaineUniversities', ['domaines' => $domaines,
                                  'domainesnav'=>$domainesnav,
                                  'universitiesnav'=>$universitiesnav,

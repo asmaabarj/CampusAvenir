@@ -14,7 +14,7 @@
                         </span>
                     </p>
                 @endif
-                <p class="text-xl mt-12  text-[#444] leading-relaxed">
+                <p class="text-lg font-light mt-12  text-[#444] leading-relaxed">
                     {{ $annonce->description }}.</p>
                 @if ($annonce->temps != null)
                     <h6 class="text-base mt-5 mb-1 font-bold text-gray-900">

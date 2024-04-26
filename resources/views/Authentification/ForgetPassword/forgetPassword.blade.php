@@ -13,7 +13,7 @@
 <body>
     <main>
         <div class="flex justify-center h-screen items-center">
-            <form action="/forgetPassword" method="POST" class="flex lg:w-[30%] w-96 mx-auto flex-col space-y-5 rounded-lg border py-10 px-5 bg-[#F9F9F9] shadow-xl">
+            <form action="/forgetPasswordPost" method="POST" class="flex lg:w-[30%] w-96 mx-auto flex-col space-y-5 rounded-lg border py-10 px-5 bg-[#F9F9F9] shadow-xl">
                 @csrf
                 <div class="mx-auto mb-2 space-y-3">
                     <h1 class="text-2xl font-bold text-gray-700">Récupérer votre mot de passe</h1>

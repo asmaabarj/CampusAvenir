@@ -82,16 +82,16 @@
                 </ul>
             </li>
             <li class='group max-lg:border-b max-lg:py-2 relative'>
-                <div 
+                <a href="/universities"
                     class='hover:text-[#007bff] cursor-pointer text-gray-600 text-[15px] font-bold lg:hover:fill-[#007bff] block'>
-                    Établissement
+                    Établissements
                     <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" class="ml-1 inline-block"
                         viewBox="0 0 24 24">
                         <path
                             d="M12 16a1 1 0 0 1-.71-.29l-6-6a1 1 0 0 1 1.42-1.42l5.29 5.3 5.29-5.29a1 1 0 0 1 1.41 1.41l-6 6a1 1 0 0 1-.7.29z"
                             data-name="16" data-original="#000000" />
                     </svg>
-                </div>
+                </a>
                 <ul
                     class='absolute hidden group-hover:block shadow-lg bg-white px-6 pb-4 pt-6 space-y-3 lg:top-5 max-lg:top-8 -left-6 min-w-[250px] z-50'>
                     @foreach ($universitiesnav as $universitynav)

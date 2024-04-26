@@ -12,43 +12,46 @@ use App\Http\Requests\CreateFavorisRequest;
 
 class FavorisController extends Controller
 {
-    public function favorit(CreateFavorisRequest $request)
-    {
-        $data = $request->validated();
+    public function store(Request $request)
+{
+    $userId = Auth::id();
+    $etablissmentId = $request->input('etablissment_id');
 
-        $data['user_id'] = Auth::id();
+    $existingFavorit = favoris::where('etablissment_id', $etablissmentId)
+        ->where('user_id', $userId)
+        ->first();
 
-        $existingFavorit = favoris::where('etablissment_id', $data['etablissment_id'])
-            ->where('user_id', $data['user_id'])
-            ->first(['favori']);
-
-        if (!$existingFavorit) {
-            favoris::create($data);
-        } else {
-            if ($existingFavorit->favori === '1') {
-                favoris::where('user_id', $data['user_id'])
-                    ->where('etablissment_id', $data['etablissment_id'])
-                    ->update(['favori' => '0']);
-            } else {
-                favoris::where('user_id', $data['user_id'])
-                    ->where('etablissment_id', $data['etablissment_id'])
-                    ->update(['favori' => '1']);
-            }
-        }
-
-        return redirect()->back();
+    if (!$existingFavorit) {
+        favoris::create([
+            'user_id' => $userId,
+            'etablissment_id' => $etablissmentId,
+            'favori' => '1'
+        ]);
+        $favoriStatus = '1';
+    } else {
+        $existingFavorit->update([
+            'favori' => $existingFavorit->favori === '1' ? '0' : '1'
+        ]);
+        $favoriStatus = $existingFavorit->favori === '1' ? '1' : '0';
     }
+
+    return response()->json(['message' => 'Favoris updated successfully', 'favori' => $favoriStatus], 200);
+}
+
+
 
     public function show()
 {
     $domainesnav = Domaine::inRandomOrder()->limit(5)->get();
-    
+    $user = Auth::check() ? User::find(Auth::id()) : null;
     $userId = Auth::id();
     $favoriteUniversities = Etablissment::whereHas('favoris', function ($query) use ($userId) {
         $query->where('favori', '1')->where('user_id', $userId);
     })->get();
     $isFavoritedData = [];
-    
+    $universitiesnav=Etablissment::inRandomOrder()
+    ->limit(5)
+    ->get();
     foreach ($favoriteUniversities as $university) {
         $isFavoritedData[$university->id] = $university->favoris
             ->where('user_id', $userId)
@@ -59,6 +62,8 @@ return view('favoris', [
         'universities' => $favoriteUniversities,
         'domainesnav' => $domainesnav,
         'isFavoritedData' => $isFavoritedData,
+        'user'=>$user,
+        'universitiesnav'=>$universitiesnav
     ]);
 }
 

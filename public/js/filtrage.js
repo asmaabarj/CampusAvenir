@@ -1,24 +1,27 @@
-        $(document).ready(function() {
-            function search() {
-                var query = $('#searchInput').val().trim();
+$(document).ready(function () {
+    $('#filterButton').click(function () {
+        var type = $('#typeFilter').val();
+        var domaine = $('#domaineFilter').val();
 
-                $.ajax({
-                    url: '/search',
-                    type: 'GET',
-                    data: {
-                        query: query
-                    },
-                    success: function(data) {
-                        $('.universities-grid').empty();
+        if (type || domaine) {
+            $.ajax({
+                url: '/filter',
+                type: 'GET',
+                data: {
+                    type: type,
+                    domaine: domaine
+                },
+                success: function (data) {
+                    $('.universities-grid').empty();
 
-                        $.each(data, function(index, university) {
-                            var html = `
+                    data.forEach(function (university) {
+                        var html = `
                             <div class="bg-white shadow-md border-b-2 border-blue-500 overflow-hidden group">
                                 <div class="relative overflow-hidden">
                                     <img src="storage/${university.photo}" alt="University Photo" class="w-full h-40 object-cover">
                                 </div>
                                 <div class="p-3">
-                                <div class="flex mt-3 space-x-2">`;
+                                    <div class="flex mt-3 space-x-2">`;
 
                         for (var i = 1; i <= 5; i++) {
                             if (i <= university.ratingUniversity) {
@@ -36,29 +39,30 @@
 
                         html += `
                                     </div>
-                                <h3 class="text-lg mt-2 font-bold text-[#333]">${university.nom}</h3>
-                                <div class="mt-6">
-                                    <a href="/etablissment/${university.id}" class="flex items-center gap-2 mt-2 text-blue-500">
-                                        <p class="text-xs font-[500] uppercase">détails</p>
-                                        <i class='bx bx-right-arrow-alt '></i>
-                                    </a>
-                                </div>
+                                    <h3 class="text-lg mt-2 font-bold text-[#333]">${university.nom}</h3>
+                                    <div class="mt-6">
+                                        <a href="/etablissment/${university.id}" class="flex items-center gap-2 mt-2 text-blue-500">
+                                            <p class="text-xs font-[500] uppercase">détails</p>
+                                            <i class='bx bx-right-arrow-alt '></i>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         `;
-                            $('.universities-grid').append(html);
-                        });
-                    },
-                    error: function(xhr) {
-                        console.log(xhr.responseText);
-                    }
-                });
-            }
 
-            $('#searchInput').on('input', function() {
-                search();
+                        $('.universities-grid').append(html);
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
             });
+        } else {
+            location.reload();
+        }
+    });
 
-
-
-        });
+    $('#retournerButton').click(function () {
+        location.reload();
+    });
+});

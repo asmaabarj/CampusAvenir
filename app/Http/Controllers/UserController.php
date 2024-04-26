@@ -149,7 +149,7 @@ class UserController extends Controller
     $universitiesnav = Etablissment::inRandomOrder()
         ->limit(5)
         ->get();
-    
+            
     $postes = Publication::withCount('commentaires')
                 ->where('status', '1')
                 ->where('user_id', Auth::id())

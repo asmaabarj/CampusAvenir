@@ -1,32 +1,19 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const categoryContainer = document.querySelector(".categories-container");
-    const categoryWidth = categoryContainer.querySelector(".category").offsetWidth;
-    let currentIndex = 0;
+    const container = document.querySelector(".categories-container");
+    const width = container.querySelector(".category").offsetWidth;
+    let index = 0;
 
-    const nextButton = document.querySelector(".next-button");
-    const prevButton = document.querySelector(".prev-button");
-
-    nextButton.addEventListener("click", function() {
-        if (currentIndex < categoryContainer.children.length - 1) {
-            currentIndex++;
-            updateCarousel();
-        } else {
-            currentIndex = 0;
-            updateCarousel();
-        }
-    });
-    prevButton.addEventListener("click", function() {
-        if (currentIndex > 0) {
-            currentIndex--;
-            updateCarousel();
-        } else {
-            currentIndex = categoryContainer.children.length - 1;
-            updateCarousel();
-        }
+    document.querySelector(".next-button").addEventListener("click", () => {
+        index = (index + 1) % container.children.length;
+        update();
     });
 
-    function updateCarousel() {
-        const translateX = -currentIndex * categoryWidth;
-        categoryContainer.style.transform = `translateX(${translateX}px)`;
+    document.querySelector(".prev-button").addEventListener("click", () => {
+        index = (index - 1 + container.children.length) % container.children.length;
+        update();
+    });
+
+    function update() {
+        container.style.transform = `translateX(${-index * width}px)`;
     }
 });
