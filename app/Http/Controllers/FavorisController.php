@@ -48,6 +48,9 @@ class FavorisController extends Controller
     $favoriteUniversities = Etablissment::whereHas('favoris', function ($query) use ($userId) {
         $query->where('favori', '1')->where('user_id', $userId);
     })->get();
+    $favoritesCount = Etablissment::whereHas('favoris', function ($query) use ($userId) {
+        $query->where('favori', '1')->where('user_id', $userId);
+    })->count();
     $isFavoritedData = [];
     $universitiesnav=Etablissment::inRandomOrder()
     ->limit(5)
@@ -63,7 +66,8 @@ return view('favoris', [
         'domainesnav' => $domainesnav,
         'isFavoritedData' => $isFavoritedData,
         'user'=>$user,
-        'universitiesnav'=>$universitiesnav
+        'universitiesnav'=>$universitiesnav,
+        'favoritesCount'=>$favoritesCount
     ]);
 }
 

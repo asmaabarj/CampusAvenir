@@ -15,13 +15,13 @@
 
 </head>
 
-<body>
+<body class="bg-gray-100 ">
     @include('components.navbar')
     @include('components.Alert')
 
-    <section class="xl:w-[70%] my-10    grid grid-cols-1 mx-auto gap-8 ">
+    <section class="xl:w-[70%] my-10   grid grid-cols-1 mx-auto gap-8 ">
         <div class="bg-white rounded-md border flex flex-col  overflow-hidden">
-            <div class="bg-blue-100 w-full  h-44"></div>
+            <img src="https://t4.ftcdn.net/jpg/06/63/88/99/360_F_663889960_eEL2Rh2aWDTreWd9oKsjzLhmf8uXppAW.jpg" class=" w-full  h-44">
             <div class="flex justify-evenly pr-2">
                 <div class="flex mb-10">
                     <img src="{{ asset('storage/' . $user->photo) }}"
@@ -200,11 +200,11 @@
 
 
 
-    <div class="font-[sans-serif] text-[#333] w-full xl:w-[50%] mx-auto">
+    <div class="font-[sans-serif] text-[#333] mb-20 w-full xl:w-[50%] mx-auto">
         <div class="max-w-5xl mx-auto pb-8">
             <div class="grid grid-cols-1 xl:mx-0 md:mx-8  gap-x-8 gap-y-16 max-md:justify-center mt-12">
                 @foreach ($postes as $poste)
-                    <div class="grid grid-cols-1 border relative p-2 rounded-md">
+                    <div class="grid grid-cols-1 border bg-white relative p-2 rounded-md">
                         <div class=" shadow-sm">
                             <div class="my-4">
                                 <p class="text-gray-600 mt-10 text-sm">{{ $poste->contenue }}</p>
@@ -367,112 +367,11 @@
         </div>
     </div>
 
-    <script>
-        $(document).ready(function() {
-            $('.commentForm').each(function() {
-                const postId = $(this).data("publication-id");
-                getAllComments(postId);
-            });
-    
-            function getAllComments(postId) {
-                $('#comment-container-' + postId).empty();
-                $.ajax({
-                    url: '/comments/' + postId,
-                    type: 'GET',
-                    success: function(response) {
-                        if (response.success) {
-                            response.comments.forEach(function(comment) {
-                                var createdAt = new Date(comment.created_at);
-                                var formattedDate = createdAt.toLocaleString('fr-FR', {
-                                    year: 'numeric',
-                                    month: '2-digit',
-                                    day: '2-digit',
-                                    hour: '2-digit',
-                                    minute: '2-digit'
-                                });
-                                var commentHTML = `
-                                    <div id="comment-${comment.id}">
-                                        <div class="px-4 py-2 pt-4 flex gap-2" >
-                                            <img src="storage/${comment.user.photo}" class="w-9 h-9 rounded-full" />
-                                            <div>
-                                                <div class="flex gap-3 items-center">
-                                                    <h4 class="text-sm font-[600]">
-                                                        ${comment.user.nom} ${comment.user.prenom}
-                                                    </h4>
-                                                    <button class="bx bxs-trash cursor-pointer" onclick="deleteComment(${comment.id})"></button>
-                                                </div>
-                                                <p class="text-xs text-gray-700">
-                                                    ${formattedDate}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <p class="mx-5 text-sm font-light text-gray-700">
-                                            ${comment.contenue}
-                                        </p>
-                                    </div>`;
-                                $('#comment-container-' + postId).append(commentHTML);
-                            });
-                        } else {
-                            console.log("Error retrieving comments:", response.error);
-                        }
-                    },
-                    error: function(xhr) {
-                        console.log("Error retrieving comments:", xhr.responseText);
-                    }
-                });
-            }
-    
-            $('.commentForm').submit(function(event) {
-                event.preventDefault();
-    
-                const form = $(this);
-                const postId = form.data("publication-id");
-                const formData = form.serialize();
-    
-                $.ajax({
-                    type: "POST",
-                    url: "/commentaires/store",
-                    data: formData,
-                    success: function(data) {
-                        if (data.success) {
-                            form[0].reset();
-                            getAllComments(postId);
-                        } else {
-                            console.error("Failed to add comment:", data.error);
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("Error adding comment:", error);
-                    }
-                });
-            });
-        });
-    
-        function deleteComment(commentId) {
-            console.log(commentId);
-    
-            if (confirm("Are you sure you want to delete this comment?")) {
-                $.ajax({
-                    url: '/comments/' + commentId,
-                    type: 'DELETE',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            $('#comment-' + commentId).remove();
-                        } else {
-                            console.error("Failed to delete comment:", response.error);
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("Error deleting comment:", error);
-                    }
-                });
-            }
-        }
+    <script src="{{asset('js/commentsProfile.js')}}">
+
     </script>
-    
+        @include('components.minifooter')
+
 </body>
 
 </html>

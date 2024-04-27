@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ asset('css/addButton.css') }}">
 </head>
 
-<body>
+<body >
     @include('components.navbar')
     @include('components.Alert')
     <main class="bg-gray-50">
@@ -94,7 +94,7 @@
                 <div class="grid gap-16">
 
                         @foreach ($postes as $poste)
-                            <div class="rounded border p-4 overflow-hidden group">
+                            <div class="rounded border bg-white p-4 overflow-hidden group">
                                 <div>
                                     <p class="text-gray-600 text-sm">{{ $poste->contenue }}</p>
                                     @if ($poste->photo != null)
@@ -147,7 +147,7 @@
                                 </div>
                             </div>
                         @endforeach
-                        <div class="flex justify-center">
+                        <div class="flex  justify-center">
                             <div class="d-flex justify-content-center my-3">
                                 <ul class="pagination flex justify-content-center border-2 rounded-md divide-x-2 ">
                                     @if ($postes->onFirstPage())
@@ -296,6 +296,7 @@
                     }
                 }
             </script>
+    @include('components.minifooter')
 
 </body>
 

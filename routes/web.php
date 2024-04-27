@@ -48,18 +48,19 @@ Route::middleware(RedirectIfAuthenticated::class)->group(function () {
     Route::get('/register', function () {
         return view('Authentification.register');
     });
+    Route::get('/newPassword', function () {
+        return view('Authentification.ForgetPassword.newPassword');
+    });
+    Route::get('/resetPassword', function () {
+        return view('Authentification.ForgetPassword.resetPassword');
+    });
+    Route::get("/forgetPassword", [ForgetPasswordManager::class, 'forgetPassword'])->middleware(RedirectIfAuthenticated::class);
+    Route::post("/forgetPasswordPost", [ForgetPasswordManager::class, 'forgetPasswordPost'])->name('forget.Password.Post')->middleware(RedirectIfAuthenticated::class);
+    Route::match(['get', 'post'], "/resetPassword/{token}", [ForgetPasswordManager::class, 'resetPassword'])->name('reset.password.link')->middleware(RedirectIfAuthenticated::class);
+    Route::post("/resetPasswordPost", [ForgetPasswordManager::class, 'resetPasswordPost'])->name('reset.password.done')->middleware(RedirectIfAuthenticated::class);
 });
 
-Route::get('/newPassword', function () {
-    return view('Authentification.ForgetPassword.newPassword');
-});
-Route::get('/resetPassword', function () {
-    return view('Authentification.ForgetPassword.resetPassword');
-});
-Route::get("/forgetPassword", [ForgetPasswordManager::class, 'forgetPassword'])->middleware(RedirectIfAuthenticated::class);
-Route::post("/forgetPasswordPost", [ForgetPasswordManager::class, 'forgetPasswordPost'])->name('forget.Password.Post')->middleware(RedirectIfAuthenticated::class);
-Route::match(['get', 'post'], "/resetPassword/{token}", [ForgetPasswordManager::class, 'resetPassword'])->name('reset.password.link')->middleware(RedirectIfAuthenticated::class);
-Route::post("/resetPasswordPost", [ForgetPasswordManager::class, 'resetPasswordPost'])->name('reset.password.done')->middleware(RedirectIfAuthenticated::class);
+
 // ----------------------------------------------admin----------------------------------------------------
 Route::middleware(['check.role:admin'])->group(function () {
 
@@ -123,14 +124,14 @@ Route::middleware(['check.role:user'])->group(function () {
     Route::get('/favoritStyle/{id}', [EtablissmentController::class, 'favoritStyle']);
     Route::get('/get-auth-user-id', function () {
         $authId = auth()->id();
-
         return response()->json(['success' => true, 'authId' => $authId]);
     });
+    Route::post('/ratings/store', [RatingController::class, 'store']);
+    Route::delete('/posts/{id}', [PostesController::class, 'destroy']);
+
 });
-Route::delete('/posts/{id}', [PostesController::class, 'destroy']);
 Route::get('/', [HomePageController::class, 'index']);
 Route::get('/filter', [EtablissmentController::class, 'filter']);
 Route::get('/search', [EtablissmentController::class, 'search']);
 Route::get('/etablissment/{id}', [EtablissmentController::class, 'showSingle']);
-Route::post('/ratings/store', [RatingController::class, 'store']);
 Route::get('/domaineUniversities/{id}', [DomaineController::class, 'showSingleDomaine']);

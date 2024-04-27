@@ -15,8 +15,28 @@
     @include('components.Alert')
 
     <main>
+        <section class="py-10 bg-white sm:pt-20 lg:pt-28">
+            <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+                <div class="max-w-5xl mx-auto text-center">
+                    <div class="items-center flex justify-center">
+
+        
+                        <div class=" overflow-hidden bg-gray-300 border-8 border-white shadow-xl rounded-full w-28 h-28">
+                            <img class="object-cover w-full h-full " src="https://www.ilovepdf.com/storage/blog/53-1623249445-Bookmark-iLovePDF.jpg" alt="" />
+                        </div>
+
+                    </div>
+        
+                    <h2 class="mt-8 text-2xl font-bold leading-tight text-black lg:mt-12 sm:text-3xl lg:text-4xl">Votre collection d'universités favorites <span class="border-b-8 border-blue-400">{{$favoritesCount}}</span> </h2>
+                    <p class="max-w-2xl mx-auto mt-6 text-xl text-gray-600 md:mt-10">Explorez notre sélection d'universités disponibles sur CampusAvenir et choisissez celles qui vous correspondent le mieux.</p>
+        
+                    
+                </div>
+            </div>
+        </section>
+        
         <section>
-            <div class=" mx-10 gap-10  px-4 py-10 mt-12 font-[sans-serif] ">
+            <div class=" mx-10 gap-10  px-4 pb-16  font-[sans-serif] ">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-24 mt-8 universities-grid">
                     @foreach ($universities as $university)
                         <div class="bg-white border-b-2 border-blue-500 shadow-md overflow-hidden group">
@@ -67,7 +87,7 @@
             </div>
         </section>
     </main>
-    <div class="absolute bottom-0 left-0 right-0">
+    <div class="">
     @include('components.miniFooter')
 </div>
 </body>

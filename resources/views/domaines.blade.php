@@ -15,7 +15,7 @@
     @include('components.Alert')
     <main>
 
-        <section class="mt-12 px-6  ">
+        <section class="my-12 px-6  ">
             <div class="">
                 <section class="bg-[#FCF8F1] bg-opacity-30 sm:py-16 lg:py-24">
                     <div class="px-4 mx-auto max-w-6xl sm:px-6 lg:px-12">

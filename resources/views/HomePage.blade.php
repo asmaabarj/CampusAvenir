@@ -15,25 +15,32 @@
     <main>
         @include('components.Alert')
 
-        <section class="bg-url bg-no-repeat bg-cover flex-col px-6 h-[110vh] items-center justify-center mt-16 flex"
-            style="background-image: url('{{ asset('storage/images/herosection2.png') }}');">
-            <div class="text-center text-white">
-                <h1 class="font-bold text-xl md:text-5xl">Trouvez Votre <span
-                        class="bg-blue-500/60 px-3 pb-1 lg:pb-2 rounded">Avenir</span> Dès
-                    Aujourd'hui !</h1>
-                <p class="font-semibold text-lg md:text-3xl mt-6">Découvrez Le Guide Ultime Des Universités à
-                    Travers Le Maroc </p>
+        <div class=" mt-20 relative h-[120vh] text-white overflow-hidden">
+            <div class="absolute inset-0">
+              <img src="{{ asset('storage/images/herosection2.png') }}" />
+              <div class="absolute inset-0 bg-black opacity-20"></div>
             </div>
+            
+            <div class="relative z-10 flex flex-col justify-center items-center h-full text-center">
+              <h1 class="text-5xl font-bold leading-tight mb-4">Trouvez Votre<span
+                class="text-blue-500/60 px-3 pb-1 lg:pb-2 rounded ml-2">Avenir</span> Dès
+            Aujourd'hui !</h1>
+              <p class="text-2xl text-gray-200 mb-8">Découvrez Le Guide Ultime Des Universités à
+                Travers Le Maroc</p>
+                @if (!auth()->check())
+              <a href="/register" class="bg-blue-500 text-gray-900 hover:bg-blue-400 py-3 px-6 rounded-full text-lg font-semibold transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg"> Commencer </a>
+            @endif
+            </div>
+          </div>
 
             @include('components.annonceDetails')
-        </section>
         <section id="categories-container" class=" w-[92%]  bg-gray-100   mx-auto">
             <div class="carousel-container relative overflow-hidden">
                 <button
-                    class="prev-button absolute top-1/2 left-0 transform mt-10 -translate-y-1/2 cursor-pointer p-2 px-3 rounded-full bg-blue-600/60 text-white z-10">
+                    class="prev-button absolute top-1/2 left-0 transform mt-16 -translate-y-1/2 cursor-pointer p-2 px-3 rounded-full bg-blue-600/60 text-white z-50">
                     <i class='bx bx-chevron-left text-3xl'></i> </button>
                 <div class="viewport">
-                    <h2 class="text-xl font-bold text-center leading-tight my-8 text-blue-600 sm:text-2xl lg:text-3xl animate-pulse">Actualités</h2>
+                    <h2 class="text-xl font-bold text-center leading-tight mb-10 mt-16 text-blue-600 sm:text-2xl lg:text-3xl animate-pulse">Actualités</h2>
 
                     <div class=" categories-container flex space-x-4  transition-transform  duration-300">
 
@@ -67,7 +74,7 @@
                     </div>
                 </div>
                 <button
-                    class="next-button absolute top-1/2 right-0 mt-10 transform -translate-y-1/2 cursor-pointer  p-2 px-3 rounded-full bg-blue-600/60 text-white z-10">
+                    class="next-button absolute top-1/2 right-0 mt-16 transform -translate-y-1/2 cursor-pointer  p-2 px-3 rounded-full bg-blue-600/60 text-white z-10">
                     <i class='bx bx-chevron-right text-3xl '></i> </button>
             </div>
         </section>
@@ -76,7 +83,7 @@
 
         <div class="font-[sans-serif]  bg-gray-100 ">
 
-            <div class="px-8 pb-12 text-center  text-gray-700  ">
+            <div class="px-8 pb-14 text-center  text-gray-700  ">
                 @if (!auth()->check())
                     <div class="max-w-5xl  mx-auto">
                         <p class="text-lg inline-block mt-28 leading-loose align-text-top mb-4"><span
@@ -184,12 +191,12 @@
                 <div class="flex justify-between">
                     <h2 class="text-3xl font-semibold text-[#006AE5]">Universités les mieux classées</h2>
                     <a href="/universities"
-                        class="px-4 py-2 rounded text-white text-sm tracking-wider font-semibold border-none outline-none bg-[#006AE5] hover:bg-blue-700 active:bg-[#006AE5]">Voir
+                        class="px-4 py-2 rounded text-white text-sm tracking-wider font-semibold border-none outline-none shadow-md bg-[#006AE5] hover:bg-blue-700 active:bg-[#006AE5]">Voir
                         Tous</a>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
                     @foreach ($universities as $university)
-                    <div class="bg-white border-b-2 border-blue-500 overflow-hidden group">
+                    <div class="bg-white border-b-2 border-blue-500 shadow-md overflow-hidden group">
                         <div class="relative overflow-hidden">
                             <img src="{{ asset('storage/' . $university->photo) }}" alt="University Photo" class="w-full h-60 object-cover" />
                         </div>
@@ -227,7 +234,7 @@
             <div
                 class="grid md:grid-cols-2 px-6 my-20 items-center md:gap-16 gap-6 font-[sans-serif] text-[#333] max-w-6xl max-md:max-w-lg mx-auto">
                 <div class="md:h-[320px]">
-                    <img src='{{ asset('storage/images/lastsection.png') }}' class="w-full h-full object-cover "
+                    <img src='{{ asset('storage/images/lastsection.png') }}' class="w-full h-full rounded-sm shadow-sm object-cover "
                         alt="Dining Experience" />
                 </div>
                 <div class="max-md:order-1 max-md:text-center">
@@ -237,7 +244,7 @@
                         ce que vous cherchez, nos experts seront heureux de répondre à vos questions.</p>
                     <div class="mt-8 flex max-sm:flex-col sm:space-x-8 ">
                         <a href="/Faqs"
-                            class="px-4  py-4 text-sm font-meduim font-[sans-serif] text-white bg-[#006AE5] rounded hover:bg-opacity-80 transition-all duration-300 transform hover:scale-105 focus:ring-2 focus:ring-[#f032e6] focus:outline-none focus:ring-opacity-50">LIRE
+                            class="px-4 shadow-md py-4 text-sm font-meduim font-[sans-serif] text-white bg-[#006AE5] rounded hover:bg-opacity-80 transition-all duration-300 transform hover:scale-105 focus:ring-2 focus:ring-[#f032e6] focus:outline-none focus:ring-opacity-50">LIRE
                             LES FAQ
                         </a>
                         <a href="#contact"

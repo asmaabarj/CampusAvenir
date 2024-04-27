@@ -20,7 +20,7 @@
         <section class=" bg-gray-100 lg:py-0">
             <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                 <div class="grid items-stretch grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12 xl:gap-x-24">
-                    <div class="h-full  lg:order-2 lg:mt-56">
+                    <div class="h-full  lg:order-2 lg:mt-40">
                         <div class="relative h-full lg:h-auto">
                             <div
                                 class="absolute w-full h-full  overflow-hidden bg-gradient-to-r from-blue-950 to-blue-100 top-6 left-6 xl:left-6 lg:top-6 lg:scale-y-105 lg:origin-top">
@@ -34,7 +34,7 @@
                         </div>
                     </div>
 
-                    <div class="flex items-center justify-start xl:pt-48 xl:pb-28">
+                    <div class="flex items-center justify-start xl:mt-40 xl:pb-28">
                         <div>
                             <h2
                                 class=" text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl lg:leading-tight">
@@ -49,14 +49,9 @@
                                 : excellence académique, soutien personnalisé, et programmes innovants pour préparer
                                 votre avenir.</p>
                             <div class="ml-3 flex gap-4 mt-6">
-                                <div class=" flex space-x-2">
-                                    @php
-                                        $averageRating = $university->reviews()->avg('note');
-                                        $totalStars = 5;
-                                        $filledStars = round($averageRating);
-                                    @endphp
-                                    @for ($i = 1; $i <= $totalStars; $i++)
-                                        @if ($i <= $filledStars)
+                                <div class="flex mt-3 space-x-2">
+                                    @for ($i = 1; $i <= 5; $i++)
+                                        @if ($i <= $averageRating)
                                             <svg class="w-5 fill-[#facc15]" viewBox="0 0 14 13" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -70,11 +65,11 @@
                                             </svg>
                                         @endif
                                     @endfor
-
                                 </div>
                                 ({{ $commentCount }} Commentaires)
 
                             </div>
+                            @if (auth()->check() && auth()->user()->role === 'user')
                             <form id="favoriForm" data-university-id="{{ $university->id }}">
                                 @csrf
                                 <input type="hidden" name="etablissment_id" value="{{ $university->id }}"
@@ -87,6 +82,7 @@
                                     class=" inline-flex items-center justify-center px-6 py-4 mt-12 text-base font-semibold text-white transition-all duration-200 bg-gradient-to-r to-blue-950 from-blue-300 rounded-md  hidden">Supprimer
                                     des favoris &emsp; <i class='bx bxs-bookmark text-3xl'></i></button>
                             </form>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -177,7 +173,7 @@
                                 </div>
                             </div>
                         </form>
-
+                        @if (auth()->check() && auth()->user()->role === 'user')
                         <div class="mt-8">
                             <h3 class="text-xl font-semibold text-gray-900">Partagez votre avis en attribuant une note
                                 à cet établissement </h3>
@@ -203,6 +199,7 @@
                                 </button>
                             </form>
                         </div>
+                        @endif  
                     </div>
                 </div>
 
@@ -214,49 +211,5 @@
     @include('components.minifooter')
 
 
-    <script>
-        $(document).ready(function() {
-
-            function ifFavorit() {
-                const universityId = $('#favoriForm').data('university-id');
-                console.log(universityId);
-                $.ajax({
-                    type: 'GET',
-                    url: '/favoritStyle/' + universityId,
-                    success: function(response) {
-                        console.log(response);
-                        if (response.hasOwnProperty('etablissment')) {
-                            const etablissment = response.etablissment
-                            if (etablissment.favori == '1') {
-                                $('#add-to-favorites').addClass('hidden');
-                                $('#remove-from-favorites').removeClass('hidden');
-                            } else {
-                                $('#add-to-favorites').removeClass('hidden');
-                                $('#remove-from-favorites').addClass('hidden');
-                            }
-                        }
-                    }
-                })
-
-            }
-            ifFavorit()
-            $('#favoriForm').submit(function(e) {
-                e.preventDefault();
-                var formData = $(this).serialize();
-
-                $.ajax({
-                    type: 'POST',
-                    url: "/favoris/store",
-                    data: formData,
-                    success: function(data) {
-                        ifFavorit()
-                    },
-                    error: function(xhr, status, error) {
-                        console.log(xhr.responseText);
-                    }
-                });
-            });
-
-        });
-    </script>
+    <script src="{{asset('js/favorit.js')}}"></script>
     <script src="{{ asset('js/rating.js') }}"></script>

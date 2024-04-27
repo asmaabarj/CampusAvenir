@@ -156,6 +156,8 @@ class EtablissmentController extends Controller
         $comments = Commentaire::where('commentable_type', 'App\Models\Etablissment')
             ->where('commentable_id', $id)
             ->get();
+                $averageRating = $university->reviews->avg('note');
+                $university->ratingUniversity = round($averageRating);
         $universitiesnav = Etablissment::inRandomOrder()
             ->limit(5)
             ->get();
@@ -167,6 +169,7 @@ class EtablissmentController extends Controller
             'comments' => $comments,
             'commentCount' => $commentCount,
             'universitiesnav' => $universitiesnav,
+            'averageRating'=>$averageRating
         ]);
     }
 
