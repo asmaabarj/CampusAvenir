@@ -1,79 +1,72 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Faq;
+
+use App\Http\Controllers\Controller;
+use App\Services\FaqService;
+use App\Http\Requests\CreateFaqRequest;
 use App\Models\Domaine;
 use App\Models\Etablissment;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\CreateFaqRequest;
 
 class FaqController extends Controller
 {
+    protected $faqService;
+
+    public function __construct(FaqService $faqService)
+    {
+        $this->faqService = $faqService;
+    }
+
     public function index()
     {
-        $admin = User::findOrFail(Auth::id());
-        $faqs = Faq::all();
-         
-        return view('Admin.faqs', 
-        [
-            'faqs' => $faqs,'admin'=>$admin
-           
-    ]);
+        $admin = auth()->user();
+        $faqs = $this->faqService->all();
+
+        return view('Admin.faqs', compact('faqs', 'admin'));
     }
 
     public function store(CreateFaqRequest $request)
     {
         $data = $request->validated();
-        Faq::create([
+        $this->faqService->create([
             'question' => $data['question'],
             'reponse' => $data['reponse'],
         ]);
+
         return redirect()->back()->with('success', 'FAQ ajoutée avec succès.');
     }
 
     public function edit($id)
     {
-        $admin = User::findOrFail(Auth::id());
-        $faq = Faq::findOrFail($id);
-        return view('Admin.editFaqs', ['editFaq' => $faq,
-        'admin'=>$admin]);
+        $admin = auth()->user();
+        $editFaq = $this->faqService->find($id);
+
+        return view('Admin.editFaqs', compact('editFaq', 'admin'));
     }
 
     public function update(CreateFaqRequest $request, $id)
     {
         $data = $request->validated();
-        $faq = Faq::findOrFail($id);
-        $faq->update([
-            'question' => $data['question'],
-            'reponse' => $data['reponse'],
-        ]);
+        $this->faqService->update($data, $id);
+
         return redirect('/faqs')->with('success', 'FAQ mise à jour avec succès.');
     }
 
     public function destroy($id)
     {
-        $faq = Faq::findOrFail($id);
-        $faq->delete();
+        $this->faqService->delete($id);
+
         return redirect()->back()->with('success', 'FAQ supprimée avec succès.');
     }
 
-
     public function show()
     {
-        $faqs = Faq::all();
-        $user = Auth::check() ? User::find(Auth::id()) : null;
-        $domainesnav = Domaine::inRandomOrder()
-        ->limit(5)
-        ->get();  
-        $universitiesnav=Etablissment::inRandomOrder()
-            ->limit(5)
-            ->get(); 
-        return view('faqs', ['faqs' => $faqs,
-                             'domainesnav' => $domainesnav,
-                             'universitiesnav'=>$universitiesnav,
-                             'user'=>$user
-                            ]);
+        $faqs = $this->faqService->all();
+        $user = auth()->user();
+
+        $domainesnav = Domaine::inRandomOrder()->limit(5)->get();
+        $universitiesnav = Etablissment::inRandomOrder()->limit(5)->get();
+
+        return view('faqs', compact('faqs', 'domainesnav', 'universitiesnav', 'user'));
     }
-    
 }

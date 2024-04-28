@@ -15,7 +15,7 @@
 
 </head>
 
-<body class="bg-gray-100 ">
+<body class=" bg-gray-50 ">
     @include('components.navbar')
     @include('components.Alert')
 
@@ -202,6 +202,11 @@
 
     <div class="font-[sans-serif] text-[#333] mb-20 w-full xl:w-[50%] mx-auto">
         <div class="max-w-5xl mx-auto pb-8">
+            <div>
+                <h2 class="text-3xl font-extrabold mt-12 text-[#333] inline-block">LES DERNIÈRES PUBLICATIONS</h2>
+                <p class="text-gray-400 text-sm mt-4"></p>
+            </div>
+            <hr class="my-10" />
             <div class="grid grid-cols-1 xl:mx-0 md:mx-8  gap-x-8 gap-y-16 max-md:justify-center mt-12">
                 @foreach ($postes as $poste)
                     <div class="grid grid-cols-1 border bg-white relative p-2 rounded-md">
@@ -366,11 +371,10 @@
             </div>
         </div>
     </div>
+    
+    @include('components.minifooter')
 
-    <script src="{{asset('js/commentsProfile.js')}}">
-
-    </script>
-        @include('components.minifooter')
+    <script src="{{asset('js/commentsProfile.js')}}"></script>
 
 </body>
 

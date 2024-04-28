@@ -151,7 +151,7 @@ class UserController extends Controller
         ->get();
             
     $postes = Publication::withCount('commentaires')
-                ->where('status', '1')
+                ->where('status', '1')->orderByDesc('created_at')
                 ->where('user_id', Auth::id())
                 ->get();
 

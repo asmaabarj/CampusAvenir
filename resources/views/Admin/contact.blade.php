@@ -22,7 +22,7 @@
                         <h4 class="py-2 text-white font-bold">Nom : {{ $contact->nom }}</h4>
                         <p class="text-base leading-7 text-white font-meduim space-y-4">Email : {{ $contact->email }}
                         </p>
-                        <p class="text-base leading-7 text-white font-meduim space-y-4">Telephone : {{ $contact->tele }}
+                        <p class="text-base leading-7 text-white font-meduim space-y-4">Telephone : {{ $contact->tel }}
                             <br><br>
                         <p class="text-sm leading-7 text-slate-300 space-y-4">{{ $contact->message }}</p>
                     </div>
