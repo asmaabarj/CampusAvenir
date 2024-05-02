@@ -56,11 +56,13 @@ class UserController extends Controller
         try {
             $validatedData = $request->validated();
             $userBanned = User::withTrashed()->where('email', $validatedData['email'])->first();
-            if ($userBanned->trashed()) {
-                auth()->logout();
 
+            if ($userBanned && $userBanned->trashed()) {
+                auth()->logout();
+            
                 return redirect('/login')->with('error', 'Votre compte a été banni');
             }
+            
             if (auth()->attempt([
                 'email' => $validatedData['email'],
                 'password' => $validatedData['password']

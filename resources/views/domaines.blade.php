@@ -78,7 +78,19 @@
             </div>
         </section>
     </main>
+    <div class="test">tedvcccccccccccc</div>
+    <div class="test">aaaaaaaaaaaaaaaaa</div>
+    <div class="test">bbbbbbbbbbbbb</div>
     @include('components.minifooter')
 </body>
+<script>
 
+document.querySelectorAll('.test').forEach((test) => {
+    test.addEventListener('click',function(){
+        test.remove();
+    });
+});
+
+
+</script>
 </html>

@@ -13,6 +13,7 @@ $(document).ready(function () {
                 },
                 success: function (data) {
                     $('.universities-grid').empty();
+                    if (data.length !== 0) {
 
                     data.forEach(function (university) {
                         var html = `
@@ -52,6 +53,14 @@ $(document).ready(function () {
 
                         $('.universities-grid').append(html);
                     });
+                } else {
+                    var html = `
+                        <div class=" text-gray-500  text-lg font-light">
+                            <p>Pas de données disponibles</p>
+                        </div>
+                    `;
+                    $('.universities-grid').append(html);
+                }
                 },
                 error: function (xhr, status, error) {
                     console.error(xhr.responseText);

@@ -25,7 +25,7 @@
                 </div>
                 <div class="grid lg:grid-cols-2 gap-5 gap-y-7">
                     <div class="relative mt-2 w-full">
-                        <input type="text" name="prenom"
+                        <input type="text" name="prenom" id="prenom"
                             class="border-1 peer block w-full  bg-white appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
                             placeholder="" />
                         <label for=""
@@ -35,11 +35,14 @@
                             @error('prenom')
                                 <div>{{ $message }}</div>
                             @enderror
+                            <div id="errorMessage" class="hidden text-red-600 font-semibold ">
+                                <p>Prénom n'est pas valide</p>
+                            </div>
                         </div>
                     </div>
 
                     <div class="relative mt-2 w-full">
-                        <input type="text"
+                        <input type="text" id="nom"
                             class="border-1 peer bg-white block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
                             placeholder=" " name="nom" />
                         <label for="name"
@@ -49,11 +52,14 @@
                             @error('nom')
                                 <div>{{ $message }}</div>
                             @enderror
+                            <div id="errorMessage1" class="hidden text-red-600 font-semibold ">
+                                <p>Nom n'est pas valide</p>
+                            </div>
                         </div>
                     </div>
 
                     <div class="relative mt-2 w-full">
-                        <input type="email" value="email@gmail.com" name="email"
+                        <input type="email" value="email@gmail.com" name="email" id="email"
                             class="border-1 peer bg-white block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
                             placeholder=" " />
                         <label for="email"
@@ -63,11 +69,14 @@
                             @error('email')
                                 <div>{{ $message }}</div>
                             @enderror
+                            <div id="errorMessage2" class="hidden text-red-600 font-semibold ">
+                                <p>E-mail n'est pas valide</p>
+                            </div>
                         </div>
                     </div>
 
                     <div class="relative mt-2 w-full">
-                        <input type="text"  name="tele"
+                        <input type="text"  name="tele" id="tele"
                             class="border-1 peer bg-white block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
                             placeholder=" " />
                         <label for="phone"
@@ -77,6 +86,9 @@
                             @error('tele')
                                 <div>{{ $message }}</div>
                             @enderror
+                            <div id="errorMessage3" class="hidden text-red-600 font-semibold ">
+                                <p>numero de télephone n'est pas valide</p>
+                            </div>
                         </div>
                     </div>
 
@@ -169,4 +181,6 @@
         </div>
     </main>
     @include('components.FooterAuth')
+    <script src="{{ asset('js/regexRegister.js') }}"></script>
+
 </body>

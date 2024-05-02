@@ -17,6 +17,10 @@ class ContactService
     {
         return $this->contactRepository->all();
     }
+    public function admin()
+    {
+        return $this->contactRepository->admin();
+    }
 
     public function create(array $data)
     {

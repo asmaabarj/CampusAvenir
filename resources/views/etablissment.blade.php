@@ -23,13 +23,13 @@
                     <div class="h-full  lg:order-2 lg:mt-40">
                         <div class="relative h-full lg:h-auto">
                             <div
-                                class="absolute w-full h-full  overflow-hidden bg-gradient-to-r from-blue-950 to-blue-100 top-6 left-6 xl:left-6 lg:top-6 lg:scale-y-105 lg:origin-top">
+                                class="absolute w-full h-full  overflow-hidden bg-gradient-to-r from-blue-950 to-blue-100 top-6 left-6 xl:left-6 lg:top-2 lg:scale-y-105 lg:origin-top">
                                 <img class="object-cover object-right w-full h-full scale-150"
                                     src="https://cdn.rareblocks.xyz/collection/celebration/images/content/2/lines.svg"
                                     alt="" />
                             </div>
-                            <div class="relative lg:top-5">
-                                <img class="" src="{{ asset('storage/' . $university->photo) }}" alt="" />
+                            <div class="relative lg:top-0">
+                                <img class="h-[52vh] w-[40vw]" src="{{ asset('storage/' . $university->photo) }}" alt="" />
                             </div>
                         </div>
                     </div>
@@ -37,18 +37,18 @@
                     <div class="flex items-center justify-start xl:mt-40 xl:pb-28">
                         <div>
                             <h2
-                                class=" text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl lg:leading-tight">
+                                class=" text-2xl font-bold leading-tight text-black sm:text-3xl lg:text-4xl lg:leading-tight">
                                 {{ $university->nom }}</h2>
-                            <div class="flex  items-center mt-9">
+                            <div class="flex  items-center mt-4">
                                 <img src="{{ asset('storage/images/check.png') }}" alt="" class="w-10 h-10">
                                 <p class="text-xl leading-relaxed text-gray-700 ">{{ $university->etudiants }}+
                                     Apprenants par an</p>
                             </div>
-                            <p class="mt-6 text-xl leading-relaxed text-gray-700">Découvrez l'établissement
-                                {{ $university->nom }}
+                            <p class="mt-4 text-lg leading-relaxed text-gray-700">Découvrez l'établissement
+                                "{{ $university->nom }}"
                                 : excellence académique, soutien personnalisé, et programmes innovants pour préparer
                                 votre avenir.</p>
-                            <div class="ml-3 flex gap-4 mt-6">
+                            <div class="ml-3 flex gap-4 mt-4">
                                 <div class="flex mt-3 space-x-2">
                                     @for ($i = 1; $i <= 5; $i++)
                                         @if ($i <= $averageRating)
@@ -66,7 +66,7 @@
                                         @endif
                                     @endfor
                                 </div>
-                                ({{ $commentCount }} Commentaires)
+                                <div class="mt-3 text-sm">({{ $commentCount }} Commentaires)</div>
 
                             </div>
                             @if (auth()->check() && auth()->user()->role === 'user')
@@ -76,11 +76,11 @@
                                     class="hidden">
                                 <input type="hidden" name="favori" class="hidden">
                                 <button id="add-to-favorites" type="submit"
-                                    class=" inline-flex items-center justify-center px-6 py-4 mt-12 text-base font-semibold text-white transition-all duration-200 bg-gradient-to-r to-blue-950 from-blue-300 rounded-md  ">Ajouter
-                                    aux favoris &emsp; <i class='bx bx-bookmark text-3xl'></i></button>
+                                    class=" inline-flex items-center justify-center px-5 py-3 mt-8 text-base font-semibold text-white transition-all duration-200 bg-gradient-to-r to-blue-950 from-blue-300 rounded-md  ">Ajouter
+                                    aux favoris &emsp; <i class='bx bx-bookmark text-xl'></i></button>
                                 <button id="remove-from-favorites" type="submit"
-                                    class=" inline-flex items-center justify-center px-6 py-4 mt-12 text-base font-semibold text-white transition-all duration-200 bg-gradient-to-r to-blue-950 from-blue-300 rounded-md  hidden">Supprimer
-                                    des favoris &emsp; <i class='bx bxs-bookmark text-3xl'></i></button>
+                                    class=" inline-flex items-center justify-center px-5 py-3 mt-8 text-base font-semibold text-white transition-all duration-200 bg-gradient-to-r to-blue-950 from-blue-300 rounded-md  hidden">Supprimer
+                                    des favoris &emsp; <i class='bx bxs-bookmark text-xl'></i></button>
                             </form>
                             @endif
                         </div>

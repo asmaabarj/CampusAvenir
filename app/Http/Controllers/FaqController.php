@@ -19,9 +19,8 @@ class FaqController extends Controller
 
     public function index()
     {
-        $admin = auth()->user();
+        $admin = $this->faqService->admin();
         $faqs = $this->faqService->all();
-
         return view('Admin.faqs', compact('faqs', 'admin'));
     }
 

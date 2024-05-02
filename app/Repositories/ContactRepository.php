@@ -2,14 +2,20 @@
 
 namespace App\Repositories;
 
-use App\Interfaces\ContactInterface;
+use App\Models\User;
 use App\Models\Contact;
+use App\Interfaces\ContactInterface;
+use Illuminate\Support\Facades\Auth;
 
 class ContactRepository implements ContactInterface
 {
     public function all()
     {
         return Contact::all();
+    }
+    public function admin()
+    {
+        return User::findOrFail(Auth::id());
     }
 
     public function create(array $data)

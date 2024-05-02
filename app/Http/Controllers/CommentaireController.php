@@ -13,7 +13,7 @@ class CommentaireController extends Controller
 
     public function index($id)
     {
-        $comments = Commentaire::where('commentable_id', $id)->with('user')->get();
+        $comments = Commentaire::where('commentable_id', $id)->where('commentable_type','App\Models\Publication')->with('user')->get();
         return response()->json([
             'success' => true,
             'comments' => $comments,

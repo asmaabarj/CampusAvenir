@@ -17,6 +17,10 @@ class FaqService
     {
         return $this->faqRepository->all();
     }
+    public function admin()
+    {
+        return $this->faqRepository->admin();
+    }
 
     public function create(array $data)
     {

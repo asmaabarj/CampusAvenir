@@ -33,6 +33,7 @@
                 </div>
             </div>
         </section>
+        <h2 class="text-3xl font-extrabold text-gray-900 mb-8 px-32 mt-14">Les établissements</h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2  lg:grid-cols-3 px-32  gap-8 mt-8 ">
             @foreach ($universities as $university)

@@ -64,7 +64,7 @@
                         @foreach ($annonces as $annonce)
                             <div class="bg-gray-100 shadow-md border-b-2 border-blue-500 overflow-hidden group">
                                 <div class="relative overflow-hidden">
-                                    <img src="{{ asset('storage/' . $annonce->photo) }}" alt="Blog Post 1"
+                                    <img src="{{ asset('storage/' .         $annonce->photo) }}" alt="Blog Post 1"
                                         class="w-full h-52 object-cover group-hover:scale-125 transition-all duration-300" />
                                     @if ($annonce->date != null)
                                         <div
@@ -74,7 +74,7 @@
 
                                 </div>
                                 <div class="p-4">
-                                    <h3 class="text-lg font-bold text-blue-950">{{ $annonce->titre }}</h3>
+                                    <h3 class="text-base font-bold text-blue-950">{{ $annonce->titre }}</h3>
                                     @if ($annonce->temps != null)
                                         <h6 class="text-xs bx bx-time-five font-medium text-gray-600">
                                             {{ $annonce->temps }}
@@ -85,9 +85,9 @@
                                         <h6 class="text-xs bx bx-map font-medium text-gray-600">
                                             {{ $annonce->lieu }}
                                     @endif
-                                    <p class="text-base mt-3 text-black">
-                                        @if (strlen($annonce->description) > 60)
-                                            {{ substr($annonce->description, 0, 60) }}...
+                                    <p class="text-sm  text-black">
+                                        @if (strlen($annonce->description)+strlen($annonce->titre) > 60)
+                                            {{ substr($annonce->description, 0, 100) }}...
                                         @else
                                             {{ $annonce->description }}
                                         @endif

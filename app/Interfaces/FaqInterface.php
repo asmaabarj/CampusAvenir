@@ -6,6 +6,7 @@ namespace App\Interfaces;
 interface FaqInterface
 {
     public function all();
+    public function admin();
 
     public function create(array $data);
 

@@ -11,6 +11,10 @@ class FaqRepository implements FaqInterface
     {
         return Faq::all();
     }
+    public function admin()
+    {
+        return auth()->user();
+    }
 
     public function create(array $data)
     {

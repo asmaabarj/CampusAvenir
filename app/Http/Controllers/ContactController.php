@@ -18,10 +18,11 @@ class ContactController extends Controller
 
     public function index()
     {
-        $admin = User::findOrFail(Auth::id());
+        $admin = $this->contactService->admin();
         $contacts = $this->contactService->all();
         return view('Admin.contact', ['contacts' => $contacts, 'admin' => $admin]);
     }
+    
 
     public function store(CreateContactRequest $request)
     {

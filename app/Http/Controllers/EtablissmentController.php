@@ -174,11 +174,13 @@ class EtablissmentController extends Controller
     }
 
     public function favoritStyle($id)
-    {
+{
+    $iduser = auth()->id(); 
 
-        $etablissment = favoris::where('etablissment_id', $id)->first();
-        return response()->json([
-            'etablissment' => $etablissment,
-        ]);
-    }
+    $etablissement = favoris::where('etablissment_id', $id)->where('user_id', $iduser)->first();
+    return response()->json([
+        'etablissment' => $etablissement,
+    ]);
+}
+
 }

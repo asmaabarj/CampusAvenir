@@ -49,7 +49,7 @@
         </div>
         <div class="grid  gap-5">
             <div class="relative mt-2 w-full">
-                <input type="email" name="email" value=""
+                <input type="email" name="email" value="" id="email"
                     class="border-1 peer bg-white block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
                     placeholder=" " />
                 <label for="email"
@@ -59,10 +59,13 @@
                         @error('email')
                             <div>{{ $message }}</div>
                         @enderror
+                        <div id="errorMessage2" class="hidden text-red-600 font-semibold ">
+                            <p>E-mail n'est pas valide</p>
+                        </div>
                     </div>
             </div>
             <div class="relative mt-2 w-full">
-                <input type="password" name="password"
+                <input type="password" name="password" id="password"
                     class="border-1 peer bg-white block w-full appearance-none rounded-lg border border-gray-300 bg-transparent px-2.5 pb-2.5 pt-4 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0"
                     placeholder=" " />
                 <label for="password"
@@ -72,6 +75,9 @@
                         @error('password')
                             <div>{{ $message }}</div>
                         @enderror
+                        <div id="errorMessage3" class="hidden text-red-600 font-semibold ">
+                            <p>Mot de Pass n'est pas valide</p>
+                        </div>
                     </div>
             </div>    
             <div class="flex items-center justify-between">
@@ -95,4 +101,6 @@
 </div>
 </main>
 @include('components.FooterAuth')
+<script src="{{ asset('js/regexLogin.js') }}"></script>
+
 </body>

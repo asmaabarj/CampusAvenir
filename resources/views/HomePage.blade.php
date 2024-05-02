@@ -53,10 +53,10 @@
                                     <div class="p-4">
                                         <h3 class="text-xl font-bold text-gray-800">{{ $annonce->titre }}</h3>
 
-                                        <p class="text-sm mt-4">
-                                            @if (strlen($annonce->description) > 355)
-                                                {{ substr($annonce->description, 0, 355) }}...
-                                                <div class="mt-4  inline-block text-blue-600 cursor-pointer text-sm hover:underline"
+                                        <p class="text-sm mt-3">
+                                            @if (strlen($annonce->description) + strlen($annonce->titre) > 250)
+                                            {{ substr($annonce->description, 0, 250) }}...
+                                                <div class="mt-3  inline-block text-blue-600 cursor-pointer text-sm hover:underline"
                                             onclick="toggleModal('pop{{ $annonce->id }}')">Voir Plus
                                             </div>
                                             @else
